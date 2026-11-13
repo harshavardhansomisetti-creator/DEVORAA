@@ -701,11 +701,12 @@ document.addEventListener("click", function(event) {
         return;
     }
 
-    const courseButton = event.target.closest("[data-course]");
-    const openCourseButton = event.target.closest("[data-open-course]");
-    const dashboardButton = event.target.closest('[data-page="dashboard"]');
-    const topicButton = event.target.closest("[data-topic]");
-    const lessonButton = event.target.closest("[data-topic-lesson]");
+const dashboardButton = event.target.closest('[data-page="dashboard"]');
+const removeContinueButton = event.target.closest("[data-remove-continue]");
+const openCourseButton = event.target.closest("[data-open-course]");
+const courseButton = event.target.closest(".topic-header [data-course]");
+const topicButton = event.target.closest("[data-topic]");
+const lessonButton = event.target.closest("[data-topic-lesson]");
 
     if (courseButton) {
         showCourse(courseButton.dataset.course);
