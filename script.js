@@ -192,6 +192,7 @@ function scrollPageToTop() {
 
 // ==========================================
 // OPEN APPLICATION
+// ALWAYS OPEN DASHBOARD
 // ==========================================
 
 function openApplication() {
@@ -203,13 +204,7 @@ function openApplication() {
         appLayout.classList.add("visible");
     }
 
-    const lastLesson = getLastLesson();
-
-    if (lastLesson) {
-        showTopicLesson(lastLesson.code, lastLesson.index);
-    } else {
-        showDashboard();
-    }
+    showDashboard();
 }
 
 // ==========================================
