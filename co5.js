@@ -2358,7 +2358,7 @@ db.students.find({
                 question: "Which method creates an index?",
                 options: ["createIndex()", "insertMany()", "deleteOne()", "findOne()"],
                 correct: 0
-            }
-        ]
+            ]
     }
+
 ];
