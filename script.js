@@ -685,65 +685,84 @@ function escapeHTML(value) {
 // ALL CLICK EVENTS
 // ==========================================
 
-document.addEventListener("click", function(event) {
+document.addEventListener("click", function (event) {
+
+    const target = event.target;
 
     // REMOVE CONTINUE LEARNING
-    const removeContinueButton =
-        event.target.closest("[data-remove-continue]");
+    const removeContinueButton = target.closest("[data-remove-continue]");
 
     if (removeContinueButton) {
         savedProgress.lastVisited = null;
-
         saveProgress();
-
         showDashboard();
-
         return;
     }
 
-const dashboardButton = event.target.closest('[data-page="dashboard"]');
-const removeContinueButton = event.target.closest("[data-remove-continue]");
-const openCourseButton = event.target.closest("[data-open-course]");
-const courseButton = event.target.closest(".topic-header [data-course]");
-const topicButton = event.target.closest("[data-topic]");
-const lessonButton = event.target.closest("[data-topic-lesson]");
-
-    if (courseButton) {
-        showCourse(courseButton.dataset.course);
-        return;
-    }
-
-    if (openCourseButton) {
-        showCourse(openCourseButton.dataset.openCourse);
-        return;
-    }
+    // DASHBOARD - FIRST PRIORITY
+    const dashboardButton = target.closest('[data-page="dashboard"]');
 
     if (dashboardButton) {
         showDashboard();
         return;
     }
 
-    if (topicButton) {
-        const code = topicButton.dataset.courseCode;
-        const index = Number(topicButton.dataset.topic);
+    // OPEN COURSE FROM DASHBOARD
+    const openCourseButton = target.closest("[data-open-course]");
 
-        showTopicLesson(code, index);
+    if (openCourseButton) {
+        const code = openCourseButton.dataset.openCourse;
+
+        if (courses[code]) {
+            showCourse(code);
+        }
+
         return;
     }
+
+    // OPEN LESSON
+    const lessonButton = target.closest("[data-topic-lesson]");
 
     if (lessonButton) {
         const code = lessonButton.dataset.topicCourse;
         const index = Number(lessonButton.dataset.topicLesson);
 
-        const topics = courseTopics[code];
-
-        if (topics && index >= 0 && index < topics.length) {
+        if (courseTopics[code] && courseTopics[code][index]) {
             showTopicLesson(code, index);
         }
 
         return;
     }
+
+    // OPEN TOPIC
+    const topicButton = target.closest("[data-topic][data-course-code]");
+
+    if (topicButton) {
+        const code = topicButton.dataset.courseCode;
+        const index = Number(topicButton.dataset.topic);
+
+        if (courseTopics[code] && courseTopics[code][index]) {
+            showTopicLesson(code, index);
+        }
+
+        return;
+    }
+
+    // SIDEBAR COURSE BUTTON
+    const courseButton = target.closest("[data-course]");
+
+    if (courseButton) {
+        const code = courseButton.dataset.course;
+
+        if (courses[code]) {
+            showCourse(code);
+        }
+
+        return;
+    }
+
 });
+
 
 // ==========================================
 // SIDEBAR TOGGLE
