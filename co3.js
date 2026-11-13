@@ -1,497 +1,699 @@
 
 export const co3Topics = [
 
-    // TOPIC 1
+    // ==========================================
+    // TOPIC 1 - INTRODUCTION TO REACT
+    // ==========================================
+
     {
         title: "Introduction to React",
+
         sections: [
             {
                 heading: "What is React?",
-                body: `React is a JavaScript library used to build interactive user interfaces. It was developed by Meta.
+                body: `React is a JavaScript library used to build user interfaces, especially for web applications. It was developed by Meta. React allows developers to divide a large user interface into smaller, reusable parts called components.
 
-Traditional websites often update parts of a page using direct DOM manipulation. React provides a component-based approach that makes user interface development easier to organize and maintain.
+For example, consider an online shopping website. It contains a navigation bar, search bar, product cards, shopping cart and footer. Instead of writing all these elements in one large file, React allows us to create separate components for each part.
 
-React is commonly used for single-page applications where users can interact with different sections without reloading the entire page.`
+React mainly focuses on the user interface. It works with JavaScript and can be combined with other tools to build complete applications.`
             },
             {
-                heading: "Why Use React?",
-                body: `React is useful because it allows developers to divide a large user interface into smaller reusable components.
+                heading: "Why Do We Need React?",
+                body: `In traditional JavaScript development, developers often manually select HTML elements and update their content whenever data changes. As an application becomes larger, managing these updates can become difficult.
+
+React provides a structured approach. Developers describe what the interface should look like for the current data, and React updates the necessary parts when that data changes.
 
 Important advantages include:
 
-• Component-based architecture
-• Reusable UI elements
-• Efficient updates using the Virtual DOM
-• Easy management of interactive interfaces
-• Large ecosystem and community support
-
-For example, a navigation bar created once can be reused across multiple pages.`
+1. Component reusability: The same component can be used in multiple places.
+2. Maintainability: Application code can be organised into smaller units.
+3. Declarative development: Developers describe the expected interface rather than manually updating every element.
+4. Ecosystem: React supports many tools and libraries for application development.`
             },
             {
-                heading: "How React Works",
-                body: `React describes how the user interface should look based on the current application data.
+                heading: "Understanding the Virtual DOM",
+                body: `The browser represents a web page using the Document Object Model (DOM). When the page changes, the browser may need to update parts of this structure.
 
-When data changes, React calculates what needs to be updated and applies the necessary changes to the browser DOM.
+React maintains its own representation of the rendered interface. When application data changes, React compares the new representation with the previous one and determines what needs to be updated.
 
-This approach helps developers build interfaces that respond to user actions and changing information.`
+This process is commonly explained through the Virtual DOM and reconciliation. React then applies the necessary changes to the browser DOM.
+
+The Virtual DOM is not a separate browser feature. It is part of React's rendering approach.`
             },
             {
-                heading: "Where React Is Used",
-                body: `React is commonly used in:
+                heading: "Creating a React Application",
+                body: `A common way to start a modern React project is using Vite. Vite creates the development environment and provides a local development server.
 
-• E-commerce websites
-• Social media interfaces
-• Student dashboards
-• Admin panels
-• Online learning platforms
-• Interactive web applications
+After creating a project, the main application files usually include:
 
-A student dashboard with course lists, progress indicators and assessment results is a good example of a React application.`
-            }
-        ],
-        questions: [
-            {
-                level: "Easy",
-                question: "What is React?",
-                options: [
-                    "A JavaScript library",
-                    "A database",
-                    "An operating system",
-                    "A programming language"
-                ],
-                correct: 0,
-                explanation: "React is a JavaScript library used for building user interfaces."
+- src/main.jsx: Entry point that connects React to the HTML page.
+- src/App.jsx: Main application component.
+- src/index.css: Global styles.
+- index.html: HTML document loaded by the browser.
+
+The App component is where developers commonly begin building the application interface.`
             },
             {
-                level: "Easy",
-                question: "Who developed React?",
-                options: [
-                    "Google",
-                    "Microsoft",
-                    "Meta",
-                    "Oracle"
-                ],
-                correct: 2,
-                explanation: "React was originally developed at Facebook, now known as Meta."
-            },
-            {
-                level: "Medium",
-                question: "What is the main purpose of React?",
-                options: [
-                    "Managing databases",
-                    "Building user interfaces",
-                    "Creating operating systems",
-                    "Managing computer hardware"
-                ],
-                correct: 1,
-                explanation: "React focuses on creating interactive and reusable user interfaces."
-            },
-            {
-                level: "Medium",
-                question: "What is a major feature of React?",
-                options: [
-                    "Component-based architecture",
-                    "Hardware programming",
-                    "Database storage",
-                    "Network configuration"
-                ],
-                correct: 0,
-                explanation: "React applications are organized using reusable components."
-            },
-            {
-                level: "Hard",
-                question: "React is commonly used to build which type of application?",
-                options: [
-                    "Single-page applications",
-                    "Operating systems",
-                    "Device drivers",
-                    "BIOS software"
-                ],
-                correct: 0,
-                explanation: "React is widely used to build single-page applications with interactive interfaces."
-            }
-        ]
-    },
+                heading: "First React Component",
+                body: `A React component is a JavaScript function that returns JSX describing part of the user interface. Component names must begin with a capital letter.
 
-    // TOPIC 2
-    {
-        title: "Setting Up a React Project",
-        sections: [
-            {
-                heading: "Requirements for React Development",
-                body: `Before creating a React application, install Node.js and a code editor such as Visual Studio Code.
+In this example, Welcome is a component. It returns a heading and paragraph. The App component uses Welcome to display that content.
 
-Node.js provides the JavaScript runtime needed by development tools. npm, which comes with Node.js, helps install and manage project packages.
-
-A browser is also required to view and test the application.`
-            },
-            {
-                heading: "Creating a React Project",
-                body: `Vite is a modern development tool that can create and run React projects.
-
-Open the terminal and execute these commands:`
-            },
-            {
-                heading: "Project Creation Commands",
-                code: `npm create vite@latest my-react-app -- --template react
-cd my-react-app
-npm install
-npm run dev`,
-                body: `The first command creates a React project using Vite.
-
-The second command enters the project folder.
-
-The third command installs the required dependencies.
-
-The final command starts the development server. Open the local URL shown in the terminal to view your application.`
-            },
-            {
-                heading: "Understanding Project Files",
-                body: `Important files in a basic Vite React project:
-
-• index.html – Main HTML document.
-• src/main.jsx – Application entry point.
-• src/App.jsx – Main application component.
-• src/App.css – Component styling.
-• package.json – Project information and dependencies.
-
-The main.jsx file connects the React application to the HTML document.`
-            }
-        ],
-        questions: [
-            {
-                level: "Easy",
-                question: "Which tool is commonly used to create a React project?",
-                options: ["Vite", "MySQL", "Photoshop", "Cisco Packet Tracer"],
-                correct: 0,
-                explanation: "Vite is a modern tool used to create and run React projects."
-            },
-            {
-                level: "Easy",
-                question: "What does npm manage?",
-                options: ["Hardware devices", "JavaScript packages", "Computer memory", "Network cables"],
-                correct: 1,
-                explanation: "npm is a package manager used to install and manage project dependencies."
-            },
-            {
-                level: "Medium",
-                question: "Which command installs project dependencies?",
-                options: ["npm start", "npm install", "npm delete", "npm build"],
-                correct: 1,
-                explanation: "npm install downloads and installs the packages specified by the project."
-            },
-            {
-                level: "Medium",
-                question: "Which file is commonly used as the main React component in a Vite project?",
-                options: ["App.jsx", "database.sql", "server.php", "index.py"],
-                correct: 0,
-                explanation: "App.jsx commonly contains the main application component."
-            },
-            {
-                level: "Hard",
-                question: "What does npm run dev usually do in a Vite project?",
-                options: [
-                    "Deletes the project",
-                    "Starts the development server",
-                    "Creates a database",
-                    "Installs an operating system"
-                ],
-                correct: 1,
-                explanation: "The dev script starts the local development server."
-            }
-        ]
-    },
-
-    // TOPIC 3
-    {
-        title: "JSX and Components",
-        sections: [
-            {
-                heading: "What is JSX?",
-                body: `JSX stands for JavaScript XML. It is a syntax extension that allows developers to write HTML-like markup inside JavaScript code.
-
-JSX makes React components easier to read because the user interface structure and related JavaScript logic can be written together.
-
-Browsers do not execute JSX directly. Development tools transform JSX into JavaScript that React can use.`
-            },
-            {
-                heading: "Writing JSX",
-                code: `function App() {
+This demonstrates how a React application can be built by combining smaller components.`,
+                code: `function Welcome() {
     return (
         <div>
-            <h1>Welcome to DEVORAA</h1>
-            <p>Learn React Development</p>
+            <h1>Welcome to React</h1>
+            <p>Start learning component-based development.</p>
         </div>
     );
-}
-
-export default App;`,
-                body: `The App function returns JSX describing the interface.
-
-JSX expressions are written inside parentheses for readability. A component must return a single parent element. Multiple elements can be grouped using a parent element or React Fragment.`
-            },
-            {
-                heading: "What Are Components?",
-                body: `Components are independent and reusable parts of a user interface.
-
-For example, a learning website may contain:
-
-• Header component
-• Sidebar component
-• CourseCard component
-• Lesson component
-• Footer component
-
-Each component can manage a specific part of the interface. This makes an application easier to develop, test and maintain.`
-            },
-            {
-                heading: "Creating a Reusable Component",
-                code: `function Welcome() {
-    return <h2>Welcome to React!</h2>;
 }
 
 function App() {
     return (
+        <main>
+            <Welcome />
+        </main>
+    );
+}
+
+export default App;`
+            },
+            {
+                heading: "Where React Is Used",
+                body: `React is commonly used for interactive websites and web application interfaces.
+
+Examples include:
+- E-commerce product pages.
+- Student management dashboards.
+- Social media interfaces.
+- Online learning platforms.
+- Admin panels.
+- Data visualisation dashboards.
+
+React is especially useful when an application contains reusable interface elements and frequently changing data.`
+            }
+        ],
+
+        questions: [
+            {
+                question: "What is React?",
+                level: "Basic",
+                options: [
+                    "A JavaScript library for building user interfaces",
+                    "A database management system",
+                    "An operating system",
+                    "A programming language"
+                ],
+                correct: 0,
+                explanation: "React is a JavaScript library used to build user interfaces."
+            },
+            {
+                question: "Who developed React?",
+                level: "Basic",
+                options: ["Google", "Meta", "Microsoft", "Oracle"],
+                correct: 1,
+                explanation: "React was originally developed at Facebook, now Meta."
+            },
+            {
+                question: "What is a React component?",
+                level: "Intermediate",
+                options: [
+                    "A reusable part of a user interface",
+                    "A database table",
+                    "A CSS property",
+                    "A server"
+                ],
+                correct: 0,
+                explanation: "Components divide interfaces into reusable parts."
+            },
+            {
+                question: "What does JSX allow developers to do?",
+                level: "Intermediate",
+                options: [
+                    "Write HTML-like syntax inside JavaScript",
+                    "Create database tables",
+                    "Configure network routers",
+                    "Replace JavaScript completely"
+                ],
+                correct: 0,
+                explanation: "JSX is a syntax extension that lets developers describe UI using HTML-like syntax."
+            },
+            {
+                question: "What is the main purpose of React's reconciliation process?",
+                level: "Advanced",
+                options: [
+                    "Compare interface changes and update the necessary DOM elements",
+                    "Create database backups",
+                    "Compile CSS into HTML",
+                    "Connect a website to a router"
+                ],
+                correct: 0,
+                explanation: "Reconciliation determines the updates needed when the rendered interface changes."
+            }
+        ]
+    },
+
+    // ==========================================
+    // TOPIC 2 - JSX
+    // ==========================================
+
+    {
+        title: "JSX",
+
+        sections: [
+            {
+                heading: "Introduction to JSX",
+                body: `JSX stands for JavaScript XML. It is a syntax extension used with React to describe what the user interface should display.
+
+JSX looks similar to HTML, but it is written inside JavaScript code. It makes React components easier to read because the interface structure and related logic can be organised together.
+
+JSX is not directly understood by browsers. Development tools transform JSX into JavaScript that React can use.`
+            },
+            {
+                heading: "Writing JSX Elements",
+                body: `JSX elements use tags similar to HTML elements. A component can return one parent element containing multiple child elements.
+
+For example, a heading and paragraph can be placed inside a div. Developers can also use a React Fragment when they need a parent wrapper without adding another DOM element.
+
+Unlike HTML, JSX requires certain elements to be written in a specific way.`
+            },
+            {
+                heading: "Important JSX Rules",
+                body: `There are several rules to remember when writing JSX.
+
+1. Return one parent element, or use a Fragment.
+2. Close all tags. For example, input must be written as a self-closing element.
+3. Use className instead of class for CSS classes.
+4. Use camelCase for most DOM properties and event names.
+5. JavaScript expressions can be inserted using curly braces.
+6. Use a capital letter at the beginning of a custom component name.
+
+These rules help JSX remain valid and predictable.`
+            },
+            {
+                heading: "Embedding JavaScript Expressions",
+                body: `Curly braces allow JavaScript expressions to be used inside JSX.
+
+For example, a variable containing a student's name can be displayed inside a heading. Mathematical expressions can also be evaluated inside curly braces.
+
+JSX supports expressions, such as calculations and function calls, but it does not accept ordinary JavaScript statements like if directly inside the braces.`,
+                code: `function App() {
+    const studentName = "Harsha";
+    const marks = 85;
+
+    return (
         <div>
-            <Welcome />
-            <Welcome />
+            <h1>Welcome, {studentName}</h1>
+            <p>Your marks: {marks}</p>
+            <p>Next test target: {marks + 5}</p>
         </div>
     );
 }
 
-export default App;`,
-                body: `The Welcome component is defined once and used twice inside App.
+export default App;`
+            },
+            {
+                heading: "Using Attributes in JSX",
+                body: `JSX supports attributes that configure HTML elements. Some familiar HTML attributes have different names in JSX.
 
-Component names must begin with a capital letter. In JSX, a component is used with opening and closing tags, or as a self-closing tag when it has no children.`
+For example, class becomes className, and the label attribute htmlFor is used to associate a label with a form control.
+
+Attributes can also receive JavaScript values through curly braces. This is useful when an element's properties depend on application data.`,
+                code: `function Profile() {
+    const imageURL = "/profile.jpg";
+
+    return (
+        <div className="profile">
+            <img
+                src={imageURL}
+                alt="Student profile"
+                width={150}
+            />
+
+            <h2>Student Profile</h2>
+        </div>
+    );
+}
+
+export default Profile;`
+            },
+            {
+                heading: "Conditional Content in JSX",
+                body: `Sometimes a website needs to display different content depending on a condition.
+
+For example, a dashboard may display a welcome message when a user is logged in and a login message when the user is not logged in.
+
+The conditional operator and logical AND operator are commonly used to handle simple conditional rendering in JSX.`,
+                code: `function App() {
+    const isLoggedIn = true;
+
+    return (
+        <div>
+            {isLoggedIn ? (
+                <h1>Welcome back!</h1>
+            ) : (
+                <h1>Please log in.</h1>
+            )}
+        </div>
+    );
+}
+
+export default App;`
             }
         ],
+
         questions: [
             {
-                level: "Easy",
                 question: "What is the full form of JSX?",
+                level: "Basic",
                 options: [
                     "JavaScript XML",
                     "Java Syntax Extension",
                     "JavaScript Extra",
-                    "JSON XML"
+                    "Java XML System"
                 ],
                 correct: 0,
                 explanation: "JSX stands for JavaScript XML."
             },
             {
-                level: "Easy",
-                question: "What is a React component?",
-                options: [
-                    "A reusable UI building block",
-                    "A database table",
-                    "A CSS property",
-                    "A browser"
-                ],
+                question: "Which attribute is used instead of class in JSX?",
+                level: "Basic",
+                options: ["className", "cssClass", "styleClass", "classname"],
                 correct: 0,
-                explanation: "Components are reusable building blocks of React user interfaces."
+                explanation: "React JSX uses className for CSS classes."
             },
             {
-                level: "Medium",
-                question: "How should a React component name begin?",
+                question: "How are JavaScript expressions embedded in JSX?",
+                level: "Intermediate",
                 options: [
-                    "With a number",
-                    "With a capital letter",
-                    "With a special symbol",
-                    "With a space"
-                ],
-                correct: 1,
-                explanation: "React component names should begin with a capital letter."
-            },
-            {
-                level: "Medium",
-                question: "Which syntax is used to display a Welcome component?",
-                options: [
-                    "<Welcome />",
-                    "Welcome() in HTML",
-                    "[Welcome]",
-                    "#Welcome"
+                    "Using curly braces",
+                    "Using square brackets",
+                    "Using quotation marks only",
+                    "Using angle brackets"
                 ],
                 correct: 0,
-                explanation: "React components are used in JSX with tag-like syntax."
+                explanation: "Curly braces allow JavaScript expressions inside JSX."
             },
             {
-                level: "Hard",
-                question: "What can be used to group multiple JSX elements without adding an extra DOM element?",
+                question: "Which is a valid self-closing JSX element?",
+                level: "Intermediate",
+                options: ["<input />", "<input>", "<input></input/>", "<input close>"],
+                correct: 0,
+                explanation: "JSX requires self-closing syntax for elements such as input."
+            },
+            {
+                question: "What is the purpose of a React Fragment?",
+                level: "Advanced",
                 options: [
-                    "React Fragment",
-                    "Database",
-                    "CSS Grid",
-                    "Local Storage"
+                    "Group multiple elements without adding an extra DOM element",
+                    "Create a database",
+                    "Apply CSS automatically",
+                    "Store component state"
                 ],
                 correct: 0,
-                explanation: "React Fragment groups elements without creating an additional DOM node."
+                explanation: "Fragments group elements without introducing an additional DOM wrapper."
             }
         ]
     },
 
-    // TOPIC 4
+    // ==========================================
+    // TOPIC 3 - COMPONENTS
+    // ==========================================
+
     {
-        title: "Props in React",
+        title: "Components",
+
         sections: [
             {
-                heading: "Understanding Props",
-                body: `Props stands for properties. Props are used to pass information from a parent component to a child component.
+                heading: "Understanding Components",
+                body: `Components are the basic building blocks of a React application. A component represents a reusable section of the user interface.
 
-They allow developers to create reusable components that display different information depending on the values received.
+Consider a student portal. It may contain a header, navigation menu, student profile, subject list and footer. Each of these sections can be developed as an individual component.
 
-For example, the same CourseCard component can display different course names and descriptions.`
+This approach makes an application easier to understand, test, maintain and expand.`
             },
             {
-                heading: "Passing Props",
-                code: `function Student(props) {
-    return <h2>Student: {props.name}</h2>;
+                heading: "Functional Components",
+                body: `A functional component is a JavaScript function that returns JSX. Its name should begin with a capital letter.
+
+The component can contain variables, calculations, event handlers and other JavaScript logic. It can also receive data through props.
+
+Functional components are the standard approach for developing modern React applications.`,
+                code: `function Header() {
+    return <h1>Student Portal</h1>;
+}
+
+function Footer() {
+    return <p>Copyright 2026</p>;
 }
 
 function App() {
     return (
         <div>
-            <Student name="Harsha" />
-            <Student name="Ravi" />
+            <Header />
+            <h2>Dashboard</h2>
+            <Footer />
         </div>
     );
 }
 
-export default App;`,
-                body: `The App component passes a name property to Student.
+export default App;`
+            },
+            {
+                heading: "Using Components Inside Components",
+                body: `React components can be combined to create larger interfaces. A parent component can display multiple child components.
 
-The Student component receives that information through its props parameter.
+For example, an App component may include Header, Sidebar and Dashboard components. Each child component handles a specific part of the application.
 
-The curly braces in JSX allow JavaScript expressions to be displayed inside markup.`
+This structure is called component composition. It helps developers build complex interfaces from smaller units.`
+            },
+            {
+                heading: "Reusable Components",
+                body: `A reusable component can be displayed in different places without rewriting its entire implementation.
+
+For example, an application may need several buttons with similar structure. Instead of creating separate button implementations, developers can create one Button component and customise it using props.
+
+Reusability reduces repeated code and makes changes easier to manage.`
+            },
+            {
+                heading: "Organising Component Files",
+                body: `As an application grows, keeping every component in one file becomes difficult. Developers commonly create a components folder inside the src directory.
+
+For example:
+
+src/
+- components/
+  - Header.jsx
+  - Footer.jsx
+  - StudentCard.jsx
+- App.jsx
+- main.jsx
+
+A component can be exported from one file and imported into another. This makes the project structure easier to navigate.`,
+                code: `// Header.jsx
+
+function Header() {
+    return <h1>DEVORAA Learning Portal</h1>;
+}
+
+export default Header;
+
+// App.jsx
+
+import Header from "./Header";
+
+function App() {
+    return (
+        <main>
+            <Header />
+            <p>Start learning React.</p>
+        </main>
+    );
+}
+
+export default App;`
+            },
+            {
+                heading: "Component Naming and Best Practices",
+                body: `React component names should begin with an uppercase letter. This helps React distinguish custom components from built-in HTML elements.
+
+A component should ideally have a clear responsibility. For example, a ProductCard component should mainly display product information rather than handling every unrelated task in the application.
+
+Useful practices include meaningful file names, small components, reusable layouts and consistent folder organisation.`
+            }
+        ],
+
+        questions: [
+            {
+                question: "What is a component in React?",
+                level: "Basic",
+                options: [
+                    "A reusable building block of the user interface",
+                    "A database query",
+                    "A CSS file",
+                    "A browser extension"
+                ],
+                correct: 0,
+                explanation: "Components represent reusable sections of the user interface."
+            },
+            {
+                question: "How should a functional component name begin?",
+                level: "Basic",
+                options: ["Uppercase letter", "Number", "Underscore only", "Lowercase letter only"],
+                correct: 0,
+                explanation: "Custom React component names begin with an uppercase letter."
+            },
+            {
+                question: "What is component composition?",
+                level: "Intermediate",
+                options: [
+                    "Combining components to build a larger interface",
+                    "Combining database tables",
+                    "Writing CSS inside HTML",
+                    "Deleting unused components"
+                ],
+                correct: 0,
+                explanation: "Component composition builds interfaces by combining smaller components."
+            },
+            {
+                question: "Why are reusable components useful?",
+                level: "Intermediate",
+                options: [
+                    "They reduce repeated code",
+                    "They remove JavaScript",
+                    "They replace databases",
+                    "They prevent all application errors"
+                ],
+                correct: 0,
+                explanation: "Reusable components reduce duplication and simplify maintenance."
+            },
+            {
+                question: "Which folder commonly stores reusable React components?",
+                level: "Advanced",
+                options: ["src/components", "public/database", "node_modules/pages", "root/server"],
+                correct: 0,
+                explanation: "The src/components directory is a common location for component files."
+            }
+        ]
+    },
+
+    // ==========================================
+    // TOPIC 4 - PROPS
+    // ==========================================
+
+    {
+        title: "Props",
+
+        sections: [
+            {
+                heading: "Introduction to Props",
+                body: `Props is short for properties. Props allow a parent component to pass information to a child component.
+
+Imagine an online shopping page displaying several products. Each product card has a different name, price and image, but the overall layout remains the same.
+
+Instead of writing separate components for every product, one ProductCard component can receive different props and display different information.
+
+Props make components flexible and reusable.`
+            },
+            {
+                heading: "Passing Props to Components",
+                body: `Props are passed to a component using attributes in JSX. The child component receives them as an object.
+
+In the following example, the parent component passes a student's name and course to StudentCard. The child component reads those values and displays them.
+
+The same component can be used with different values.`,
+                code: `function StudentCard(props) {
+    return (
+        <div>
+            <h2>{props.name}</h2>
+            <p>Course: {props.course}</p>
+        </div>
+    );
+}
+
+function App() {
+    return (
+        <div>
+            <StudentCard
+                name="Harsha"
+                course="ECE"
+            />
+
+            <StudentCard
+                name="Ravi"
+                course="CSE"
+            />
+        </div>
+    );
+}
+
+export default App;`
             },
             {
                 heading: "Destructuring Props",
-                code: `function Course({ title, duration }) {
+                body: `JavaScript destructuring allows developers to extract values directly from an object.
+
+Instead of writing props.name and props.course repeatedly, the component can receive these values using destructuring.
+
+This makes the component shorter and easier to read.`,
+                code: `function StudentCard({ name, course }) {
     return (
         <div>
-            <h2>{title}</h2>
-            <p>Duration: {duration}</p>
+            <h2>{name}</h2>
+            <p>Course: {course}</p>
         </div>
+    );
+}
+
+export default StudentCard;`
+            },
+            {
+                heading: "Default Props Values",
+                body: `Sometimes a parent component may not provide every prop. A component can use default parameter values to provide fallback information.
+
+For example, if a profile does not receive a name, it can display the text Guest.
+
+Default values make components more predictable when optional information is missing.`,
+                code: `function Profile({ name = "Guest" }) {
+    return (
+        <h2>Welcome, {name}</h2>
     );
 }
 
 function App() {
     return (
-        <Course
-            title="React Development"
-            duration="6 Weeks"
-        />
+        <div>
+            <Profile name="Harsha" />
+            <Profile />
+        </div>
     );
-}`,
-                body: `Destructuring allows individual prop values to be extracted directly from the component parameter.
+}
 
-Instead of writing props.title and props.duration, we can use title and duration directly.`
+export default App;`
             },
             {
-                heading: "Important Rules of Props",
-                body: `• Props are passed from parent to child components.
-• Props are read-only.
-• A child component should not directly modify its props.
-• Props can contain strings, numbers, arrays, objects and functions.
-• Different prop values allow the same component to display different content.`
+                heading: "Passing Functions as Props",
+                body: `Props can also contain functions. This allows a child component to notify its parent when an event happens.
+
+For example, a parent can define a function to display a message. It can pass that function to a child button component. When the button is clicked, the child calls the function.
+
+This is a common method of handling communication from child components to parent components.`,
+                code: `function MessageButton({ onMessage }) {
+    return (
+        <button onClick={onMessage}>
+            Show Message
+        </button>
+    );
+}
+
+function App() {
+    function showMessage() {
+        alert("Button clicked!");
+    }
+
+    return (
+        <MessageButton onMessage={showMessage} />
+    );
+}
+
+export default App;`
+            },
+            {
+                heading: "Important Rules About Props",
+                body: `Props are read-only inputs. A child component should not directly modify the props it receives.
+
+If information needs to change, the component that owns the state should update that state and pass the new value through props.
+
+This keeps data flow predictable and makes React applications easier to debug.`
             }
         ],
+
         questions: [
             {
-                level: "Easy",
-                question: "What does Props stand for?",
+                question: "What is the purpose of props?",
+                level: "Basic",
                 options: [
-                    "Properties",
-                    "Programs",
-                    "Processes",
-                    "Protocols"
+                    "To pass data from parent to child components",
+                    "To create CSS files",
+                    "To store browser history",
+                    "To connect to a database automatically"
                 ],
                 correct: 0,
-                explanation: "Props is short for properties."
+                explanation: "Props are used to pass information to child components."
             },
             {
-                level: "Easy",
-                question: "What is the main purpose of props?",
+                question: "Are props directly mutable by the receiving component?",
+                level: "Basic",
                 options: [
-                    "Passing data between parent and child components",
-                    "Creating databases",
-                    "Styling HTML directly",
-                    "Installing React"
-                ],
-                correct: 0,
-                explanation: "Props pass information from parent components to child components."
-            },
-            {
-                level: "Medium",
-                question: "Can a child component directly modify its props?",
-                options: [
+                    "No, props should be treated as read-only",
                     "Yes, always",
-                    "No, props are read-only",
-                    "Only using CSS",
-                    "Only in HTML"
-                ],
-                correct: 1,
-                explanation: "Props are read-only values and should not be directly modified by the child."
-            },
-            {
-                level: "Medium",
-                question: "Which syntax passes a name prop?",
-                options: [
-                    "<Student name='Ravi' />",
-                    "<Student: name />",
-                    "Student.name = Ravi",
-                    "#Student(name)"
+                    "Only in CSS",
+                    "Only when using HTML"
                 ],
                 correct: 0,
-                explanation: "A prop is passed as an attribute in a component's JSX tag."
+                explanation: "React components should treat received props as read-only."
             },
             {
-                level: "Hard",
-                question: "What is the benefit of destructuring props?",
+                question: "What is destructuring used for?",
+                level: "Intermediate",
                 options: [
-                    "It makes prop values easier to access",
-                    "It deletes all props",
-                    "It creates a database",
-                    "It replaces JSX"
+                    "Extracting values from objects",
+                    "Deleting all object properties",
+                    "Creating a database",
+                    "Changing HTML tags"
                 ],
                 correct: 0,
-                explanation: "Destructuring provides direct access to individual prop values."
+                explanation: "Destructuring extracts object properties into variables."
+            },
+            {
+                question: "Can a function be passed as a prop?",
+                level: "Intermediate",
+                options: ["Yes", "No", "Only in CSS", "Only in HTML"],
+                correct: 0,
+                explanation: "Functions can be passed as props for event handling and communication."
+            },
+            {
+                question: "What happens when a prop has no supplied value and a default parameter is defined?",
+                level: "Advanced",
+                options: [
+                    "The default value is used",
+                    "The application always closes",
+                    "The component is deleted",
+                    "The browser reloads"
+                ],
+                correct: 0,
+                explanation: "Default parameter values provide fallback values for undefined props."
             }
         ]
     },
 
-    // TOPIC 5
+    // ==========================================
+    // TOPIC 5 - USESTATE
+    // ==========================================
+
     {
-        title: "State and useState Hook",
+        title: "useState",
+
         sections: [
             {
-                heading: "What is State?",
-                body: `State is data that a React component remembers and manages over time.
+                heading: "Understanding State",
+                body: `State is data that a React component remembers between renders. It represents information that can change while an application is running.
 
-State is useful when the interface needs to respond to user actions or changing information.
+Consider a counter application. It displays a number and contains an increment button. Whenever the user clicks the button, the displayed number changes.
 
-Examples include:
-
-• Counter values
-• Form input values
-• Selected course
-• Menu open or closed status
-• Shopping cart items
-
-When state changes, React updates the interface where that state is used.`
+The current counter value is state because the component needs to remember it and update the interface when it changes.`
             },
             {
-                heading: "Understanding useState",
-                body: `useState is a React Hook that allows functional components to create and manage state.
+                heading: "Introduction to the useState Hook",
+                body: `useState is a React Hook that allows functional components to store and update state.
 
-It returns two values:
+It returns an array containing two values:
 
 1. The current state value.
-2. A function used to update that value.
+2. A function used to update that state.
 
-The initial value is provided when calling useState.`
-            },
-            {
-                heading: "Counter Example",
+The initial value is provided when calling useState. When the state setter is called, React schedules an update and renders the component again with the new state.`,
                 code: `import { useState } from "react";
 
 function Counter() {
@@ -508,517 +710,218 @@ function Counter() {
     );
 }
 
-export default Counter;`,
-                body: `Initially, count is 0.
-
-When the user clicks Increase, setCount updates the state to the next value.
-
-React then renders the updated count in the interface.`
+export default Counter;`
             },
             {
-                heading: "Important Rules of useState",
-                body: `• Import useState from React.
-• Call Hooks at the top level of a component or custom Hook.
-• Do not call Hooks inside loops or conditions.
-• Use the state setter to update state.
-• Do not directly modify state variables.
+                heading: "Understanding the Array Returned by useState",
+                body: `The useState Hook returns an array with two elements.
 
-For example, setCount(count + 1) is the correct way to update the counter.`
-            }
-        ],
-        questions: [
-            {
-                level: "Easy",
-                question: "What is state in React?",
-                options: [
-                    "Data managed by a component",
-                    "A CSS selector",
-                    "An HTML tag",
-                    "A database server"
-                ],
-                correct: 0,
-                explanation: "State stores information that a component manages over time."
+In the example, count stores the current value. setCount is the function used to request a state update.
+
+The initial value is zero. When setCount is called with a new value, React updates the state and renders the component again.
+
+Developers commonly use array destructuring to access these two values.`
             },
             {
-                level: "Easy",
-                question: "Which Hook is used to manage state?",
-                options: [
-                    "useState",
-                    "useHTML",
-                    "useCSS",
-                    "useDatabase"
-                ],
-                correct: 0,
-                explanation: "The useState Hook allows functional components to manage state."
-            },
-            {
-                level: "Medium",
-                question: "What does useState return?",
-                options: [
-                    "A state value and a setter function",
-                    "Only a CSS class",
-                    "A database connection",
-                    "An HTML document"
-                ],
-                correct: 0,
-                explanation: "useState returns the current state and a function to update it."
-            },
-            {
-                level: "Medium",
-                question: "What happens when state is updated?",
-                options: [
-                    "React schedules an update to the component",
-                    "The browser closes",
-                    "The project is deleted",
-                    "CSS is removed"
-                ],
-                correct: 0,
-                explanation: "Updating state causes React to render the component with the updated state."
-            },
-            {
-                level: "Hard",
-                question: "Which is the correct way to update a count state?",
-                options: [
-                    "count = count + 1",
-                    "setCount(count + 1)",
-                    "count++",
-                    "updateHTML(count)"
-                ],
-                correct: 1,
-                explanation: "The setter function should be used to update React state."
-            }
-        ]
-    },
+                heading: "Updating State Correctly",
+                body: `When the next state depends on the previous state, using the functional updater form is a reliable approach.
 
-    // TOPIC 6
-    {
-        title: "Event Handling in React",
-        sections: [
-            {
-                heading: "What is Event Handling?",
-                body: `Event handling allows React applications to respond to user interactions.
+The updater receives the previous state value and returns the next value. This is especially useful when multiple updates are scheduled close together.
 
-Common events include:
-
-• onClick – When an element is clicked.
-• onChange – When an input value changes.
-• onSubmit – When a form is submitted.
-• onMouseOver – When the pointer moves over an element.
-
-Events make React applications interactive.`
-            },
-            {
-                heading: "Handling a Click Event",
-                code: `function App() {
-    function handleClick() {
-        alert("Button clicked!");
-    }
-
-    return (
-        <button onClick={handleClick}>
-            Click Me
-        </button>
-    );
-}
-
-export default App;`,
-                body: `The handleClick function runs when the user clicks the button.
-
-React event names use camelCase, such as onClick instead of onclick.
-
-Pass the function reference as the event handler rather than calling it immediately.`
-            },
-            {
-                heading: "Handling Input Changes",
+For example, setCount(previousCount => previousCount + 1) calculates the next count from the previous value.`,
                 code: `import { useState } from "react";
 
-function NameInput() {
-    const [name, setName] = useState("");
+function Counter() {
+    const [count, setCount] = useState(0);
 
-    return (
-        <div>
-            <input
-                type="text"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                placeholder="Enter your name"
-            />
+    function increase() {
+        setCount(previousCount => previousCount + 1);
+    }
 
-            <p>Hello, {name}</p>
-        </div>
-    );
-}
-
-export default NameInput;`,
-                body: `The onChange event runs whenever the input value changes.
-
-event.target.value provides the current text entered by the user.
-
-The setName function updates the state, and React displays the updated greeting.`
-            },
-            {
-                heading: "Form Submission",
-                code: `function ContactForm() {
-    function handleSubmit(event) {
-        event.preventDefault();
-        alert("Form submitted!");
+    function decrease() {
+        setCount(previousCount => previousCount - 1);
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Your name" />
-            <button type="submit">Submit</button>
-        </form>
+        <div>
+            <h2>{count}</h2>
+
+            <button onClick={increase}>Increase</button>
+            <button onClick={decrease}>Decrease</button>
+        </div>
     );
-}`,
-                body: `The onSubmit event handles form submission.
+}
 
-event.preventDefault() prevents the browser's default form submission behavior, allowing the React application to handle the action.`
-            }
-        ],
-        questions: [
-            {
-                level: "Easy",
-                question: "Which event handles button clicks in React?",
-                options: ["onClick", "onChange", "onSubmit", "onLoad"],
-                correct: 0,
-                explanation: "The onClick event handles click interactions."
+export default Counter;`
             },
             {
-                level: "Easy",
-                question: "Which event is commonly used for input changes?",
-                options: ["onChange", "onClick", "onDelete", "onStop"],
-                correct: 0,
-                explanation: "onChange responds when an input value changes."
+                heading: "State with Strings and Boolean Values",
+                body: `State is not limited to numbers. It can store strings, Boolean values, arrays and objects.
+
+For example, a component can store a user's name in a string state. A Boolean state can control whether a message or section is visible.
+
+The initial state should match the type of information the component needs to store.`,
+                code: `import { useState } from "react";
+
+function Profile() {
+    const [name, setName] = useState("Harsha");
+    const [isVisible, setIsVisible] = useState(true);
+
+    return (
+        <div>
+            <h2>{name}</h2>
+
+            <button onClick={() => setName("Student")}>
+                Change Name
+            </button>
+
+            <button onClick={() => setIsVisible(!isVisible)}>
+                Toggle Message
+            </button>
+
+            {isVisible && <p>Welcome to React!</p>}
+        </div>
+    );
+}
+
+export default Profile;`
             },
             {
-                level: "Medium",
-                question: "How are React event names written?",
-                options: [
-                    "CamelCase",
-                    "All lowercase",
-                    "All uppercase",
-                    "With spaces"
-                ],
-                correct: 0,
-                explanation: "React event names use camelCase, such as onClick."
-            },
-            {
-                level: "Medium",
-                question: "What does event.preventDefault() do?",
-                options: [
-                    "Prevents the default browser action",
-                    "Deletes the event",
-                    "Closes the application",
-                    "Changes CSS"
-                ],
-                correct: 0,
-                explanation: "It prevents the browser's default behavior for an event."
-            },
-            {
-                level: "Hard",
-                question: "How should a click handler normally be passed?",
-                options: [
-                    "onClick={handleClick}",
-                    "onClick='handleClick()'",
-                    "click=handleClick",
-                    "onClick={handleClick()}"
-                ],
-                correct: 0,
-                explanation: "Passing the function reference allows React to call it when the event occurs."
-            }
-        ]
-    },
+                heading: "Updating Objects and Arrays in State",
+                body: `React state should be updated without directly mutating the existing object or array.
 
-    // TOPIC 7
-    {
-        title: "Conditional Rendering",
-        sections: [
-            {
-                heading: "What is Conditional Rendering?",
-                body: `Conditional rendering means displaying different user interface elements depending on a condition.
+For an object, the spread operator can copy existing properties and replace the property that needs to change.
 
-For example, a learning platform may show:
+For an array, methods such as map, filter and spread syntax can create new arrays. This helps React recognise the new state value and update the interface correctly.`,
+                code: `import { useState } from "react";
 
-• Login screen when the user is not logged in.
-• Dashboard when the user is logged in.
-• A message when there are no available courses.
+function Student() {
+    const [student, setStudent] = useState({
+        name: "Harsha",
+        course: "ECE"
+    });
 
-React supports JavaScript conditions inside components and JSX.`
-            },
-            {
-                heading: "Using if and else",
-                code: `function Greeting({ isLoggedIn }) {
-    if (isLoggedIn) {
-        return <h2>Welcome back!</h2>;
+    function changeCourse() {
+        setStudent(previousStudent => ({
+            ...previousStudent,
+            course: "React Development"
+        }));
     }
 
-    return <h2>Please log in.</h2>;
-}
-
-export default Greeting;`,
-                body: `The component checks the value of isLoggedIn.
-
-If the value is true, it displays a welcome message. Otherwise, it displays a login message.`
-            },
-            {
-                heading: "Using Ternary Operator",
-                code: `function App() {
-    const isLoggedIn = true;
-
     return (
         <div>
-            {isLoggedIn
-                ? <h2>Dashboard</h2>
-                : <h2>Login Page</h2>
-            }
+            <h2>{student.name}</h2>
+            <p>{student.course}</p>
+            <button onClick={changeCourse}>
+                Change Course
+            </button>
         </div>
     );
 }
 
-export default App;`,
-                body: `The ternary operator provides a short way to choose between two expressions.
-
-Its syntax is condition ? expressionIfTrue : expressionIfFalse.`
+export default Student;`
             },
             {
-                heading: "Using Logical AND",
-                code: `function Notification() {
-    const hasMessage = true;
+                heading: "Rules of Hooks",
+                body: `React Hooks must follow specific rules.
 
-    return (
-        <div>
-            {hasMessage && <p>You have a new message.</p>}
-        </div>
-    );
-}`,
-                body: `The logical AND operator (&&) can display an element only when a condition is true.
+1. Call Hooks at the top level of a functional component or a custom Hook.
+2. Do not call Hooks inside loops, conditions or nested functions.
+3. Call Hooks from React function components or custom Hooks.
 
-This is useful when there is no need to display an alternative element when the condition is false.`
+Following these rules helps React maintain the correct relationship between Hook calls and component state.`
             }
         ],
+
         questions: [
             {
-                level: "Easy",
-                question: "What is conditional rendering?",
+                question: "What is the purpose of useState?",
+                level: "Basic",
                 options: [
-                    "Displaying UI based on conditions",
-                    "Creating a database",
-                    "Changing the browser",
-                    "Installing packages"
+                    "To add state to functional components",
+                    "To create HTML files",
+                    "To connect a database",
+                    "To write CSS"
                 ],
                 correct: 0,
-                explanation: "Conditional rendering displays different elements depending on conditions."
+                explanation: "useState allows a component to store and update state."
             },
             {
-                level: "Easy",
-                question: "Which operator is commonly used for a short two-way condition?",
-                options: ["Ternary operator", "Addition operator", "Assignment operator", "Modulus operator"],
-                correct: 0,
-                explanation: "The ternary operator selects between two expressions."
-            },
-            {
-                level: "Medium",
-                question: "What does the && operator do in JSX?",
+                question: "What does useState return?",
+                level: "Basic",
                 options: [
-                    "Displays the right side when the left condition is truthy",
-                    "Deletes a component",
-                    "Creates a new project",
-                    "Changes the page title"
+                    "An array containing the state value and setter function",
+                    "Only a string",
+                    "A CSS object",
+                    "A database connection"
                 ],
                 correct: 0,
-                explanation: "Logical AND can conditionally display JSX when its left expression is truthy."
+                explanation: "useState returns the current state and a state setter."
             },
             {
-                level: "Medium",
-                question: "Which expression is a valid ternary condition?",
+                question: "What happens after a state update?",
+                level: "Intermediate",
                 options: [
-                    "condition ? A : B",
-                    "condition : A ? B",
-                    "condition = A : B",
-                    "condition && : A"
+                    "React schedules a re-render",
+                    "The browser always closes",
+                    "The component is permanently deleted",
+                    "The CSS file is removed"
                 ],
                 correct: 0,
-                explanation: "The ternary operator follows the condition ? trueValue : falseValue structure."
+                explanation: "A state update causes React to render the component with the updated state."
             },
             {
-                level: "Hard",
-                question: "Which technique is useful when displaying either a login screen or dashboard?",
+                question: "Which is a good way to update state based on its previous value?",
+                level: "Intermediate",
                 options: [
-                    "Conditional rendering",
-                    "Database indexing",
-                    "CSS comments",
-                    "Package installation"
+                    "setCount(previous => previous + 1)",
+                    "count = count + 1",
+                    "document.write(count)",
+                    "window.count++"
                 ],
                 correct: 0,
-                explanation: "Conditional rendering can display the appropriate screen based on login status."
+                explanation: "The functional updater receives the previous state and calculates the next value."
+            },
+            {
+                question: "Where should Hooks be called?",
+                level: "Advanced",
+                options: [
+                    "At the top level of a React component or custom Hook",
+                    "Inside every loop",
+                    "Inside conditional blocks",
+                    "Inside ordinary nested functions"
+                ],
+                correct: 0,
+                explanation: "Hooks must follow the Rules of Hooks."
             }
         ]
     },
 
-    // TOPIC 8
+    // ==========================================
+    // TOPIC 6 - USEEFFECT
+    // ==========================================
+
     {
-        title: "Lists and Keys",
+        title: "useEffect",
+
         sections: [
-            {
-                heading: "Rendering Lists in React",
-                body: `React can display collections of data by using JavaScript array methods.
-
-The map() method is commonly used to convert an array of data into a list of JSX elements.
-
-For example, a course dashboard can use an array containing course names and display each course automatically.`
-            },
-            {
-                heading: "Using map()",
-                code: `function CourseList() {
-    const courses = [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "React"
-    ];
-
-    return (
-        <ul>
-            {courses.map((course) => (
-                <li key={course}>{course}</li>
-            ))}
-        </ul>
-    );
-}
-
-export default CourseList;`,
-                body: `The map() method visits every item in the courses array.
-
-For each item, it returns a list element.
-
-React uses the key prop to identify individual elements in a rendered list.`
-            },
-            {
-                heading: "What Are Keys?",
-                body: `Keys are special identifiers used by React to track list elements between renders.
-
-Keys help React identify which items have been added, removed or changed.
-
-A stable and unique ID from the data is usually the best choice for a key.
-
-Keys should be unique among their sibling elements.`
-            },
-            {
-                heading: "Rendering Objects",
-                code: `function StudentList() {
-    const students = [
-        { id: 1, name: "Ravi" },
-        { id: 2, name: "Harsha" },
-        { id: 3, name: "Kiran" }
-    ];
-
-    return (
-        <ul>
-            {students.map((student) => (
-                <li key={student.id}>
-                    {student.name}
-                </li>
-            ))}
-        </ul>
-    );
-}`,
-                body: `Here, each student is represented by an object.
-
-The student.id property provides a stable key, while student.name is displayed in the list.
-
-Avoid using array indexes as keys when the list can be reordered, inserted into or deleted from.`
-            }
-        ],
-        questions: [
-            {
-                level: "Easy",
-                question: "Which JavaScript method is commonly used to render lists in React?",
-                options: ["map()", "push()", "alert()", "prompt()"],
-                correct: 0,
-                explanation: "map() transforms each array item into a JSX element."
-            },
-            {
-                level: "Easy",
-                question: "What are keys used for in React lists?",
-                options: [
-                    "Identifying list elements",
-                    "Styling buttons",
-                    "Connecting databases",
-                    "Creating CSS files"
-                ],
-                correct: 0,
-                explanation: "Keys help React track individual list elements."
-            },
-            {
-                level: "Medium",
-                question: "Where should a key be placed when rendering a list?",
-                options: [
-                    "On the outermost returned element for each item",
-                    "Only on the page body",
-                    "Inside CSS",
-                    "On the database server"
-                ],
-                correct: 0,
-                explanation: "The key should be placed on the top-level element returned for each mapped item."
-            },
-            {
-                level: "Medium",
-                question: "Which is generally the best key for a list item?",
-                options: [
-                    "A stable unique ID",
-                    "A random number on every render",
-                    "An empty string",
-                    "The same value for every item"
-                ],
-                correct: 0,
-                explanation: "Stable unique identifiers help React track items correctly."
-            },
-            {
-                level: "Hard",
-                question: "Why should array indexes often be avoided as keys in changing lists?",
-                options: [
-                    "They may not identify the same item after list changes",
-                    "They prevent CSS from working",
-                    "They delete the array",
-                    "They stop JavaScript"
-                ],
-                correct: 0,
-                explanation: "Indexes can refer to different items after insertion, deletion or reordering."
-            }
-        ]
-    },
-
-    // TOPIC 9
-    {
-        title: "useEffect Hook",
-        sections: [
-            {
-                heading: "Understanding Side Effects",
-                body: `A side effect is an operation that interacts with something outside the component's rendering process.
-
-Examples include:
-
-• Fetching information from an API.
-• Updating the browser document title.
-• Setting up a subscription.
-• Connecting to an external service.
-
-React provides the useEffect Hook to synchronize a component with external systems.`
-            },
             {
                 heading: "Introduction to useEffect",
-                body: `useEffect is a React Hook that runs an effect after a component commits a render.
+                body: `useEffect is a React Hook used to synchronise a component with external systems.
 
-It accepts two main arguments:
+External systems may include browser APIs, timers, network requests, subscriptions and other systems outside React's rendering process.
 
-1. A setup function containing the effect.
-2. An optional dependency array.
+For example, a component may need to update the browser document title when a counter changes. This is a suitable use of an Effect.
 
-The dependency array controls when React runs the effect again.`
+Effects should not be used for every calculation. Values that can be calculated directly from existing props or state generally do not need an Effect.`
             },
             {
-                heading: "Basic useEffect Example",
+                heading: "Basic useEffect Syntax",
+                body: `The useEffect Hook accepts a function containing the Effect logic and an optional dependency array.
+
+The Effect setup function runs after React commits the relevant render to the screen.
+
+The dependency array determines when React should run the Effect again. Understanding dependencies is important for writing predictable React components.`,
                 code: `import { useEffect, useState } from "react";
 
 function Counter() {
@@ -1029,245 +932,1073 @@ function Counter() {
     }, [count]);
 
     return (
-        <button onClick={() => setCount(count + 1)}>
+        <button onClick={() => setCount(c => c + 1)}>
             Count: {count}
         </button>
     );
 }
 
-export default Counter;`,
-                body: `Whenever count changes, React runs the effect and updates the browser tab title.
-
-The dependency array contains count, so the effect runs after the initial render and again when count changes.`
+export default Counter;`
             },
             {
-                heading: "Dependency Array",
-                body: `The dependency array controls when an effect is synchronized again.
+                heading: "Understanding the Dependency Array",
+                body: `The dependency array controls when an Effect should run again.
 
-• No dependency array: the effect runs after every committed render.
-• Empty array []: the effect runs after the initial mount.
-• [count]: the effect runs after the initial mount and when count changes.
+Three common forms are:
 
-An effect can also return a cleanup function to remove subscriptions or other resources before the effect runs again or the component unmounts.`
+1. No dependency array: The Effect runs after every committed render.
+2. Empty dependency array: The Effect runs after the initial mount. In development Strict Mode, React may perform an additional setup and cleanup cycle.
+3. Dependencies included: The Effect runs after the initial mount and again when a dependency changes.
+
+Dependencies should include the reactive values used by the Effect.`
+            },
+            {
+                heading: "Cleanup Function",
+                body: `Some Effects create resources that should be released when they are no longer needed.
+
+Examples include timers, event listeners and subscriptions.
+
+React allows an Effect to return a cleanup function. React calls this cleanup before running the Effect again when dependencies change, and when the component is removed.
+
+For example, a timer should be cleared during cleanup so that it does not continue running unnecessarily.`,
+                code: `import { useEffect, useState } from "react";
+
+function Timer() {
+    const [seconds, setSeconds] = useState(0);
+
+    useEffect(() => {
+        const timerId = setInterval(() => {
+            setSeconds(previous => previous + 1);
+        }, 1000);
+
+        return () => {
+            clearInterval(timerId);
+        };
+    }, []);
+
+    return <h2>Seconds: {seconds}</h2>;
+}
+
+export default Timer;`
+            },
+            {
+                heading: "Fetching Data with useEffect",
+                body: `A component may need information from an external API. An Effect can be used to start a network request when the component is mounted or when relevant dependencies change.
+
+The following example requests data from a public demonstration API. It stores the received information in state and displays the result.
+
+In a production application, developers should also handle loading states, request failures and cancellation or stale responses.`,
+                code: `import { useEffect, useState } from "react";
+
+function Users() {
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function loadUsers() {
+            try {
+                const response = await fetch(
+                    "https://jsonplaceholder.typicode.com/users"
+                );
+
+                if (!response.ok) {
+                    throw new Error("Request failed");
+                }
+
+                const data = await response.json();
+                setUsers(data);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        loadUsers();
+    }, []);
+
+    if (loading) {
+        return <p>Loading users...</p>;
+    }
+
+    return (
+        <ul>
+            {users.map(user => (
+                <li key={user.id}>{user.name}</li>
+            ))}
+        </ul>
+    );
+}
+
+export default Users;`
+            },
+            {
+                heading: "Common useEffect Mistakes",
+                body: `Beginners sometimes create Effects that repeatedly update state and cause unnecessary renders.
+
+One common mistake is updating state inside an Effect while also including that same state as a dependency without a suitable stopping condition.
+
+Other common mistakes include missing dependencies, forgetting cleanup for timers or subscriptions, and using Effects for calculations that could be performed during rendering.
+
+A well-designed Effect should have a clear purpose and correctly manage its dependencies.`
             }
         ],
+
         questions: [
             {
-                level: "Easy",
-                question: "Which Hook is used to synchronize a component with external systems?",
-                options: ["useEffect", "useState", "useHTML", "useCSS"],
-                correct: 0,
-                explanation: "useEffect is used to synchronize a component with external systems."
-            },
-            {
-                level: "Easy",
-                question: "Which of the following is a side effect?",
+                question: "What is the main purpose of useEffect?",
+                level: "Basic",
                 options: [
-                    "Fetching data from an API",
-                    "Writing a paragraph",
-                    "Declaring a CSS class",
-                    "Creating an HTML heading"
+                    "Synchronising a component with external systems",
+                    "Creating CSS styles",
+                    "Defining database tables",
+                    "Replacing JSX"
                 ],
                 correct: 0,
-                explanation: "Fetching data from an external API is a common side effect."
+                explanation: "useEffect is used for synchronising components with external systems."
             },
             {
-                level: "Medium",
-                question: "What does an empty dependency array mean?",
+                question: "When does an Effect with an empty dependency array normally run?",
+                level: "Basic",
                 options: [
-                    "The effect runs after the initial mount",
-                    "The effect never runs",
-                    "The effect runs on every click",
-                    "The component is deleted"
+                    "After the initial mount",
+                    "After every button click",
+                    "Only when the browser closes",
+                    "Never"
                 ],
                 correct: 0,
-                explanation: "An empty dependency array means the effect has no reactive dependencies to watch."
+                explanation: "An empty dependency array means the Effect does not re-run due to changing dependencies."
             },
             {
-                level: "Medium",
-                question: "What does [count] represent in useEffect?",
+                question: "What is the purpose of an Effect cleanup function?",
+                level: "Intermediate",
                 options: [
-                    "The effect depends on count",
-                    "The effect deletes count",
-                    "The effect creates a database",
-                    "The effect disables rendering"
+                    "To release resources such as timers and subscriptions",
+                    "To create new HTML elements",
+                    "To remove React from the project",
+                    "To change component names"
                 ],
                 correct: 0,
-                explanation: "React re-runs the effect when count changes."
+                explanation: "Cleanup prevents unwanted ongoing resources after an Effect is no longer needed."
             },
             {
-                level: "Hard",
-                question: "What is the purpose of a cleanup function in useEffect?",
+                question: "Which browser method can be used to stop an interval timer?",
+                level: "Intermediate",
+                options: ["clearInterval()", "stopReact()", "removeTimer()", "deleteInterval()"],
+                correct: 0,
+                explanation: "clearInterval stops a timer created with setInterval."
+            },
+            {
+                question: "Should useEffect be used for every value calculated from existing props and state?",
+                level: "Advanced",
                 options: [
-                    "To release resources or undo setup",
-                    "To delete React",
-                    "To install dependencies",
-                    "To change JSX into HTML"
+                    "No, calculate such values during rendering when appropriate",
+                    "Yes, always",
+                    "Only inside CSS",
+                    "Only for numbers"
                 ],
                 correct: 0,
-                explanation: "Cleanup functions help remove subscriptions, listeners or other resources created by an effect."
+                explanation: "Effects are for external synchronisation, not ordinary derived calculations."
             }
         ]
     },
 
-    // TOPIC 10
+    // ==========================================
+    // TOPIC 7 - CONDITIONAL RENDERING
+    // ==========================================
+
     {
-        title: "Building a React Application",
+        title: "Conditional Rendering",
+
         sections: [
             {
-                heading: "Planning the Application",
-                body: `A React application is easier to build when its requirements and components are planned before coding.
+                heading: "What is Conditional Rendering?",
+                body: `Conditional rendering means displaying different interface elements depending on a condition.
 
-In this topic, we will create a simple Student Course Dashboard.
+For example, an application may show a login form when a user is logged out and a dashboard when the user is logged in.
 
-The dashboard will display:
-
-• Application heading
-• Student information
-• Available courses
-• Course descriptions
-• A button for each course
-
-This example combines components, props, lists and JSX.`
+React uses ordinary JavaScript conditions to decide which elements should appear. This allows interfaces to respond to application state and user information.`
             },
             {
-                heading: "Creating the Course Component",
-                code: `function CourseCard({ title, description }) {
-    return (
-        <div className="course-card">
-            <h2>{title}</h2>
-            <p>{description}</p>
-            <button>View Course</button>
-        </div>
-    );
+                heading: "Using if and else Statements",
+                body: `JavaScript if and else statements can be used before the return statement of a component.
+
+This approach is useful when the component needs to choose between different larger sections of the interface.
+
+For example, a login component can return a welcome message when the user is logged in, or a login prompt otherwise.`,
+                code: `function App() {
+    const isLoggedIn = true;
+
+    if (isLoggedIn) {
+        return <h1>Welcome to your dashboard!</h1>;
+    }
+
+    return <h1>Please log in to continue.</h1>;
 }
 
-export default CourseCard;`,
-                body: `CourseCard is a reusable component.
-
-It accepts title and description through props and displays them inside the card.
-
-The same component can be reused for multiple courses with different values.`
+export default App;`
             },
             {
-                heading: "Building the Dashboard",
-                code: `import CourseCard from "./CourseCard";
+                heading: "Using the Ternary Operator",
+                body: `The ternary operator is a shorter way to choose between two expressions.
 
-function App() {
-    const courses = [
-        {
-            id: 1,
-            title: "HTML",
-            description: "Learn website structure."
-        },
-        {
-            id: 2,
-            title: "CSS",
-            description: "Learn website styling."
-        },
-        {
-            id: 3,
-            title: "JavaScript",
-            description: "Learn programming for the web."
-        }
-    ];
+Its structure is condition ? valueIfTrue : valueIfFalse.
+
+In React, this is useful when displaying one of two possible elements inside JSX. It is especially suitable for simple conditions.`,
+                code: `function Status() {
+    const isAvailable = true;
 
     return (
         <div>
-            <h1>Student Dashboard</h1>
-            <p>Welcome to your learning space.</p>
-
-            {courses.map((course) => (
-                <CourseCard
-                    key={course.id}
-                    title={course.title}
-                    description={course.description}
-                />
-            ))}
+            <h2>
+                {isAvailable ? "Available" : "Not Available"}
+            </h2>
         </div>
     );
 }
 
-export default App;`,
-                body: `The App component stores course information in an array.
-
-The map() method creates a CourseCard for every course.
-
-Each card receives its title and description through props, and its unique ID is used as a key.`
+export default Status;`
             },
             {
-                heading: "Improving the Application",
-                body: `The basic dashboard can be improved by adding more React features.
+                heading: "Using the Logical AND Operator",
+                body: `The logical AND operator can conditionally display an element when a condition is true.
 
-Possible improvements include:
+For example, a notification message may appear only when unread messages are available.
 
-• useState for tracking selected courses.
-• Event handling for button clicks.
-• Conditional rendering for empty course lists.
-• CSS for responsive layouts.
-• useEffect for loading course data from an API.
+If the condition is false, React does not render the expression on the right side. Developers should be careful when using numbers directly as conditions because a value such as zero can appear in the rendered output.`,
+                code: `function Notifications() {
+    const hasMessages = true;
 
-These features help turn a simple interface into a more complete application.`
+    return (
+        <div>
+            <h2>Inbox</h2>
+
+            {hasMessages && (
+                <p>You have new messages.</p>
+            )}
+        </div>
+    );
+}
+
+export default Notifications;`
             },
             {
-                heading: "Conclusion",
-                body: `React provides a structured way to build modern user interfaces.
+                heading: "Conditional Rendering with State",
+                body: `Conditional rendering becomes especially useful when combined with state.
 
-In this course, we explored React fundamentals, project setup, JSX, components, props, state, event handling, conditional rendering, lists and effects.
+A button can update a Boolean state value. React then renders a different interface based on the new value.
 
-Combining these concepts allows developers to create reusable and interactive applications.`
+For example, a show and hide button can control whether a paragraph is visible. This demonstrates how state and conditional rendering work together.`,
+                code: `import { useState } from "react";
+
+function ToggleMessage() {
+    const [visible, setVisible] = useState(false);
+
+    return (
+        <div>
+            <button onClick={() => setVisible(!visible)}>
+                {visible ? "Hide Message" : "Show Message"}
+            </button>
+
+            {visible && (
+                <p>This message is now visible.</p>
+            )}
+        </div>
+    );
+}
+
+export default ToggleMessage;`
             }
         ],
+
         questions: [
             {
-                level: "Easy",
-                question: "What is the main purpose of a CourseCard component?",
+                question: "What is conditional rendering?",
+                level: "Basic",
                 options: [
-                    "To display course information",
+                    "Displaying UI based on a condition",
+                    "Creating database tables",
+                    "Writing CSS animations only",
+                    "Installing React"
+                ],
+                correct: 0,
+                explanation: "Conditional rendering selects which interface elements appear based on conditions."
+            },
+            {
+                question: "Which operator is commonly used for two-way conditional expressions?",
+                level: "Basic",
+                options: ["Ternary operator", "Assignment operator", "Typeof operator", "Increment operator"],
+                correct: 0,
+                explanation: "The ternary operator chooses between two expressions."
+            },
+            {
+                question: "What does the logical AND operator help with in JSX?",
+                level: "Intermediate",
+                options: [
+                    "Displaying content only when a condition is true",
+                    "Creating a new component file",
+                    "Connecting to SQL",
+                    "Removing all state"
+                ],
+                correct: 0,
+                explanation: "The logical AND operator can conditionally render content."
+            },
+            {
+                question: "Which React Hook is commonly used to change a visibility condition?",
+                level: "Intermediate",
+                options: ["useState", "useCSS", "useHTML", "useDatabase"],
+                correct: 0,
+                explanation: "useState stores the Boolean value that controls visibility."
+            },
+            {
+                question: "Which JavaScript statement is useful for selecting between larger component layouts?",
+                level: "Advanced",
+                options: ["if and else", "console.log only", "import only", "break only"],
+                correct: 0,
+                explanation: "if and else can choose which component content to return."
+            }
+        ]
+    },
+
+    // ==========================================
+    // TOPIC 8 - LISTS AND KEYS
+    // ==========================================
+
+    {
+        title: "Lists and Keys",
+
+        sections: [
+            {
+                heading: "Rendering Lists in React",
+                body: `Applications frequently display collections of information. Examples include product lists, student records, notifications and messages.
+
+React allows developers to use JavaScript array methods to transform collections into interface elements.
+
+The map() method is commonly used to create one JSX element for each item in an array.`
+            },
+            {
+                heading: "Using the map() Method",
+                body: `The map() method creates a new array by applying a function to every element of an existing array.
+
+In React, the returned array can contain JSX elements. This makes it possible to display a collection without manually writing repeated markup.
+
+In the example, each subject name is converted into a list item.`,
+                code: `function Subjects() {
+    const subjects = [
+        "React",
+        "JavaScript",
+        "Database",
+        "Backend"
+    ];
+
+    return (
+        <ul>
+            {subjects.map((subject, index) => (
+                <li key={index}>
+                    {subject}
+                </li>
+            ))}
+        </ul>
+    );
+}
+
+export default Subjects;`
+            },
+            {
+                heading: "Understanding Keys",
+                body: `A key is a special attribute that helps React identify individual elements in a rendered list.
+
+When items are added, removed or reordered, keys help React match elements between renders.
+
+Keys should be unique among the siblings in a list. A stable database ID is usually a better choice than an array index when the list can change.
+
+Keys are used internally by React and are not passed to the component as an ordinary prop.`
+            },
+            {
+                heading: "Using Unique IDs as Keys",
+                body: `When each item contains a unique identifier, that identifier can be used as the key.
+
+This is generally more reliable than using the array index, especially when items can be inserted, deleted or reordered.
+
+The example below uses each student's id as the key.`,
+                code: `function Students() {
+    const students = [
+        { id: 101, name: "Harsha" },
+        { id: 102, name: "Ravi" },
+        { id: 103, name: "Kiran" }
+    ];
+
+    return (
+        <ul>
+            {students.map(student => (
+                <li key={student.id}>
+                    {student.name}
+                </li>
+            ))}
+        </ul>
+    );
+}
+
+export default Students;`
+            },
+            {
+                heading: "Filtering Lists",
+                body: `The filter() method creates a new array containing only the elements that satisfy a condition.
+
+In React applications, filtering is useful for displaying selected products, available courses or students who meet a particular requirement.
+
+The filtered array can then be passed to map() to generate the visible list.`,
+                code: `function Products() {
+    const products = [
+        { id: 1, name: "Keyboard", available: true },
+        { id: 2, name: "Mouse", available: false },
+        { id: 3, name: "Monitor", available: true }
+    ];
+
+    const availableProducts = products.filter(
+        product => product.available
+    );
+
+    return (
+        <ul>
+            {availableProducts.map(product => (
+                <li key={product.id}>
+                    {product.name}
+                </li>
+            ))}
+        </ul>
+    );
+}
+
+export default Products;`
+            },
+            {
+                heading: "Common List Rendering Mistakes",
+                body: `Common mistakes include forgetting the key attribute, using duplicate keys and using unstable keys for changing lists.
+
+A key should uniquely identify each item among its siblings. It should remain stable when the item moves within the list.
+
+For static lists, an array index may be acceptable. For lists where items are inserted, deleted or reordered, use a stable unique identifier whenever possible.`
+            }
+        ],
+
+        questions: [
+            {
+                question: "Which JavaScript method is commonly used to render lists in React?",
+                level: "Basic",
+                options: ["map()", "push()", "alert()", "prompt()"],
+                correct: 0,
+                explanation: "map() transforms array elements into JSX elements."
+            },
+            {
+                question: "What is the purpose of the key attribute?",
+                level: "Basic",
+                options: [
+                    "To identify list elements between renders",
+                    "To apply a CSS colour",
+                    "To connect a database",
+                    "To create a password"
+                ],
+                correct: 0,
+                explanation: "Keys help React identify individual list items."
+            },
+            {
+                question: "Which is usually a good key for a changing list?",
+                level: "Intermediate",
+                options: [
+                    "A stable unique ID",
+                    "A random number generated during every render",
+                    "The current date for every item",
+                    "The same value for all items"
+                ],
+                correct: 0,
+                explanation: "Stable unique IDs help React track list items correctly."
+            },
+            {
+                question: "What does filter() do?",
+                level: "Intermediate",
+                options: [
+                    "Creates a new array containing elements that satisfy a condition",
+                    "Deletes the original array automatically",
+                    "Changes CSS styles",
+                    "Creates React components automatically"
+                ],
+                correct: 0,
+                explanation: "filter() returns a new array containing matching elements."
+            },
+            {
+                question: "Why can array indexes be problematic as keys in changing lists?",
+                level: "Advanced",
+                options: [
+                    "Indexes may change when items are inserted, removed or reordered",
+                    "Indexes cannot be numbers",
+                    "React does not support arrays",
+                    "Indexes always delete elements"
+                ],
+                correct: 0,
+                explanation: "Changing positions can cause indexes to identify different items across renders."
+            }
+        ]
+    },
+
+    // ==========================================
+    // TOPIC 9 - CONTROLLED FORMS
+    // ==========================================
+
+    {
+        title: "Controlled Forms",
+
+        sections: [
+            {
+                heading: "Introduction to Forms in React",
+                body: `Forms are used to collect information from users. Common examples include login forms, registration forms, contact forms and search forms.
+
+React provides a way to manage form input values using component state.
+
+A controlled input is an input element whose displayed value is controlled by React state. When a user types, an event handler updates the state.`
+            },
+            {
+                heading: "Understanding Controlled Components",
+                body: `A controlled component receives its value from React state through the value attribute.
+
+The onChange event handler updates the state whenever the user changes the input.
+
+This means React maintains the current value of the input. The component can then validate, display or submit that information.`,
+                code: `import { useState } from "react";
+
+function NameForm() {
+    const [name, setName] = useState("");
+
+    function handleChange(event) {
+        setName(event.target.value);
+    }
+
+    return (
+        <div>
+            <input
+                type="text"
+                value={name}
+                onChange={handleChange}
+                placeholder="Enter your name"
+            />
+
+            <p>Your name: {name}</p>
+        </div>
+    );
+}
+
+export default NameForm;`
+            },
+            {
+                heading: "Handling Form Submission",
+                body: `When a user submits a traditional HTML form, the browser may perform its default submission behaviour, which can reload the page.
+
+React applications commonly use the onSubmit event and event.preventDefault() to control this process.
+
+The form data can then be processed by the component or sent to a backend API.
+
+The example displays the entered name after submission.`,
+                code: `import { useState } from "react";
+
+function RegistrationForm() {
+    const [name, setName] = useState("");
+    const [submittedName, setSubmittedName] = useState("");
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        setSubmittedName(name);
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input
+                value={name}
+                onChange={event => setName(event.target.value)}
+                placeholder="Enter your name"
+            />
+
+            <button type="submit">Submit</button>
+
+            {submittedName && (
+                <p>Welcome, {submittedName}</p>
+            )}
+        </form>
+    );
+}
+
+export default RegistrationForm;`
+            },
+            {
+                heading: "Handling Multiple Inputs",
+                body: `A form may contain several input fields such as name, email and course.
+
+Each field can have its own state value, or related values can be stored together in an object.
+
+When using an object, the spread operator can preserve the other fields while updating the field that changed.
+
+This approach is useful for registration and student information forms.`,
+                code: `import { useState } from "react";
+
+function StudentForm() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: ""
+    });
+
+    function handleChange(event) {
+        const { name, value } = event.target;
+
+        setFormData(previous => ({
+            ...previous,
+            [name]: value
+        }));
+    }
+
+    return (
+        <form>
+            <input
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Name"
+            />
+
+            <input
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
+            />
+
+            <p>{formData.name}</p>
+            <p>{formData.email}</p>
+        </form>
+    );
+}
+
+export default StudentForm;`
+            },
+            {
+                heading: "Form Validation",
+                body: `Form validation checks whether the information entered by the user meets the application's requirements.
+
+For example, a registration form may require a name and a valid email format. It may also prevent submission when required fields are empty.
+
+Validation can happen in the browser for user convenience, but important validation must also be performed on the server because client-side checks can be bypassed.
+
+A good form explains what information is missing and helps users correct their input.`,
+                code: `import { useState } from "react";
+
+function LoginForm() {
+    const [email, setEmail] = useState("");
+    const [error, setError] = useState("");
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        if (!email.trim()) {
+            setError("Email is required.");
+            return;
+        }
+
+        setError("");
+        alert("Form submitted.");
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input
+                type="email"
+                value={email}
+                onChange={event => setEmail(event.target.value)}
+                placeholder="Enter email"
+            />
+
+            <button type="submit">Submit</button>
+
+            {error && <p>{error}</p>}
+        </form>
+    );
+}
+
+export default LoginForm;`
+            },
+            {
+                heading: "Controlled and Uncontrolled Inputs",
+                body: `In a controlled input, React state controls the input value through value and onChange.
+
+In an uncontrolled input, the browser manages the current input value. React can access it when needed using a ref.
+
+Controlled inputs are useful when the application needs to respond immediately to input changes or perform validation. Uncontrolled inputs can be suitable for simpler cases where continuous state tracking is unnecessary.`
+            }
+        ],
+
+        questions: [
+            {
+                question: "What is a controlled component?",
+                level: "Basic",
+                options: [
+                    "An input whose value is controlled by React state",
+                    "An input controlled only by CSS",
+                    "A database field",
+                    "A browser extension"
+                ],
+                correct: 0,
+                explanation: "Controlled inputs receive their value from React state."
+            },
+            {
+                question: "Which event is commonly used to detect input changes?",
+                level: "Basic",
+                options: ["onChange", "onDelete", "onInstall", "onDatabase"],
+                correct: 0,
+                explanation: "The onChange event handles changes to form inputs."
+            },
+            {
+                question: "Why is event.preventDefault() used during form submission?",
+                level: "Intermediate",
+                options: [
+                    "To prevent the browser's default form submission behaviour",
+                    "To delete all form values",
+                    "To stop React rendering",
+                    "To close the application"
+                ],
+                correct: 0,
+                explanation: "It prevents the browser's default submission action."
+            },
+            {
+                question: "What is the purpose of form validation?",
+                level: "Intermediate",
+                options: [
+                    "To check whether user input meets requirements",
+                    "To change the website logo",
                     "To install React",
-                    "To connect a router",
-                    "To create a database"
+                    "To create a CSS file"
                 ],
                 correct: 0,
-                explanation: "A CourseCard component displays information about an individual course."
+                explanation: "Validation checks whether submitted information meets expected rules."
             },
             {
-                level: "Easy",
-                question: "Which React concept allows CourseCard to receive a title?",
-                options: ["Props", "CSS Grid", "HTML comments", "Local files"],
-                correct: 0,
-                explanation: "Props pass values such as a course title to a component."
-            },
-            {
-                level: "Medium",
-                question: "Which method is used to generate a card for every course in an array?",
-                options: ["map()", "alert()", "prompt()", "parseInt()"],
-                correct: 0,
-                explanation: "map() transforms every course object into a CourseCard element."
-            },
-            {
-                level: "Medium",
-                question: "Why is a unique ID used as the key?",
+                question: "Where should important application input validation also happen?",
+                level: "Advanced",
                 options: [
-                    "To help React identify each list item",
-                    "To change the font",
-                    "To install packages",
-                    "To create HTML files"
+                    "On the server",
+                    "Only in CSS",
+                    "Only in the browser address bar",
+                    "Only in the HTML title"
                 ],
                 correct: 0,
-                explanation: "A stable unique key helps React track each course card."
+                explanation: "Server-side validation is necessary because client-side checks can be bypassed."
+            }
+        ]
+    },
+
+    // ==========================================
+    // TOPIC 10 - REACT TO-DO APPLICATION
+    // ==========================================
+
+    {
+        title: "React To-Do Application",
+
+        sections: [
+            {
+                heading: "Introduction to the Project",
+                body: `In this topic, we combine the React concepts learned earlier to build a simple To-Do application.
+
+A To-Do application allows users to add tasks, view their tasks, mark tasks as completed and remove tasks.
+
+This project demonstrates how components, JSX, state, event handling, lists and controlled inputs work together in a practical application.
+
+The application stores its task list in React state.`
             },
             {
-                level: "Hard",
-                question: "Which combination is useful for building an interactive course dashboard?",
+                heading: "Planning the Application",
+                body: `Before writing code, identify the main features and data structure.
+
+The application needs:
+
+1. An input field for entering a task.
+2. A button for adding the task.
+3. A list displaying all tasks.
+4. A completion control for each task.
+5. A delete button for removing tasks.
+
+Each task can be represented as an object with an id, text and completed property.
+
+This structure makes it possible to identify each task and update its status independently.`
+            },
+            {
+                heading: "Creating the Task State",
+                body: `The useState Hook stores the task list.
+
+Initially, the list is empty. When a new task is added, the application creates a new array containing the existing tasks and the new task.
+
+React state should not be directly mutated. Creating a new array using the spread operator provides a new state value.`,
+                code: `import { useState } from "react";
+
+function TodoApp() {
+    const [tasks, setTasks] = useState([]);
+    const [taskText, setTaskText] = useState("");
+
+    return (
+        <div>
+            <h1>My To-Do List</h1>
+
+            <input
+                value={taskText}
+                onChange={event => setTaskText(event.target.value)}
+                placeholder="Enter a task"
+            />
+
+            <button>Add Task</button>
+        </div>
+    );
+}
+
+export default TodoApp;`
+            },
+            {
+                heading: "Adding New Tasks",
+                body: `When the user enters a task and selects Add Task, the application should check whether the input contains meaningful text.
+
+If the input is valid, a new task object is created. A unique identifier can be generated using crypto.randomUUID() in supported browsers.
+
+The new task is added to the existing array using the state setter. After the update, React renders the task list again.`,
+                code: `function addTask() {
+    const trimmedText = taskText.trim();
+
+    if (!trimmedText) {
+        return;
+    }
+
+    const newTask = {
+        id: crypto.randomUUID(),
+        text: trimmedText,
+        completed: false
+    };
+
+    setTasks(previousTasks => [
+        ...previousTasks,
+        newTask
+    ]);
+
+    setTaskText("");
+}`
+            },
+            {
+                heading: "Displaying Tasks",
+                body: `The map() method converts the task array into a collection of JSX list elements.
+
+Each task is displayed using its text property. Its unique id is supplied as the key attribute.
+
+If the task list is empty, the application can display a message informing the user that no tasks have been added yet.`,
+                code: `{tasks.length === 0 ? (
+    <p>No tasks added yet.</p>
+) : (
+    <ul>
+        {tasks.map(task => (
+            <li key={task.id}>
+                {task.text}
+            </li>
+        ))}
+    </ul>
+)}`
+            },
+            {
+                heading: "Marking Tasks as Completed",
+                body: `A task can be marked as completed by changing its completed property.
+
+The map() method can be used to create an updated array. The selected task receives the opposite of its previous completed value, while other tasks remain unchanged.
+
+The interface can then display a visual difference between completed and pending tasks.`,
+                code: `function toggleTask(taskId) {
+    setTasks(previousTasks =>
+        previousTasks.map(task =>
+            task.id === taskId
+                ? { ...task, completed: !task.completed }
+                : task
+        )
+    );
+}`
+            },
+            {
+                heading: "Deleting Tasks",
+                body: `Users should be able to remove tasks they no longer need.
+
+The filter() method creates a new array containing only tasks whose identifiers do not match the selected task.
+
+React then renders the updated list without the deleted task.
+
+This demonstrates how array operations and state updates work together.`,
+                code: `function deleteTask(taskId) {
+    setTasks(previousTasks =>
+        previousTasks.filter(task => task.id !== taskId)
+    );
+}`
+            },
+            {
+                heading: "Complete To-Do Application",
+                body: `The following example combines adding, displaying, completing and deleting tasks into one working React component.
+
+The application uses controlled input, state updates, map(), filter(), unique keys and event handlers.
+
+This is a small frontend project. A larger application could later connect to a backend API and database to save tasks permanently.`,
+                code: `import { useState } from "react";
+
+function TodoApp() {
+    const [tasks, setTasks] = useState([]);
+    const [taskText, setTaskText] = useState("");
+
+    function addTask() {
+        const trimmedText = taskText.trim();
+
+        if (!trimmedText) return;
+
+        const newTask = {
+            id: crypto.randomUUID(),
+            text: trimmedText,
+            completed: false
+        };
+
+        setTasks(previous => [...previous, newTask]);
+        setTaskText("");
+    }
+
+    function toggleTask(taskId) {
+        setTasks(previous =>
+            previous.map(task =>
+                task.id === taskId
+                    ? { ...task, completed: !task.completed }
+                    : task
+            )
+        );
+    }
+
+    function deleteTask(taskId) {
+        setTasks(previous =>
+            previous.filter(task => task.id !== taskId)
+        );
+    }
+
+    return (
+        <div>
+            <h1>My To-Do List</h1>
+
+            <input
+                value={taskText}
+                onChange={event => setTaskText(event.target.value)}
+                placeholder="Enter a task"
+            />
+
+            <button onClick={addTask}>
+                Add Task
+            </button>
+
+            {tasks.length === 0 ? (
+                <p>No tasks added yet.</p>
+            ) : (
+                <ul>
+                    {tasks.map(task => (
+                        <li key={task.id}>
+                            <span
+                                style={{
+                                    textDecoration: task.completed
+                                        ? "line-through"
+                                        : "none"
+                                }}
+                            >
+                                {task.text}
+                            </span>
+
+                            <button
+                                onClick={() => toggleTask(task.id)}
+                            >
+                                {task.completed ? "Undo" : "Complete"}
+                            </button>
+
+                            <button
+                                onClick={() => deleteTask(task.id)}
+                            >
+                                Delete
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+}
+
+export default TodoApp;`
+            },
+            {
+                heading: "Project Summary and Further Improvements",
+                body: `The To-Do project demonstrates how multiple React concepts work together in one application.
+
+Concepts used:
+
+- Components: The application is organised into a React component.
+- JSX: The interface is described using JSX.
+- useState: Task information is stored in state.
+- Event handling: Buttons respond to user actions.
+- Controlled forms: React manages the input value.
+- map(): Displays the task list.
+- filter(): Removes selected tasks.
+- Unique keys: Identifies each task in the rendered list.
+
+Possible improvements include adding task editing, task categories, search, filtering by completion status, persistent storage and backend integration.`
+            }
+        ],
+
+        questions: [
+            {
+                question: "What is the main purpose of a To-Do application?",
+                level: "Basic",
                 options: [
-                    "Components, props, state and event handling",
-                    "Only HTML comments",
-                    "Only database tables",
-                    "Only CSS variables"
+                    "To create and manage tasks",
+                    "To edit videos",
+                    "To design databases only",
+                    "To configure network routers"
                 ],
                 correct: 0,
-                explanation: "These React concepts work together to create reusable and interactive interfaces."
+                explanation: "A To-Do application helps users organise and manage tasks."
+            },
+            {
+                question: "Which Hook stores the task list in this project?",
+                level: "Basic",
+                options: ["useState", "useCSS", "useHTML", "useDatabase"],
+                correct: 0,
+                explanation: "useState stores the task list and allows it to be updated."
+            },
+            {
+                question: "Which array method is used to remove a selected task?",
+                level: "Intermediate",
+                options: ["filter()", "map()", "join()", "sort()"],
+                correct: 0,
+                explanation: "filter() creates a new array without the selected task."
+            },
+            {
+                question: "Why does each task have a unique id?",
+                level: "Intermediate",
+                options: [
+                    "To identify and update the correct task",
+                    "To change the website background",
+                    "To create a new database",
+                    "To automatically log in users"
+                ],
+                correct: 0,
+                explanation: "A unique ID identifies a particular task for updates and deletion."
+            },
+            {
+                question: "Which concept allows React to display an updated task list after adding a task?",
+                level: "Advanced",
+                options: [
+                    "Updating state with the state setter",
+                    "Changing the HTML title only",
+                    "Editing the browser address",
+                    "Reloading the CSS file"
+                ],
+                correct: 0,
+                explanation: "Updating state causes React to render the component with the new task list."
             }
         ]
     }
