@@ -1,668 +1,632 @@
 
-export const co6Topics = [
+export const co5Topics = [
 
     {
-        title: "1. Introduction to Authentication and Authorization",
+        title: "1. Introduction to Databases",
         sections: [
             {
-                heading: "What is Authentication?",
-                body: `Authentication is the process of verifying the identity of a user.
+                heading: "What is a Database?",
+                body: `A database is an organized collection of data stored electronically. It allows applications to store, manage, retrieve, and update information efficiently.
 
-When a user logs into an application, the system checks whether the provided credentials belong to a valid account.
+For example, an online shopping application stores customer details, product information, orders, and payment records in databases.
 
-Common authentication methods include:
-1. Username and password.
-2. One-time passwords (OTP).
-3. Multi-factor authentication (MFA).
-4. Biometric authentication.
+Without a database, applications would have difficulty managing large amounts of information.`,
+                code: `Example Database:
 
-For example, when a student enters an email address and password to access a learning platform, the application authenticates the student.`
+Students
+--------------------------------
+student_id | name   | department
+1          | Rahul  | CSE
+2          | Priya  | ECE
+3          | Arjun  | IT`
             },
             {
-                heading: "What is Authorization?",
-                body: `Authorization determines what an authenticated user is allowed to access or perform.
+                heading: "What is a DBMS?",
+                body: `DBMS stands for Database Management System.
 
-For example, in a college management application:
-- Students can view their marks.
-- Teachers can update marks.
-- Administrators can manage student and teacher accounts.
+It is software that helps users create, store, organize, retrieve, and manage data in a database.
 
-Authentication answers: Who are you?
+Examples include MySQL, PostgreSQL, Oracle Database, and Microsoft SQL Server.
 
-Authorization answers: What are you allowed to do?`
+A DBMS provides controlled access to data and helps maintain data consistency.`
             },
             {
-                heading: "Authentication vs Authorization",
-                body: `Authentication happens before authorization in most application workflows.
-
-Authentication verifies identity, whereas authorization checks permissions.
-
-A user may successfully log in but still be denied access to an administrator-only page because the user does not have the required role.`
+                heading: "Advantages of Databases",
+                body: `1. Data organization: Stores information in a structured way.
+2. Reduced duplication: Helps avoid unnecessary repeated data.
+3. Data security: Controls who can access information.
+4. Data consistency: Helps maintain accurate information.
+5. Data recovery: Supports backup and recovery.
+6. Easy access: Makes searching and updating data easier.`
             }
         ],
         questions: [
-            { question: "What is authentication?", options: ["Verifying user identity", "Deleting user accounts", "Designing a webpage", "Creating a database"], correct: 0 },
-            { question: "What is authorization?", options: ["Checking permissions", "Checking screen size", "Creating passwords", "Installing software"], correct: 0 },
-            { question: "Which is an authentication method?", options: ["CSS", "OTP", "HTML", "SQL JOIN"], correct: 1 },
-            { question: "Which process determines what a user can access?", options: ["Authentication", "Authorization", "Compilation", "Deployment"], correct: 1 },
-            { question: "Can an authenticated user be denied access to an admin page?", options: ["No", "Yes, if they lack permission", "Only when offline", "Never"], correct: 1 }
+            { question: "What is a database?", options: ["A programming language", "An organized collection of data", "An operating system", "A web browser"], correct: 1 },
+            { question: "What does DBMS stand for?", options: ["Database Management System", "Data Backup Management Software", "Digital Base Management System", "Database Memory Service"], correct: 0 },
+            { question: "Which is a DBMS?", options: ["HTML", "CSS", "MySQL", "JavaScript"], correct: 2 },
+            { question: "Which is an advantage of databases?", options: ["Data duplication", "Data inconsistency", "Data security", "Data loss"], correct: 2 },
+            { question: "Where can an online shopping application store order details?", options: ["Database", "Keyboard", "Monitor", "Compiler"], correct: 0 }
         ]
     },
 
     {
-        title: "2. User Registration and Login Systems",
+        title: "2. Relational Database Concepts",
         sections: [
             {
-                heading: "User Registration",
-                body: `User registration is the process of creating a new account in an application.
+                heading: "What is a Relational Database?",
+                body: `A relational database stores data in tables. Each table contains rows and columns.
 
-A registration form commonly collects:
-- Full name.
-- Email address.
-- Password.
-- Other required profile information.
+Rows represent individual records, while columns represent attributes of those records.
 
-The backend validates the submitted information before creating the account.
+Relational databases allow multiple tables to be connected using keys.
 
-The application should check whether the email is already registered and should never store plain-text passwords.`
+MySQL and PostgreSQL are examples of relational database management systems.`,
+                code: `Students Table
+
+student_id | name  | age
+-----------|-------|----
+1          | Rahul | 19
+2          | Priya | 20
+
+Courses Table
+
+course_id | course_name
+----------|------------
+101       | ECE
+102       | CSE`
             },
             {
-                heading: "User Login",
-                body: `Login allows an existing user to access an application.
+                heading: "Tables, Rows, and Columns",
+                body: `Table: A structure used to store related information.
 
-A typical login process works as follows:
+Row: A single record in a table. It contains values for each column.
 
-1. The user enters their email and password.
-2. The frontend sends the information securely to the backend using HTTPS.
-3. The backend finds the account.
-4. The password is verified against its stored password hash.
-5. If the credentials are valid, the server establishes an authenticated session or issues a suitable token.
-6. The user can access permitted resources.`
+Column: A field that describes a particular property, such as name, age, or email.
+
+Every column has a data type that determines what kind of values it can store.`
             },
             {
-                heading: "Registration and Login API",
-                body: `Backend applications commonly use separate API endpoints for registration and login.
+                heading: "Relationships Between Tables",
+                body: `Relational databases support different types of relationships.
 
-POST /register creates an account.
+One-to-One: One record in a table is associated with one record in another table.
 
-POST /login verifies login credentials.
+One-to-Many: One record is associated with multiple records in another table. For example, one customer can place many orders.
 
-GET /profile retrieves information for the authenticated user.
-
-These endpoints must validate requests, handle errors, and protect sensitive information.`
+Many-to-Many: Multiple records in one table can relate to multiple records in another table. This is commonly implemented using a junction table.`
             }
         ],
         questions: [
-            { question: "What is user registration?", options: ["Creating a new account", "Deleting a server", "Changing CSS", "Stopping an application"], correct: 0 },
-            { question: "Which HTTP method is commonly used for login requests?", options: ["GET", "POST", "DELETE", "HEAD"], correct: 1 },
-            { question: "Where should user passwords be stored?", options: ["As plain text", "As securely generated password hashes", "In HTML comments", "In public files"], correct: 1 },
-            { question: "What does POST /register usually do?", options: ["Creates an account", "Deletes a database", "Displays CSS", "Starts a browser"], correct: 0 },
-            { question: "Which protocol helps protect data during transmission?", options: ["HTTP without encryption", "HTTPS", "FTP without encryption", "Telnet"], correct: 1 }
+            { question: "How is data stored in a relational database?", options: ["Images", "Tables", "Audio files", "Animations"], correct: 1 },
+            { question: "What does a row represent?", options: ["A record", "A database server", "A data type", "A command"], correct: 0 },
+            { question: "What does a column represent?", options: ["A complete database", "A field or attribute", "A server", "A relationship only"], correct: 1 },
+            { question: "Which relationship allows one customer to have many orders?", options: ["One-to-One", "One-to-Many", "Many-to-One only", "No relationship"], correct: 1 },
+            { question: "Which database is relational?", options: ["MySQL", "HTML", "CSS", "React"], correct: 0 }
         ]
     },
 
     {
-        title: "3. Password Hashing and Security",
+        title: "3. Introduction to SQL",
         sections: [
             {
-                heading: "Why Password Security Matters",
-                body: `Passwords protect user accounts and personal information.
+                heading: "What is SQL?",
+                body: `SQL stands for Structured Query Language.
 
-Storing passwords as plain text is unsafe because anyone who gains access to the database could read them.
+It is used to communicate with relational databases. Developers use SQL to create tables, insert records, retrieve information, update existing data, and delete records.
 
-Applications should use established password-hashing algorithms designed for password storage.`
+SQL is widely used in backend development because applications need to store and retrieve information.`,
+                code: `-- Create a database
+CREATE DATABASE devoraa_db;
+
+-- Select the database
+USE devoraa_db;`
             },
             {
-                heading: "What is Password Hashing?",
-                body: `Password hashing converts a password into a fixed-format representation using a one-way cryptographic process.
+                heading: "SQL Command Categories",
+                body: `SQL commands are commonly grouped into categories.
 
-A secure password-hashing system uses a unique salt and an appropriate work factor.
+DDL – Data Definition Language: Defines database structures. Examples: CREATE, ALTER, DROP.
 
-Recommended password-hashing algorithms include Argon2id, bcrypt, and scrypt.
+DML – Data Manipulation Language: Changes table data. Examples: INSERT, UPDATE, DELETE.
 
-When a user logs in, the application verifies the entered password using the password-hashing library. It does not need to decrypt the stored hash.`
+DQL – Data Query Language: Retrieves data. Example: SELECT.
+
+DCL – Data Control Language: Manages permissions. Examples: GRANT, REVOKE.
+
+TCL – Transaction Control Language: Manages transactions. Examples: COMMIT, ROLLBACK.`
             },
             {
-                heading: "Example Using bcrypt",
-                body: `The bcrypt package is commonly used in Node.js applications for password hashing.
+                heading: "Creating a Table",
+                body: `The CREATE TABLE statement creates a new table inside a selected database.
 
-Install it using npm install bcrypt.
-
-The following example demonstrates hashing a password and verifying it. In a real application, use the validated password received by the backend and store the resulting hash in the database.`,
-                code: `const bcrypt = require("bcrypt");
-
-async function createPasswordHash(password) {
-    const hash = await bcrypt.hash(password, 12);
-    return hash;
-}
-
-async function verifyPassword(password, hash) {
-    return await bcrypt.compare(password, hash);
-}`
-            },
-            {
-                heading: "Password Security Best Practices",
-                body: `1. Never store plain-text passwords.
-2. Use a trusted password-hashing library.
-3. Use unique salts generated by the library.
-4. Never send passwords through insecure connections.
-5. Do not log passwords.
-6. Provide a secure password-reset process.
-7. Apply suitable login rate limits.
-
-Hashing is different from encryption. Hashing is designed to be one-way, whereas encryption is designed to be reversible with the appropriate key.`
+Each column must have a name and an appropriate data type.`,
+                code: `CREATE TABLE students (
+    student_id INT,
+    name VARCHAR(100),
+    age INT,
+    department VARCHAR(50)
+);`
             }
         ],
         questions: [
-            { question: "Why should passwords be hashed?", options: ["To display them", "To protect stored passwords", "To increase image quality", "To change HTML"], correct: 1 },
-            { question: "Which is a password-hashing algorithm?", options: ["bcrypt", "HTML", "React", "CSS"], correct: 0 },
-            { question: "What is a salt?", options: ["A database table", "Random data added during password hashing", "A browser extension", "A programming language"], correct: 1 },
-            { question: "Can a secure password hash normally be decrypted to obtain the original password?", options: ["Yes, always", "No, hashing is designed to be one-way", "Only using CSS", "Only through HTML"], correct: 1 },
-            { question: "Which package is used in the example?", options: ["express", "bcrypt", "react", "mysql2"], correct: 1 }
+            { question: "What is the full form of SQL?", options: ["Structured Query Language", "Simple Question Language", "System Query Logic", "Standard Quick Language"], correct: 0 },
+            { question: "Which command creates a database?", options: ["INSERT", "CREATE DATABASE", "SELECT", "UPDATE"], correct: 1 },
+            { question: "Which command retrieves records?", options: ["DELETE", "DROP", "SELECT", "ALTER"], correct: 2 },
+            { question: "Which category includes CREATE?", options: ["DDL", "DML", "DCL", "TCL"], correct: 0 },
+            { question: "Which command selects a database in MySQL?", options: ["OPEN", "USE", "START", "SELECT DATABASE"], correct: 1 }
         ]
     },
 
     {
-        title: "4. Sessions and Cookies",
+        title: "4. SQL Data Types and Constraints",
         sections: [
             {
-                heading: "What is a Session?",
-                body: `A session allows a server to remember an authenticated user's state across multiple HTTP requests.
+                heading: "SQL Data Types",
+                body: `Data types specify the kind of information that a database column can store.
 
-HTTP is stateless, which means individual requests do not automatically remember earlier requests.
+INT: Stores whole numbers.
 
-A session system commonly stores information on the server and gives the browser a session identifier.
+VARCHAR(n): Stores variable-length text up to the specified maximum length.
 
-When the browser sends that identifier in later requests, the server can identify the corresponding session.`
-            },
-            {
-                heading: "What are Cookies?",
-                body: `Cookies are small pieces of data stored by a browser for a website.
+CHAR(n): Stores fixed-length text.
 
-They are commonly used for session identifiers, user preferences, and other website-related information.
+DATE: Stores dates.
 
-A server can instruct the browser to store a cookie using the Set-Cookie response header. The browser may send it in later requests using the Cookie request header.`
-            },
-            {
-                heading: "Secure Cookie Attributes",
-                body: `HttpOnly: Prevents JavaScript running in the browser from reading the cookie.
+DECIMAL(p,s): Stores precise decimal values, commonly used for financial data.
 
-Secure: Restricts cookie transmission to secure HTTPS connections.
-
-SameSite: Helps control when cookies are sent with cross-site requests.
-
-Expires and Max-Age: Control how long the cookie remains valid.
-
-These attributes help protect cookies, but applications still need proper session management and CSRF protection.`
-            },
-            {
-                heading: "Session-Based Authentication",
-                body: `In session-based authentication:
-
-1. A user logs in.
-2. The server verifies the credentials.
-3. The server creates a session.
-4. A session identifier is sent to the browser in a cookie.
-5. The browser sends the cookie with later requests.
-6. The server validates the session and checks the user's permissions.
-
-The server can invalidate a session when the user logs out.`
-            }
-        ],
-        questions: [
-            { question: "Why are sessions used?", options: ["To remember user state across requests", "To design images", "To compile CSS", "To create HTML tags"], correct: 0 },
-            { question: "Where are browser cookies stored?", options: ["In the browser", "Only in a keyboard", "In a monitor", "In a compiler"], correct: 0 },
-            { question: "What does HttpOnly do?", options: ["Allows JavaScript to read the cookie", "Prevents JavaScript from reading the cookie", "Deletes the database", "Disables HTTPS"], correct: 1 },
-            { question: "What does Secure cookie attribute help enforce?", options: ["HTTPS transmission", "Image compression", "Database indexing", "HTML validation"], correct: 0 },
-            { question: "What is commonly sent by the browser to identify a session?", options: ["Session cookie", "CSS file", "Image tag", "SQL command"], correct: 0 }
-        ]
-    },
-
-    {
-        title: "5. JSON Web Tokens (JWT)",
-        sections: [
-            {
-                heading: "What is JWT?",
-                body: `JWT stands for JSON Web Token.
-
-It is a compact token format used to transfer claims between parties.
-
-JWT is commonly used in authentication systems where a server issues a signed token after verifying a user's identity.
-
-The client sends the token with later requests, and the backend verifies it before granting access.
-
-A signed JWT is not automatically encrypted. Its payload should not contain confidential information.`
-            },
-            {
-                heading: "Structure of JWT",
-                body: `A typical JWT contains three parts separated by dots:
-
-1. Header: Contains information about the token type and signing algorithm.
-2. Payload: Contains claims such as user ID and expiration time.
-3. Signature: Allows the receiver to verify that the token has not been modified and was signed using the expected key.
-
-The three parts are encoded using Base64URL encoding.`,
-                code: `header.payload.signature
-
-Example claims:
-
-{
-    "sub": "user123",
-    "role": "student",
-    "exp": 1893456000
-}`
-            },
-            {
-                heading: "JWT Authentication Workflow",
-                body: `1. User submits login credentials.
-2. Server verifies the credentials.
-3. Server creates and signs a token.
-4. Client stores the token using a suitable secure strategy.
-5. Client sends the token with protected requests.
-6. Server verifies the signature and checks expiration and required claims.
-7. Server checks authorization before returning protected information.
-
-Tokens should have suitable expiration periods and a revocation or rotation strategy where required.`
-            },
-            {
-                heading: "JWT Example in Node.js",
-                body: `The jsonwebtoken package can create and verify JWTs.
-
-Install it using npm install jsonwebtoken.
-
-The signing secret must be a strong secret stored securely in an environment variable. Never expose it in frontend code.`,
-                code: `const jwt = require("jsonwebtoken");
-
-const token = jwt.sign(
-    { userId: 101, role: "student" },
-    process.env.JWT_SECRET,
-    { expiresIn: "15m" }
-);
-
-const decoded = jwt.verify(
-    token,
-    process.env.JWT_SECRET
-);
-
-console.log(decoded.userId);`
-            }
-        ],
-        questions: [
-            { question: "What is the full form of JWT?", options: ["Java Web Technology", "JSON Web Token", "JavaScript Web Tool", "Joined Web Transfer"], correct: 1 },
-            { question: "How many main parts does a typical JWT contain?", options: ["One", "Two", "Three", "Five"], correct: 2 },
-            { question: "What is the purpose of the JWT signature?", options: ["To verify token integrity and authenticity", "To store images", "To create HTML", "To style a webpage"], correct: 0 },
-            { question: "Is a signed JWT payload automatically encrypted?", options: ["Yes", "No", "Only in HTML", "Only in CSS"], correct: 1 },
-            { question: "Where should a JWT signing secret be stored?", options: ["Public JavaScript file", "Environment variable", "HTML title", "Image folder"], correct: 1 }
-        ]
-    },
-
-    {
-        title: "6. Role-Based Access Control",
-        sections: [
-            {
-                heading: "What is Access Control?",
-                body: `Access control determines which users can access specific resources or perform certain actions.
-
-It is an important part of application security because different users often need different permissions.
-
-For example, students, teachers, and administrators may have different levels of access.`
-            },
-            {
-                heading: "Role-Based Access Control (RBAC)",
-                body: `Role-Based Access Control assigns permissions to roles rather than assigning every permission separately to each user.
-
-Example roles:
-
-Student:
-- View personal profile.
-- View marks.
-- View course information.
-
-Teacher:
-- View assigned classes.
-- Update marks for permitted courses.
-
-Administrator:
-- Manage users.
-- Manage courses.
-- Configure application settings.
-
-A user's role should be checked on the backend for every protected operation.`
-            },
-            {
-                heading: "Example of Role Checking",
-                body: `The following Express middleware demonstrates a basic role check.
-
-The authentication middleware must run first and attach a verified user object to the request. Never trust a role sent directly by the client.`,
-                code: `function allowRoles(...allowedRoles) {
-    return (req, res, next) => {
-        if (!req.user) {
-            return res.status(401).json({
-                message: "Login required"
-            });
-        }
-
-        if (!allowedRoles.includes(req.user.role)) {
-            return res.status(403).json({
-                message: "Access denied"
-            });
-        }
-
-        next();
-    };
-}
-
-// Example:
-// app.get("/admin", authenticate, allowRoles("admin"), handler);`
-            },
-            {
-                heading: "401 vs 403 Status Codes",
-                body: `401 Unauthorized means the request does not have valid authentication credentials.
-
-403 Forbidden means the server understands the request but refuses access because the user does not have the required permission.
-
-Using these status codes correctly makes APIs easier to understand and troubleshoot.`
-            }
-        ],
-        questions: [
-            { question: "What does RBAC stand for?", options: ["Role-Based Access Control", "Random Browser Access Code", "Remote Backend Application Control", "Role-Based Application Compiler"], correct: 0 },
-            { question: "What is the purpose of RBAC?", options: ["Assign permissions based on roles", "Design website layouts", "Create database backups", "Compress files"], correct: 0 },
-            { question: "Which status code commonly indicates missing or invalid authentication?", options: ["200", "401", "404", "500"], correct: 1 },
-            { question: "Which status code indicates insufficient permission?", options: ["201", "301", "403", "204"], correct: 2 },
-            { question: "Where should authorization checks be enforced?", options: ["Only in frontend buttons", "On the backend", "Only in CSS", "In image files"], correct: 1 }
-        ]
-    },
-
-    {
-        title: "7. Application Security and Common Threats",
-        sections: [
-            {
-                heading: "Why Application Security Matters",
-                body: `Application security protects user accounts, data, and system resources against unauthorized access and misuse.
-
-A secure application validates input, protects credentials, applies access controls, and handles unexpected requests safely.
-
-Security should be considered throughout development rather than added only after deployment.`
-            },
-            {
-                heading: "SQL Injection",
-                body: `SQL Injection occurs when untrusted input is incorrectly included in an SQL query.
-
-An attacker may attempt to change the meaning of a database query.
-
-Parameterized queries help prevent this by keeping user-supplied values separate from SQL instructions.`,
-                code: `// Safer parameterized query
-connection.execute(
-    "SELECT * FROM users WHERE email = ?",
-    [email],
-    callback
+BOOLEAN: Represents true or false values in database systems that support it directly; MySQL commonly represents it using TINYINT.`,
+                code: `CREATE TABLE products (
+    product_id INT,
+    product_name VARCHAR(100),
+    price DECIMAL(10,2),
+    manufacture_date DATE
 );`
             },
             {
-                heading: "Cross-Site Scripting (XSS)",
-                body: `Cross-Site Scripting is a vulnerability in which untrusted content is interpreted as executable script in a user's browser.
+                heading: "What are Constraints?",
+                body: `Constraints are rules applied to table columns to maintain valid and reliable data.
 
-Applications should safely handle untrusted content, use context-aware output encoding, and avoid unsafe DOM operations.
+NOT NULL: Prevents a column from storing NULL.
 
-A Content Security Policy (CSP) can provide an additional layer of protection.`
+UNIQUE: Ensures values in a column or column combination are unique.
+
+PRIMARY KEY: Uniquely identifies each row and does not allow NULL.
+
+FOREIGN KEY: Connects a column to a key in another table.
+
+CHECK: Ensures values satisfy a specified condition.
+
+DEFAULT: Supplies a value when one is not provided.`,
+                code: `CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE,
+    age INT CHECK (age >= 16),
+    city VARCHAR(50) DEFAULT 'Vijayawada'
+);`
             },
             {
-                heading: "Cross-Site Request Forgery (CSRF)",
-                body: `CSRF is an attack in which a browser may be tricked into sending an unwanted authenticated request to a website.
+                heading: "Why Constraints Matter",
+                body: `Constraints protect the quality of stored information.
 
-Applications using cookie-based authentication should apply suitable CSRF protections.
+For example, a student table should not contain two students with the same student ID. A NOT NULL constraint can prevent important fields from being left empty.
 
-Common defenses include anti-CSRF tokens, suitable SameSite cookie settings, and checking request origins where appropriate.`
-            },
-            {
-                heading: "Security Best Practices",
-                body: `1. Use HTTPS.
-2. Validate and safely process user input.
-3. Use parameterized database queries.
-4. Hash passwords securely.
-5. Apply authentication and authorization.
-6. Keep dependencies updated.
-7. Protect secrets with environment variables.
-8. Configure secure cookies.
-9. Apply rate limiting to sensitive endpoints.
-10. Avoid exposing internal errors and confidential data.`
+Choosing suitable constraints helps prevent invalid records from entering a database.`
             }
         ],
         questions: [
-            { question: "What is SQL injection?", options: ["An attack that manipulates SQL queries", "A CSS feature", "A browser setting", "A database backup"], correct: 0 },
-            { question: "Which practice helps prevent SQL injection?", options: ["Parameterized queries", "Plain-text passwords", "Disabling validation", "Public database credentials"], correct: 0 },
-            { question: "What does XSS stand for?", options: ["Cross-Site Scripting", "Extra Server Storage", "External System Software", "Cross Server Security"], correct: 0 },
-            { question: "What does CSRF stand for?", options: ["Cross-Site Request Forgery", "Central Server Resource File", "Common Security Request Format", "Client-Side Runtime Function"], correct: 0 },
-            { question: "Which protocol protects data in transit?", options: ["HTTPS", "Unencrypted HTTP", "Plain text", "HTML"], correct: 0 }
+            { question: "Which data type stores whole numbers?", options: ["VARCHAR", "INT", "DATE", "TEXT"], correct: 1 },
+            { question: "Which constraint uniquely identifies a row?", options: ["DEFAULT", "CHECK", "PRIMARY KEY", "NOT NULL"], correct: 2 },
+            { question: "Which constraint prevents NULL values?", options: ["NOT NULL", "UNIQUE", "DEFAULT", "FOREIGN KEY"], correct: 0 },
+            { question: "Which data type is suitable for precise prices?", options: ["DATE", "BOOLEAN", "DECIMAL", "CHAR"], correct: 2 },
+            { question: "What does FOREIGN KEY do?", options: ["Deletes a database", "Connects related tables", "Creates a programming language", "Changes a server"], correct: 1 }
         ]
     },
 
     {
-        title: "8. API Testing and Validation",
+        title: "5. SQL Queries: INSERT, SELECT, UPDATE and DELETE",
         sections: [
             {
-                heading: "What is API Testing?",
-                body: `API testing verifies whether an application's API endpoints work correctly.
+                heading: "INSERT Statement",
+                body: `INSERT is used to add new records to a table.
 
-It checks request methods, input validation, response data, status codes, authentication, authorization, and error handling.
-
-API testing is important because frontend applications and other services depend on reliable backend responses.`
+You can specify the columns and the values that should be inserted.`,
+                code: `INSERT INTO students
+(student_id, name, age, department)
+VALUES
+(1, 'Rahul', 19, 'ECE');`
             },
             {
-                heading: "Common HTTP Status Codes",
-                body: `200 OK: The request succeeded.
+                heading: "SELECT Statement",
+                body: `SELECT retrieves information from one or more database tables.
 
-201 Created: A resource was successfully created.
+Use * to retrieve all columns, or specify individual columns to retrieve only the required information.`,
+                code: `-- Retrieve all columns
+SELECT * FROM students;
 
-204 No Content: The request succeeded without a response body.
-
-400 Bad Request: The request contains invalid information.
-
-401 Unauthorized: Valid authentication is missing or invalid.
-
-403 Forbidden: The user does not have permission.
-
-404 Not Found: The requested resource does not exist.
-
-500 Internal Server Error: An unexpected server-side problem occurred.`
+-- Retrieve selected columns
+SELECT name, department
+FROM students;`
             },
             {
-                heading: "Testing APIs with Postman",
-                body: `Postman is a tool used to send HTTP requests and inspect API responses.
+                heading: "UPDATE Statement",
+                body: `UPDATE modifies existing records in a table.
 
-Developers can use it to:
-- Select HTTP methods such as GET, POST, PUT, and DELETE.
-- Enter request URLs.
-- Add headers and authentication information.
-- Send JSON request bodies.
-- Inspect response status codes and response data.
-- Save requests into collections for repeated testing.`
+The WHERE clause identifies which records should be changed.
+
+Without a WHERE clause, the update can affect every row in the table.`,
+                code: `UPDATE students
+SET age = 20
+WHERE student_id = 1;`
             },
             {
-                heading: "Request Validation",
-                body: `Input validation checks whether incoming data follows the application's requirements.
+                heading: "DELETE Statement",
+                body: `DELETE removes records from a table.
 
-For example, a registration API may check that:
-- Name is not empty.
-- Email has a valid format.
-- Password meets the application's security requirements.
-- Required fields are present.
-- Values have the expected types.
-
-Validation should happen on the backend even if the frontend already validates the form.`
+Always check the WHERE condition before executing a DELETE statement. Without WHERE, all rows in the table are deleted, although the table itself remains.`,
+                code: `DELETE FROM students
+WHERE student_id = 1;`
             }
         ],
         questions: [
-            { question: "What is API testing?", options: ["Checking API functionality", "Designing a logo", "Installing an operating system", "Writing CSS only"], correct: 0 },
-            { question: "Which status code means Created?", options: ["200", "201", "400", "500"], correct: 1 },
-            { question: "Which status code means Not Found?", options: ["201", "301", "404", "500"], correct: 2 },
-            { question: "Which tool is commonly used for API testing?", options: ["Postman", "Paint", "Calculator", "Notepad only"], correct: 0 },
-            { question: "Should backend APIs validate incoming data?", options: ["Yes", "No", "Only during deployment", "Only for images"], correct: 0 }
+            { question: "Which command adds records?", options: ["SELECT", "INSERT", "UPDATE", "DROP"], correct: 1 },
+            { question: "Which command retrieves data?", options: ["SELECT", "DELETE", "ALTER", "CREATE"], correct: 0 },
+            { question: "Which clause identifies records to update?", options: ["ORDER BY", "GROUP BY", "WHERE", "LIMIT"], correct: 2 },
+            { question: "What happens when DELETE is used without WHERE?", options: ["Only one row is deleted", "All rows are deleted", "The database is deleted", "Nothing happens"], correct: 1 },
+            { question: "Which statement changes an existing record?", options: ["UPDATE", "INSERT", "CREATE", "SELECT"], correct: 0 }
         ]
     },
 
     {
-        title: "9. Environment Variables and Application Configuration",
+        title: "6. Filtering, Sorting and Aggregate Functions",
         sections: [
             {
-                heading: "What are Environment Variables?",
-                body: `Environment variables are values provided to an application through its runtime environment.
+                heading: "WHERE Clause",
+                body: `The WHERE clause filters records based on a condition.
 
-They are commonly used to configure database credentials, API keys, application ports, and other settings.
+It supports comparison operators such as =, !=, >, <, >=, and <=.
 
-They help keep configuration separate from application source code.
+It can also use logical operators such as AND, OR, and NOT.`,
+                code: `SELECT *
+FROM students
+WHERE department = 'ECE';
 
-Sensitive values should not be committed to public repositories.`
+SELECT *
+FROM students
+WHERE age >= 18 AND department = 'ECE';`
             },
             {
-                heading: "Using dotenv in Node.js",
-                body: `The dotenv package loads variables from a local .env file into process.env.
+                heading: "ORDER BY and LIMIT",
+                body: `ORDER BY sorts query results.
 
-Install it using npm install dotenv.
+ASC sorts values in ascending order and is the default.
 
-The .env file should normally be added to .gitignore so that local secrets are not committed to Git.`,
-                code: `// .env file
-PORT=5000
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_local_password
-JWT_SECRET=replace_with_a_long_random_secret
+DESC sorts values in descending order.
 
-// server.js
-require("dotenv").config();
+LIMIT restricts the number of returned rows in MySQL.`,
+                code: `SELECT *
+FROM students
+ORDER BY age DESC;
 
-const port = process.env.PORT || 3000;
-
-console.log("Server port:", port);`
+SELECT *
+FROM students
+LIMIT 5;`
             },
             {
-                heading: "Using .gitignore",
-                body: `A .gitignore file tells Git which files and directories should not be tracked.
+                heading: "Aggregate Functions",
+                body: `Aggregate functions calculate a result using multiple records.
 
-It is commonly used to exclude:
-- .env files.
-- node_modules directories.
-- Local log files.
-- Temporary build files.
+COUNT(): Counts records.
 
-Example .gitignore content:`,
-                code: `.env
-.env.*
-node_modules/
-*.log`
+SUM(): Calculates the total.
+
+AVG(): Calculates the average.
+
+MIN(): Finds the smallest value.
+
+MAX(): Finds the largest value.`,
+                code: `SELECT COUNT(*) FROM students;
+
+SELECT AVG(age) FROM students;
+
+SELECT MIN(age), MAX(age)
+FROM students;`
             },
             {
-                heading: "Configuration Across Environments",
-                body: `Applications may run in different environments.
+                heading: "GROUP BY and HAVING",
+                body: `GROUP BY combines rows that share the same value in a specified column. It is commonly used with aggregate functions.
 
-Development: Used while building and testing an application locally.
-
-Testing: Used to verify application behavior.
-
-Production: The live environment used by real users.
-
-Each environment may require different database connections, service URLs, and configuration values.
-
-Production secrets should be configured through the hosting platform's secure environment-variable settings.`
+HAVING filters groups after grouping. WHERE filters individual rows before grouping.`,
+                code: `SELECT department, COUNT(*) AS total
+FROM students
+GROUP BY department
+HAVING COUNT(*) > 2;`
             }
         ],
         questions: [
-            { question: "What are environment variables used for?", options: ["Application configuration", "Creating HTML tags", "Drawing images", "Formatting CSS"], correct: 0 },
-            { question: "Which Node.js package loads .env files?", options: ["dotenv", "react", "mysql2 only", "express-html"], correct: 0 },
-            { question: "Which file helps exclude .env from Git?", options: [".gitignore", "index.html", "style.css", "package.json only"], correct: 0 },
-            { question: "Where should production secrets be configured?", options: ["Public GitHub repository", "Secure hosting environment settings", "HTML source code", "Public frontend JavaScript"], correct: 1 },
-            { question: "What is a production environment?", options: ["The live application environment", "A code editor theme", "A database table", "A browser extension"], correct: 0 }
+            { question: "Which clause filters records?", options: ["ORDER BY", "WHERE", "GROUP BY", "LIMIT"], correct: 1 },
+            { question: "Which keyword sorts results in descending order?", options: ["ASC", "SORT", "DESC", "DOWN"], correct: 2 },
+            { question: "Which function counts records?", options: ["SUM()", "AVG()", "COUNT()", "MAX()"], correct: 2 },
+            { question: "Which clause groups similar records?", options: ["GROUP BY", "WHERE", "LIMIT", "INSERT"], correct: 0 },
+            { question: "Which clause filters grouped results?", options: ["WHERE", "HAVING", "ORDER BY", "VALUES"], correct: 1 }
         ]
     },
 
     {
-        title: "10. Application Deployment and Maintenance",
+        title: "7. SQL Joins and Relationships",
         sections: [
             {
-                heading: "What is Deployment?",
-                body: `Deployment is the process of making an application available in an environment where users can access it.
+                heading: "What is a JOIN?",
+                body: `A JOIN combines related records from two or more tables using a matching column.
 
-During development, an application may run on localhost. Deployment makes it accessible through a hosting platform or server.
+Joins are useful when information is stored in separate tables to reduce unnecessary duplication.
 
-A full-stack application may contain a frontend, backend, and database, each of which needs suitable hosting and configuration.`
+For example, customer details can be stored in one table and order details in another.`,
+                code: `Customers
+
+customer_id | name
+------------|-------
+1           | Rahul
+2           | Priya
+
+Orders
+
+order_id | customer_id
+---------|------------
+101      | 1
+102      | 1
+103      | 2`
             },
             {
-                heading: "Frontend Deployment",
-                body: `Frontend applications contain the user interface and browser-side code.
+                heading: "INNER JOIN",
+                body: `INNER JOIN returns only records that have matching values in both tables.
 
-Static websites built using HTML, CSS, and JavaScript can be deployed using platforms such as GitHub Pages.
-
-Modern frontend applications built with frameworks may need a build process before deployment.
-
-After deployment, the platform provides a URL through which users can access the website.`
+If a customer has no matching order, that customer will not appear in the result.`,
+                code: `SELECT customers.name, orders.order_id
+FROM customers
+INNER JOIN orders
+ON customers.customer_id = orders.customer_id;`
             },
             {
-                heading: "Backend Deployment",
-                body: `Backend applications run on a server and handle API requests, authentication, business logic, and database operations.
+                heading: "LEFT JOIN and RIGHT JOIN",
+                body: `LEFT JOIN returns all records from the left table and matching records from the right table. If no match exists, the right-side columns contain NULL.
 
-Backend hosting platforms provide features such as:
-- Application runtime.
-- Environment variables.
-- Logs.
-- Deployment from Git repositories.
-- HTTPS support.
+RIGHT JOIN returns all records from the right table and matching records from the left table.`
+            },
+            {
+                heading: "Many-to-Many Relationships",
+                body: `A many-to-many relationship is usually implemented using a junction table.
 
-The backend should listen on the port provided by its hosting environment when required.`,
-                code: `const express = require("express");
-const app = express();
+For example, a student can enroll in multiple courses, and each course can contain multiple students.
 
-app.use(express.json());
+A student_courses table can connect students and courses using student_id and course_id.`
+            }
+        ],
+        questions: [
+            { question: "What is the purpose of JOIN?", options: ["Delete tables", "Combine related table records", "Create databases", "Change passwords"], correct: 1 },
+            { question: "Which JOIN returns only matching records?", options: ["LEFT JOIN", "RIGHT JOIN", "INNER JOIN", "CROSS JOIN"], correct: 2 },
+            { question: "Which JOIN keeps all records from the left table?", options: ["LEFT JOIN", "INNER JOIN", "RIGHT JOIN", "SELF JOIN"], correct: 0 },
+            { question: "What is commonly used to implement many-to-many relationships?", options: ["Junction table", "Single column", "Index only", "Database name"], correct: 0 },
+            { question: "What value can appear when a LEFT JOIN has no matching right-side record?", options: ["0 always", "NULL", "TRUE", "ERROR always"], correct: 1 }
+        ]
+    },
 
-app.get("/", (req, res) => {
-    res.send("DEVORAA API is running");
+    {
+        title: "8. Database Normalization and Indexing",
+        sections: [
+            {
+                heading: "What is Normalization?",
+                body: `Normalization is the process of organizing relational database tables to reduce unnecessary duplication and improve data consistency.
+
+It divides data into related tables and establishes relationships using keys.
+
+Normalization helps avoid insertion, update, and deletion anomalies.`,
+                code: `Instead of repeating customer details in every order:
+
+Customers
+customer_id | customer_name
+1           | Rahul
+
+Orders
+order_id | customer_id
+101      | 1
+102      | 1`
+            },
+            {
+                heading: "Normal Forms",
+                body: `First Normal Form (1NF): Each column should contain atomic values, and repeating groups should be avoided.
+
+Second Normal Form (2NF): The table should satisfy 1NF, and every non-key attribute should depend on the whole candidate key, not just part of a composite candidate key.
+
+Third Normal Form (3NF): The table should satisfy 2NF and should not have inappropriate transitive dependencies of non-key attributes on candidate keys.`
+            },
+            {
+                heading: "Database Indexing",
+                body: `An index is a data structure that helps a database locate records more efficiently.
+
+It can improve the speed of searches and certain queries, especially on frequently filtered columns.
+
+However, indexes require storage and can slow down INSERT, UPDATE, and DELETE operations because indexes also need maintenance.`,
+                code: `CREATE INDEX idx_student_name
+ON students(name);
+
+-- Remove an index in MySQL
+DROP INDEX idx_student_name
+ON students;`
+            }
+        ],
+        questions: [
+            { question: "What is the main purpose of normalization?", options: ["Increase duplication", "Reduce unnecessary duplication", "Delete all tables", "Stop queries"], correct: 1 },
+            { question: "What does 1NF require?", options: ["Atomic column values", "No primary keys", "No tables", "Only one record"], correct: 0 },
+            { question: "What is a database index?", options: ["A programming language", "A structure that helps locate records", "A user account", "A database backup"], correct: 1 },
+            { question: "What is one disadvantage of indexes?", options: ["They always delete records", "They require storage and maintenance", "They prevent SELECT", "They remove primary keys"], correct: 1 },
+            { question: "Which command creates an index?", options: ["MAKE INDEX", "CREATE INDEX", "ADD DATABASE", "INSERT INDEX"], correct: 1 }
+        ]
+    },
+
+    {
+        title: "9. Transactions and ACID Properties",
+        sections: [
+            {
+                heading: "What is a Transaction?",
+                body: `A transaction is a group of database operations treated as one logical unit of work.
+
+For example, transferring money between two bank accounts requires subtracting money from one account and adding it to another.
+
+Both operations should succeed together. If one operation fails, the transaction can be rolled back.`,
+                code: `START TRANSACTION;
+
+UPDATE accounts
+SET balance = balance - 500
+WHERE account_id = 1;
+
+UPDATE accounts
+SET balance = balance + 500
+WHERE account_id = 2;
+
+COMMIT;`
+            },
+            {
+                heading: "ACID Properties",
+                body: `ACID describes four important properties of reliable database transactions.
+
+Atomicity: All operations in a transaction succeed together, or the transaction is rolled back.
+
+Consistency: A transaction takes the database from one valid state to another while respecting constraints.
+
+Isolation: Concurrent transactions should not interfere in ways that violate the configured isolation guarantees.
+
+Durability: Once a transaction is committed, its changes are designed to persist even after a system failure.`
+            },
+            {
+                heading: "COMMIT and ROLLBACK",
+                body: `COMMIT permanently saves the changes made by a transaction.
+
+ROLLBACK cancels uncommitted changes in the current transaction.
+
+SAVEPOINT creates a point within a transaction that can be used for a partial rollback.`,
+                code: `START TRANSACTION;
+
+UPDATE students
+SET age = 21
+WHERE student_id = 1;
+
+-- Save changes
+COMMIT;
+
+-- Example of cancelling uncommitted changes
+START TRANSACTION;
+
+UPDATE students
+SET age = 22
+WHERE student_id = 1;
+
+ROLLBACK;`
+            }
+        ],
+        questions: [
+            { question: "What is a transaction?", options: ["A group of logical database operations", "A CSS property", "A web page", "A programming framework"], correct: 0 },
+            { question: "What does ACID stand for?", options: ["Atomicity, Consistency, Isolation, Durability", "Access, Control, Input, Data", "Application, Code, Internet, Design", "Automatic, Central, Internal, Database"], correct: 0 },
+            { question: "Which property ensures all operations succeed together?", options: ["Durability", "Atomicity", "Isolation", "Consistency"], correct: 1 },
+            { question: "Which command saves a transaction?", options: ["ROLLBACK", "DELETE", "COMMIT", "DROP"], correct: 2 },
+            { question: "Which command cancels uncommitted transaction changes?", options: ["COMMIT", "ROLLBACK", "SELECT", "CREATE"], correct: 1 }
+        ]
+    },
+
+    {
+        title: "10. Connecting Databases with Backend Applications",
+        sections: [
+            {
+                heading: "Why Backend Applications Need Databases",
+                body: `Backend applications use databases to store and retrieve information.
+
+For example, a student management application may store student profiles, attendance, marks, and course details.
+
+The backend receives a request, communicates with the database, processes the result, and sends a response to the frontend.
+
+The frontend should not connect directly to a database using secret database credentials.`
+            },
+            {
+                heading: "Connecting Node.js with MySQL",
+                body: `Node.js applications can connect to MySQL using packages such as mysql2.
+
+A database connection requires the server address, username, password, and database name.
+
+In real applications, credentials should be stored in environment variables instead of being hardcoded.`,
+                code: `// Install the package:
+// npm install mysql2
+
+const mysql = require("mysql2");
+
+const connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: process.env.DB_PASSWORD,
+    database: "devoraa_db"
 });
 
-const PORT = process.env.PORT || 5000;
+connection.connect((error) => {
+    if (error) {
+        console.error("Connection failed:", error);
+        return;
+    }
 
-app.listen(PORT, () => {
-    console.log("Server running on port", PORT);
+    console.log("Connected to MySQL");
 });`
             },
             {
-                heading: "Database Deployment",
-                body: `A production backend needs access to a properly configured database.
+                heading: "Executing Database Queries",
+                body: `Backend applications execute SQL queries to perform database operations.
 
-A database hosting service or managed database platform can provide a production database.
+Use parameterized queries instead of joining untrusted user input directly into SQL strings. Parameterized queries help protect against SQL injection.`,
+                code: `const studentId = 1;
 
-Important considerations include:
-- Database credentials.
-- Network access rules.
-- Backups.
-- Database migrations.
-- Access permissions.
-- Secure connections.
+connection.execute(
+    "SELECT * FROM students WHERE student_id = ?",
+    [studentId],
+    (error, results) => {
+        if (error) {
+            console.error(error);
+            return;
+        }
 
-A local development database and a production database should be configured separately.`
+        console.log(results);
+    }
+);`
             },
             {
-                heading: "Deployment Workflow",
-                body: `A common deployment workflow is:
+                heading: "Building a Simple Student API",
+                body: `A student API can provide endpoints for creating and retrieving student records.
 
-1. Develop the application locally.
-2. Test its frontend and backend.
-3. Store the project in a Git repository.
-4. Configure production environment variables.
-5. Set up the production database.
-6. Deploy the frontend and backend.
-7. Configure API URLs and database connections.
-8. Enable HTTPS.
-9. Test the deployed application.
-10. Monitor logs and maintain the application.
+GET /students retrieves student records.
 
-Deployment is not the end of development. Applications need regular updates, security fixes, and monitoring.`
+POST /students creates a new student record.
+
+PUT /students/:id updates an existing student.
+
+DELETE /students/:id removes a student record.
+
+A backend should validate incoming data, use parameterized queries, handle database errors, and return suitable HTTP status codes.`
+            },
+            {
+                heading: "Database Security Best Practices",
+                body: `1. Never expose database passwords in frontend code.
+2. Use environment variables for credentials.
+3. Use parameterized SQL queries.
+4. Give database accounts only the permissions they need.
+5. Validate user input on the backend.
+6. Back up important data.
+7. Handle errors without exposing sensitive internal information.
+
+These practices help build safer and more reliable applications.`
             }
         ],
         questions: [
-            { question: "What is deployment?", options: ["Making an application available to users", "Deleting source code", "Creating a database table", "Writing a password"], correct: 0 },
-            { question: "Which platform can host static websites?", options: ["GitHub Pages", "MySQL only", "Postman", "bcrypt"], correct: 0 },
-            { question: "What does process.env.PORT provide?", options: ["A runtime environment port value", "A database password", "An HTML tag", "A CSS selector"], correct: 0 },
-            { question: "Why is HTTPS important?", options: ["It helps protect data in transit", "It creates database tables", "It replaces JavaScript", "It removes the need for testing"], correct: 0 },
-            { question: "What should happen after deployment?", options: ["Testing and monitoring", "Delete all backups", "Expose all credentials", "Stop maintaining the application"], correct: 0 }
+            { question: "Why does a backend application use a database?", options: ["To style web pages", "To store and retrieve application data", "To design images", "To compile CSS"], correct: 1 },
+            { question: "Which package can connect Node.js with MySQL?", options: ["mysql2", "react-dom", "express-html", "css-loader"], correct: 0 },
+            { question: "Where should database passwords be stored?", options: ["Public frontend code", "HTML comments", "Environment variables", "Image files"], correct: 2 },
+            { question: "What helps protect SQL queries from SQL injection?", options: ["String concatenation", "Parameterized queries", "Removing all tables", "Using CSS"], correct: 1 },
+            { question: "Which HTTP method is commonly used to retrieve students?", options: ["POST", "DELETE", "GET", "PATCH only"], correct: 2 }
         ]
     }
 
