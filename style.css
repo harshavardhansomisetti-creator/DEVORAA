@@ -188,15 +188,13 @@ button {
 }
 
 
-/* ==========================================
-   SIDEBAR COLLAPSED
-========================================== */
+/* SIDEBAR COLLAPSED */
 
 .app-layout.sidebar-collapsed .sidebar {
-    width: 75px;
-    min-width: 75px;
-    padding-left: 10px;
-    padding-right: 10px;
+    width: 85px;
+    min-width: 85px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 .app-layout.sidebar-collapsed .brand {
@@ -210,10 +208,14 @@ button {
 }
 
 .app-layout.sidebar-collapsed .nav-item {
-    font-size: 13px;
+    width: 100%;
+    min-width: 0;
+    font-size: 12px;
     text-align: center;
-    padding: 12px 3px;
+    padding: 12px 0;
     white-space: nowrap;
+    overflow: visible;
+    letter-spacing: 0;
 }
 
 .app-layout.sidebar-collapsed .nav-label {
