@@ -1,1428 +1,668 @@
 
-export const co5Topics = [
+export const co6Topics = [
 
-    // TOPIC 1
     {
-        title: "Introduction to Database Management",
+        title: "1. Introduction to Authentication and Authorization",
         sections: [
             {
-                heading: "What is a Database?",
-                body: `A database is an organized collection of information that can be stored, accessed, managed and updated.
+                heading: "What is Authentication?",
+                body: `Authentication is the process of verifying the identity of a user.
 
-Web applications use databases to store information such as user accounts, student records, product details, course information and orders.
+When a user logs into an application, the system checks whether the provided credentials belong to a valid account.
 
-For example, an online learning platform may store student names, registered courses, assessment scores and learning progress in a database.
+Common authentication methods include:
+1. Username and password.
+2. One-time passwords (OTP).
+3. Multi-factor authentication (MFA).
+4. Biometric authentication.
 
-Without a database, applications would have difficulty maintaining information permanently and retrieving it efficiently.`
+For example, when a student enters an email address and password to access a learning platform, the application authenticates the student.`
             },
             {
-                heading: "What is a DBMS?",
-                body: `DBMS stands for Database Management System.
+                heading: "What is Authorization?",
+                body: `Authorization determines what an authenticated user is allowed to access or perform.
 
-It is software that allows users and applications to create, manage and interact with databases.
+For example, in a college management application:
+- Students can view their marks.
+- Teachers can update marks.
+- Administrators can manage student and teacher accounts.
 
-A DBMS provides facilities for:
+Authentication answers: Who are you?
 
-• Storing information
-• Retrieving records
-• Updating information
-• Deleting records
-• Managing access
-• Maintaining data consistency
-
-Examples include MySQL, PostgreSQL, Oracle Database and MongoDB.`
+Authorization answers: What are you allowed to do?`
             },
             {
-                heading: "Types of Databases",
-                body: `Databases are commonly classified into different categories.
+                heading: "Authentication vs Authorization",
+                body: `Authentication happens before authorization in most application workflows.
 
-1. Relational Databases:
-Store data in tables containing rows and columns. Examples include MySQL and PostgreSQL.
+Authentication verifies identity, whereas authorization checks permissions.
 
-2. Document Databases:
-Store data as documents, commonly using JSON-like structures. MongoDB is an example.
-
-3. Key-Value Databases:
-Store information as key-value pairs. Redis is a common example.
-
-4. Graph Databases:
-Represent information using nodes and relationships. Neo4j is an example.
-
-The choice of database depends on application requirements and data structure.`
-            },
-            {
-                heading: "Database in Web Applications",
-                body: `A typical web application connects three major parts:
-
-Frontend – Displays information and accepts user input.
-
-Backend – Processes requests and applies application logic.
-
-Database – Stores and manages application information.
-
-Example workflow:
-
-1. A student enters registration information.
-2. The frontend sends the information to the backend.
-3. The backend validates the submitted data.
-4. The backend stores the record in the database.
-5. The application returns a response to the student.`
+A user may successfully log in but still be denied access to an administrator-only page because the user does not have the required role.`
             }
         ],
         questions: [
-            {
-                level: "Easy",
-                question: "What is a database?",
-                options: [
-                    "An organized collection of information",
-                    "A programming language",
-                    "A web browser",
-                    "An operating system"
-                ],
-                correct: 0,
-                explanation: "A database stores organized information for efficient access and management."
-            },
-            {
-                level: "Easy",
-                question: "What does DBMS stand for?",
-                options: [
-                    "Database Management System",
-                    "Data Backup Management Software",
-                    "Digital Business Management System",
-                    "Database Machine Software"
-                ],
-                correct: 0,
-                explanation: "DBMS stands for Database Management System."
-            },
-            {
-                level: "Medium",
-                question: "Which database stores information in tables?",
-                options: [
-                    "Relational database",
-                    "Document database only",
-                    "Graph database only",
-                    "File browser"
-                ],
-                correct: 0,
-                explanation: "Relational databases organize data into tables with rows and columns."
-            },
-            {
-                level: "Medium",
-                question: "Which of the following is a document database?",
-                options: ["MongoDB", "MySQL", "PostgreSQL", "Oracle Database"],
-                correct: 0,
-                explanation: "MongoDB is a document-oriented database."
-            },
-            {
-                level: "Hard",
-                question: "What is the main role of a database in a web application?",
-                options: [
-                    "To store and manage application information",
-                    "To design webpage colors",
-                    "To execute CSS animations",
-                    "To replace the web browser"
-                ],
-                correct: 0,
-                explanation: "Databases provide persistent storage and retrieval of application information."
-            }
+            { question: "What is authentication?", options: ["Verifying user identity", "Deleting user accounts", "Designing a webpage", "Creating a database"], correct: 0 },
+            { question: "What is authorization?", options: ["Checking permissions", "Checking screen size", "Creating passwords", "Installing software"], correct: 0 },
+            { question: "Which is an authentication method?", options: ["CSS", "OTP", "HTML", "SQL JOIN"], correct: 1 },
+            { question: "Which process determines what a user can access?", options: ["Authentication", "Authorization", "Compilation", "Deployment"], correct: 1 },
+            { question: "Can an authenticated user be denied access to an admin page?", options: ["No", "Yes, if they lack permission", "Only when offline", "Never"], correct: 1 }
         ]
     },
 
-    // TOPIC 2
     {
-        title: "Relational Database Concepts",
+        title: "2. User Registration and Login Systems",
         sections: [
             {
-                heading: "What is a Relational Database?",
-                body: `A relational database organizes information into tables.
+                heading: "User Registration",
+                body: `User registration is the process of creating a new account in an application.
 
-Each table represents a particular type of information, such as students, courses or departments.
+A registration form commonly collects:
+- Full name.
+- Email address.
+- Password.
+- Other required profile information.
 
-Tables contain rows and columns.
+The backend validates the submitted information before creating the account.
 
-A row represents one record, while a column represents an attribute of that record.
-
-For example, a Students table can contain student ID, name, email and department.`
+The application should check whether the email is already registered and should never store plain-text passwords.`
             },
             {
-                heading: "Tables, Rows and Columns",
-                body: `Consider a Students table:
+                heading: "User Login",
+                body: `Login allows an existing user to access an application.
 
-| StudentID | Name | Department |
-| 1 | Ravi | ECE |
-| 2 | Harsha | ECE |
-| 3 | Kiran | CSE |
+A typical login process works as follows:
 
-StudentID, Name and Department are columns.
-
-Each student entry is a row.
-
-The table organizes student information in a structured format.`
+1. The user enters their email and password.
+2. The frontend sends the information securely to the backend using HTTPS.
+3. The backend finds the account.
+4. The password is verified against its stored password hash.
+5. If the credentials are valid, the server establishes an authenticated session or issues a suitable token.
+6. The user can access permitted resources.`
             },
             {
-                heading: "Primary Key",
-                body: `A primary key is a column or combination of columns that uniquely identifies each row in a table.
+                heading: "Registration and Login API",
+                body: `Backend applications commonly use separate API endpoints for registration and login.
 
-Important characteristics:
+POST /register creates an account.
 
-• Values must be unique.
-• A primary key cannot contain NULL.
-• Each table can have only one primary key constraint, though it may contain multiple columns.
+POST /login verifies login credentials.
 
-For example, StudentID can uniquely identify each student.
+GET /profile retrieves information for the authenticated user.
 
-Primary keys prevent records from being confused with one another.`
-            },
-            {
-                heading: "Foreign Key",
-                body: `A foreign key is a column or group of columns that references a candidate key, commonly the primary key, in another table.
-
-It creates a relationship between tables.
-
-For example:
-
-Students table:
-StudentID, Name
-
-Enrollments table:
-EnrollmentID, StudentID, CourseName
-
-The StudentID in Enrollments can reference StudentID in Students.
-
-This helps maintain referential integrity between related records.`
+These endpoints must validate requests, handle errors, and protect sensitive information.`
             }
         ],
         questions: [
-            {
-                level: "Easy",
-                question: "How is data organized in a relational database?",
-                options: ["Tables", "Audio files", "Images", "Videos"],
-                correct: 0,
-                explanation: "Relational databases organize data using tables."
-            },
-            {
-                level: "Easy",
-                question: "What does a row represent in a table?",
-                options: ["A record", "A database server", "A database connection", "A programming language"],
-                correct: 0,
-                explanation: "Each row represents an individual record."
-            },
-            {
-                level: "Medium",
-                question: "What is the purpose of a primary key?",
-                options: [
-                    "Uniquely identify each record",
-                    "Change webpage colors",
-                    "Store CSS styles",
-                    "Create network connections"
-                ],
-                correct: 0,
-                explanation: "A primary key uniquely identifies each row in a table."
-            },
-            {
-                level: "Medium",
-                question: "What does a foreign key establish?",
-                options: [
-                    "A relationship between tables",
-                    "A webpage layout",
-                    "A JavaScript variable",
-                    "A server port"
-                ],
-                correct: 0,
-                explanation: "Foreign keys reference keys in another table to establish relationships."
-            },
-            {
-                level: "Hard",
-                question: "Which statement about a primary key is correct?",
-                options: [
-                    "It must contain unique, non-NULL values",
-                    "It must always contain duplicate values",
-                    "It stores only images",
-                    "It cannot identify records"
-                ],
-                correct: 0,
-                explanation: "Primary key values must uniquely identify rows and cannot be NULL."
-            }
+            { question: "What is user registration?", options: ["Creating a new account", "Deleting a server", "Changing CSS", "Stopping an application"], correct: 0 },
+            { question: "Which HTTP method is commonly used for login requests?", options: ["GET", "POST", "DELETE", "HEAD"], correct: 1 },
+            { question: "Where should user passwords be stored?", options: ["As plain text", "As securely generated password hashes", "In HTML comments", "In public files"], correct: 1 },
+            { question: "What does POST /register usually do?", options: ["Creates an account", "Deletes a database", "Displays CSS", "Starts a browser"], correct: 0 },
+            { question: "Which protocol helps protect data during transmission?", options: ["HTTP without encryption", "HTTPS", "FTP without encryption", "Telnet"], correct: 1 }
         ]
     },
 
-    // TOPIC 3
     {
-        title: "Introduction to SQL",
+        title: "3. Password Hashing and Security",
         sections: [
             {
-                heading: "What is SQL?",
-                body: `SQL stands for Structured Query Language.
+                heading: "Why Password Security Matters",
+                body: `Passwords protect user accounts and personal information.
 
-It is used to communicate with relational database management systems.
+Storing passwords as plain text is unsafe because anyone who gains access to the database could read them.
 
-SQL allows developers to create tables, insert records, retrieve information, update existing values and delete records.
-
-It is commonly used with databases such as MySQL, PostgreSQL, SQL Server and Oracle Database.`
+Applications should use established password-hashing algorithms designed for password storage.`
             },
             {
-                heading: "Creating a Database",
-                code: `CREATE DATABASE Devor aaDB;`,
-                body: `The CREATE DATABASE command creates a new database.
+                heading: "What is Password Hashing?",
+                body: `Password hashing converts a password into a fixed-format representation using a one-way cryptographic process.
 
-For a database name containing spaces, special syntax may be required depending on the database system.
+A secure password-hashing system uses a unique salt and an appropriate work factor.
 
-A simple valid example is:
+Recommended password-hashing algorithms include Argon2id, bcrypt, and scrypt.
 
-CREATE DATABASE Devor aaDB;
-
-To avoid naming problems, use a name without spaces, such as:
-
-CREATE DATABASE Devor aaDB;
-
-Then select the database using:
-
-USE Devor aaDB;`
+When a user logs in, the application verifies the entered password using the password-hashing library. It does not need to decrypt the stored hash.`
             },
             {
-                heading: "Creating a Table",
-                code: `CREATE TABLE Students (
-    StudentID INT PRIMARY KEY,
-    Name VARCHAR(100),
-    Department VARCHAR(50),
-    Age INT
-);`,
-                body: `CREATE TABLE creates a new table.
+                heading: "Example Using bcrypt",
+                body: `The bcrypt package is commonly used in Node.js applications for password hashing.
 
-StudentID is an integer primary key.
+Install it using npm install bcrypt.
 
-VARCHAR stores variable-length text.
+The following example demonstrates hashing a password and verifying it. In a real application, use the validated password received by the backend and store the resulting hash in the database.`,
+                code: `const bcrypt = require("bcrypt");
 
-INT stores integer values.
-
-The table definition specifies the structure of the information that can be stored.`
-            },
-            {
-                heading: "Inserting and Retrieving Data",
-                code: `INSERT INTO Students
-(StudentID, Name, Department, Age)
-VALUES
-(1, 'Ravi', 'ECE', 19);
-
-SELECT * FROM Students;
-
-SELECT Name, Department
-FROM Students;`,
-                body: `INSERT INTO adds a new record to a table.
-
-SELECT retrieves information.
-
-SELECT * retrieves all columns, while SELECT Name, Department retrieves only the selected columns.
-
-SQL makes it possible to retrieve specific information from large datasets.`
-            }
-        ],
-        questions: [
-            {
-                level: "Easy",
-                question: "What does SQL stand for?",
-                options: [
-                    "Structured Query Language",
-                    "Simple Question Language",
-                    "System Query Logic",
-                    "Structured Quick Link"
-                ],
-                correct: 0,
-                explanation: "SQL stands for Structured Query Language."
-            },
-            {
-                level: "Easy",
-                question: "Which SQL command creates a table?",
-                options: ["CREATE TABLE", "SELECT TABLE", "SHOW TABLE", "GET TABLE"],
-                correct: 0,
-                explanation: "CREATE TABLE defines a new table in a relational database."
-            },
-            {
-                level: "Medium",
-                question: "Which command retrieves data?",
-                options: ["SELECT", "DELETE", "DROP", "UPDATE"],
-                correct: 0,
-                explanation: "SELECT retrieves records from a database."
-            },
-            {
-                level: "Medium",
-                question: "Which SQL data type is commonly used for variable-length text?",
-                options: ["VARCHAR", "INT", "DATE", "BOOLEAN"],
-                correct: 0,
-                explanation: "VARCHAR stores variable-length character data."
-            },
-            {
-                level: "Hard",
-                question: "What does SELECT * FROM Students return?",
-                options: [
-                    "All columns from the Students table",
-                    "Only the first column",
-                    "Deletes all students",
-                    "Creates a new table"
-                ],
-                correct: 0,
-                explanation: "The asterisk selects all columns from the specified table."
-            }
-        ]
-    },
-
-    // TOPIC 4
-    {
-        title: "SQL Data Manipulation",
-        sections: [
-            {
-                heading: "What is Data Manipulation?",
-                body: `Data Manipulation Language (DML) contains SQL commands used to work with records stored in database tables.
-
-Important DML operations include:
-
-INSERT – Adds records.
-
-UPDATE – Modifies existing records.
-
-DELETE – Removes records.
-
-SELECT – Retrieves records and is commonly classified as Data Query Language (DQL).
-
-These operations are essential for managing application data.`
-            },
-            {
-                heading: "INSERT Command",
-                code: `INSERT INTO Students
-(StudentID, Name, Department, Age)
-VALUES
-(2, 'Harsha', 'ECE', 19);
-
-INSERT INTO Students
-(StudentID, Name, Department, Age)
-VALUES
-(3, 'Kiran', 'CSE', 20);`,
-                body: `INSERT INTO adds new records to a table.
-
-The column list identifies which columns receive values.
-
-The values must match the selected columns in number and compatible data type.`
-            },
-            {
-                heading: "UPDATE Command",
-                code: `UPDATE Students
-SET Department = 'EEE'
-WHERE StudentID = 2;`,
-                body: `UPDATE changes existing records.
-
-SET specifies the new value.
-
-WHERE identifies which records should be modified.
-
-Always check the WHERE condition before executing an UPDATE. Without WHERE, every row in the table may be updated.`
-            },
-            {
-                heading: "DELETE Command",
-                code: `DELETE FROM Students
-WHERE StudentID = 3;`,
-                body: `DELETE removes records from a table.
-
-The WHERE condition selects which records should be removed.
-
-Without WHERE, all rows in the table can be deleted.
-
-DELETE removes records, whereas DROP removes a database object such as a table.`
-            }
-        ],
-        questions: [
-            {
-                level: "Easy",
-                question: "Which command inserts a new record?",
-                options: ["INSERT INTO", "UPDATE", "DELETE", "DROP"],
-                correct: 0,
-                explanation: "INSERT INTO adds new records to a database table."
-            },
-            {
-                level: "Easy",
-                question: "Which command modifies existing records?",
-                options: ["UPDATE", "CREATE", "DROP", "ALTER"],
-                correct: 0,
-                explanation: "UPDATE changes existing values in table records."
-            },
-            {
-                level: "Medium",
-                question: "What is the purpose of WHERE?",
-                options: [
-                    "To specify a condition",
-                    "To create a database",
-                    "To delete the entire database",
-                    "To rename SQL"
-                ],
-                correct: 0,
-                explanation: "WHERE filters records based on a specified condition."
-            },
-            {
-                level: "Medium",
-                question: "What happens if DELETE is executed without WHERE?",
-                options: [
-                    "All records in the table are deleted",
-                    "Only the first record is deleted",
-                    "The table is renamed",
-                    "A new database is created"
-                ],
-                correct: 0,
-                explanation: "Without WHERE, DELETE removes every row from the table."
-            },
-            {
-                level: "Hard",
-                question: "Which command removes a database table structure?",
-                options: ["DROP TABLE", "DELETE ROW", "UPDATE TABLE", "SELECT TABLE"],
-                correct: 0,
-                explanation: "DROP TABLE removes the table object and its stored records."
-            }
-        ]
-    },
-
-    // TOPIC 5
-    {
-        title: "SQL Constraints and Data Types",
-        sections: [
-            {
-                heading: "What Are Constraints?",
-                body: `Constraints are rules applied to database columns or tables to maintain valid and consistent information.
-
-They prevent invalid data from being inserted into a database.
-
-Common constraints include:
-
-PRIMARY KEY – Uniquely identifies records.
-
-FOREIGN KEY – Maintains relationships between tables.
-
-NOT NULL – Prevents NULL values.
-
-UNIQUE – Prevents duplicate values in a constrained column or column combination.
-
-CHECK – Enforces a specified condition.
-
-DEFAULT – Provides a default value when one is not supplied.`
-            },
-            {
-                heading: "Using Constraints",
-                code: `CREATE TABLE Students (
-    StudentID INT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    Email VARCHAR(150) UNIQUE,
-    Age INT CHECK (Age >= 16),
-    Department VARCHAR(50) DEFAULT 'ECE'
-);`,
-                body: `StudentID uniquely identifies each record.
-
-Name must contain a value.
-
-Email values must be unique.
-
-Age must satisfy the CHECK condition.
-
-Department receives ECE when a value is not supplied.
-
-Constraint support and exact behavior can vary slightly between database systems.`
-            },
-            {
-                heading: "Common SQL Data Types",
-                body: `Data types define what kind of information a column can store.
-
-INT – Integer numbers.
-
-DECIMAL – Exact numeric values, commonly used for financial data.
-
-VARCHAR – Variable-length text.
-
-CHAR – Fixed-length text.
-
-DATE – Calendar date.
-
-DATETIME or TIMESTAMP – Date and time values, depending on the database system.
-
-BOOLEAN – Logical true or false values, with implementation differences across SQL databases.`
-            },
-            {
-                heading: "Why Constraints Matter",
-                body: `Constraints improve database reliability.
-
-For example, a student registration system should not allow two students to have the same student ID.
-
-A required name should not be left empty.
-
-A course enrollment should refer to a valid student.
-
-Using suitable constraints helps protect data integrity and reduces application errors.`
-            }
-        ],
-        questions: [
-            {
-                level: "Easy",
-                question: "What is the purpose of NOT NULL?",
-                options: [
-                    "Prevent NULL values",
-                    "Allow only duplicate values",
-                    "Delete the table",
-                    "Create a database"
-                ],
-                correct: 0,
-                explanation: "NOT NULL requires a value for the specified column."
-            },
-            {
-                level: "Easy",
-                question: "Which constraint uniquely identifies each record?",
-                options: ["PRIMARY KEY", "DEFAULT", "CHECK", "NOT NULL"],
-                correct: 0,
-                explanation: "PRIMARY KEY uniquely identifies each row."
-            },
-            {
-                level: "Medium",
-                question: "Which constraint prevents duplicate values?",
-                options: ["UNIQUE", "DEFAULT", "CHECK", "NOT NULL"],
-                correct: 0,
-                explanation: "UNIQUE prevents duplicate values for the constrained column or combination."
-            },
-            {
-                level: "Medium",
-                question: "Which data type is suitable for variable-length text?",
-                options: ["VARCHAR", "INT", "DATE", "DECIMAL"],
-                correct: 0,
-                explanation: "VARCHAR stores variable-length character data."
-            },
-            {
-                level: "Hard",
-                question: "Which constraint can enforce Age >= 16?",
-                options: ["CHECK", "DEFAULT", "UNIQUE", "PRIMARY KEY"],
-                correct: 0,
-                explanation: "CHECK enforces a condition on inserted or updated values."
-            }
-        ]
-    },
-
-    // TOPIC 6
-    {
-        title: "SQL Joins and Relationships",
-        sections: [
-            {
-                heading: "Understanding Relationships",
-                body: `Relational databases often divide information into multiple tables to reduce duplication and organize data.
-
-Relationships connect related records across tables.
-
-Common relationship types:
-
-One-to-One – One record is associated with one record in another table.
-
-One-to-Many – One record can be associated with multiple records.
-
-Many-to-Many – Multiple records in one table can relate to multiple records in another table, usually through a junction table.`
-            },
-            {
-                heading: "What is a JOIN?",
-                body: `A JOIN combines related information from two or more tables using a matching condition.
-
-For example:
-
-Students:
-StudentID, Name
-
-Enrollments:
-EnrollmentID, StudentID, CourseName
-
-A JOIN can combine student names with their enrolled course names.
-
-This avoids storing the same student details repeatedly in every enrollment record.`
-            },
-            {
-                heading: "INNER JOIN",
-                code: `SELECT
-    Students.Name,
-    Enrollments.CourseName
-FROM Students
-INNER JOIN Enrollments
-ON Students.StudentID = Enrollments.StudentID;`,
-                body: `INNER JOIN returns records where the join condition matches in both tables.
-
-In this example, students are displayed along with their matching enrollment records.
-
-Students without matching enrollment records are not included in the result.`
-            },
-            {
-                heading: "LEFT JOIN and RIGHT JOIN",
-                code: `SELECT
-    Students.Name,
-    Enrollments.CourseName
-FROM Students
-LEFT JOIN Enrollments
-ON Students.StudentID = Enrollments.StudentID;`,
-                body: `LEFT JOIN returns every row from the left table and matching rows from the right table.
-
-When no matching right-side record exists, the right-side columns contain NULL.
-
-RIGHT JOIN returns every row from the right table and matching rows from the left table.
-
-The exact availability of RIGHT JOIN and syntax can vary across database systems.`
-            }
-        ],
-        questions: [
-            {
-                level: "Easy",
-                question: "What is a SQL JOIN?",
-                options: [
-                    "Combining related records from tables",
-                    "Deleting a database",
-                    "Creating CSS styles",
-                    "Installing a server"
-                ],
-                correct: 0,
-                explanation: "JOIN combines related data from multiple tables."
-            },
-            {
-                level: "Easy",
-                question: "Which JOIN returns only matching records?",
-                options: ["INNER JOIN", "LEFT JOIN", "CROSS JOIN", "FULL JOIN"],
-                correct: 0,
-                explanation: "INNER JOIN returns records that satisfy the matching condition in both tables."
-            },
-            {
-                level: "Medium",
-                question: "What does LEFT JOIN return?",
-                options: [
-                    "All left-table rows and matching right-table rows",
-                    "Only right-table rows",
-                    "Only matching rows",
-                    "No records"
-                ],
-                correct: 0,
-                explanation: "LEFT JOIN preserves all rows from the left table."
-            },
-            {
-                level: "Medium",
-                question: "Which key commonly connects related records between tables?",
-                options: ["Foreign key", "CSS key", "HTML key", "Browser key"],
-                correct: 0,
-                explanation: "A foreign key references a key in another table."
-            },
-            {
-                level: "Hard",
-                question: "Which relationship commonly requires a junction table?",
-                options: [
-                    "Many-to-Many",
-                    "One-to-One only",
-                    "One-to-Many only",
-                    "No relationship"
-                ],
-                correct: 0,
-                explanation: "A junction table represents many-to-many relationships in relational databases."
-            }
-        ]
-    },
-
-    // TOPIC 7
-    {
-        title: "Introduction to MongoDB",
-        sections: [
-            {
-                heading: "What is MongoDB?",
-                body: `MongoDB is a NoSQL document-oriented database.
-
-Instead of organizing information in relational tables, MongoDB stores records as documents inside collections.
-
-Documents use a JSON-like structure called BSON internally.
-
-MongoDB is useful when applications need flexible document structures and scalable data management.`
-            },
-            {
-                heading: "Documents and Collections",
-                body: `MongoDB organizes information using databases, collections and documents.
-
-Database – Contains collections.
-
-Collection – Contains related documents.
-
-Document – Stores a set of fields and values.
-
-Example document:
-
-{
-    "name": "Harsha",
-    "department": "ECE",
-    "year": 2
+async function createPasswordHash(password) {
+    const hash = await bcrypt.hash(password, 12);
+    return hash;
 }
 
-A collection can contain many documents with similar or different fields.`
+async function verifyPassword(password, hash) {
+    return await bcrypt.compare(password, hash);
+}`
             },
             {
-                heading: "SQL vs MongoDB",
-                body: `Relational database:
+                heading: "Password Security Best Practices",
+                body: `1. Never store plain-text passwords.
+2. Use a trusted password-hashing library.
+3. Use unique salts generated by the library.
+4. Never send passwords through insecure connections.
+5. Do not log passwords.
+6. Provide a secure password-reset process.
+7. Apply suitable login rate limits.
 
-• Uses tables, rows and columns.
-• Commonly uses SQL.
-• Supports structured relationships.
-• Example: MySQL.
-
-MongoDB:
-
-• Uses collections and documents.
-• Stores BSON documents.
-• Supports flexible document structures.
-• Uses MongoDB query and update operations.
-
-Both approaches can be used to build modern web applications.`
-            },
-            {
-                heading: "MongoDB Shell Commands",
-                code: `show dbs
-
-use devoraa
-
-db.createCollection("students")
-
-db.students.insertOne({
-    name: "Harsha",
-    department: "ECE",
-    year: 2
-})
-
-db.students.find()`,
-                body: `show dbs lists available databases.
-
-use devoraa switches to or selects the database.
-
-db.createCollection() creates a collection.
-
-insertOne() adds a document.
-
-find() retrieves documents.
-
-MongoDB can create a database when data is first stored in it.`
+Hashing is different from encryption. Hashing is designed to be one-way, whereas encryption is designed to be reversible with the appropriate key.`
             }
         ],
         questions: [
-            {
-                level: "Easy",
-                question: "What type of database is MongoDB?",
-                options: [
-                    "NoSQL document database",
-                    "Relational-only database",
-                    "Operating system",
-                    "Programming language"
-                ],
-                correct: 0,
-                explanation: "MongoDB is a NoSQL document-oriented database."
-            },
-            {
-                level: "Easy",
-                question: "What is a collection in MongoDB?",
-                options: [
-                    "A group of documents",
-                    "A CSS file",
-                    "A JavaScript function",
-                    "A browser window"
-                ],
-                correct: 0,
-                explanation: "A collection stores related MongoDB documents."
-            },
-            {
-                level: "Medium",
-                question: "What is the document format used internally by MongoDB?",
-                options: ["BSON", "HTML", "CSS", "MP3"],
-                correct: 0,
-                explanation: "MongoDB stores documents using BSON, a binary representation of JSON-like documents."
-            },
-            {
-                level: "Medium",
-                question: "Which method inserts one document?",
-                options: ["insertOne()", "find()", "deleteMany()", "updateMany()"],
-                correct: 0,
-                explanation: "insertOne() adds a single document to a collection."
-            },
-            {
-                level: "Hard",
-                question: "Which MongoDB command retrieves documents from a collection?",
-                options: ["find()", "insertOne()", "drop()", "createCollection()"],
-                correct: 0,
-                explanation: "find() retrieves documents that match a specified filter."
-            }
+            { question: "Why should passwords be hashed?", options: ["To display them", "To protect stored passwords", "To increase image quality", "To change HTML"], correct: 1 },
+            { question: "Which is a password-hashing algorithm?", options: ["bcrypt", "HTML", "React", "CSS"], correct: 0 },
+            { question: "What is a salt?", options: ["A database table", "Random data added during password hashing", "A browser extension", "A programming language"], correct: 1 },
+            { question: "Can a secure password hash normally be decrypted to obtain the original password?", options: ["Yes, always", "No, hashing is designed to be one-way", "Only using CSS", "Only through HTML"], correct: 1 },
+            { question: "Which package is used in the example?", options: ["express", "bcrypt", "react", "mysql2"], correct: 1 }
         ]
     },
 
-    // TOPIC 8
     {
-        title: "MongoDB CRUD Operations",
+        title: "4. Sessions and Cookies",
         sections: [
             {
-                heading: "What is CRUD?",
-                body: `CRUD represents four basic operations used to manage stored information.
+                heading: "What is a Session?",
+                body: `A session allows a server to remember an authenticated user's state across multiple HTTP requests.
 
-Create – Add new records.
+HTTP is stateless, which means individual requests do not automatically remember earlier requests.
 
-Read – Retrieve existing records.
+A session system commonly stores information on the server and gives the browser a session identifier.
 
-Update – Modify existing records.
-
-Delete – Remove records.
-
-These operations are essential for most database-driven applications.`
+When the browser sends that identifier in later requests, the server can identify the corresponding session.`
             },
             {
-                heading: "Create and Read Operations",
-                code: `db.students.insertOne({
-    name: "Ravi",
-    department: "ECE",
-    age: 19
-})
+                heading: "What are Cookies?",
+                body: `Cookies are small pieces of data stored by a browser for a website.
 
-db.students.insertMany([
-    { name: "Harsha", department: "ECE" },
-    { name: "Kiran", department: "CSE" }
-])
+They are commonly used for session identifiers, user preferences, and other website-related information.
 
-db.students.find()
-
-db.students.find({
-    department: "ECE"
-})`,
-                body: `insertOne() inserts one document.
-
-insertMany() inserts multiple documents.
-
-find() retrieves documents.
-
-A filter can be passed to find() to retrieve matching records.
-
-For example, the final query retrieves students belonging to ECE.`
+A server can instruct the browser to store a cookie using the Set-Cookie response header. The browser may send it in later requests using the Cookie request header.`
             },
             {
-                heading: "Update Operations",
-                code: `db.students.updateOne(
-    { name: "Ravi" },
-    { $set: { age: 20 } }
-)`,
-                body: `updateOne() modifies the first document matching the filter.
+                heading: "Secure Cookie Attributes",
+                body: `HttpOnly: Prevents JavaScript running in the browser from reading the cookie.
 
-$set changes the specified field without replacing the entire document.
+Secure: Restricts cookie transmission to secure HTTPS connections.
 
-updateMany() can modify all documents that match a filter.
+SameSite: Helps control when cookies are sent with cross-site requests.
 
-Always choose the filter carefully when updating records.`
+Expires and Max-Age: Control how long the cookie remains valid.
+
+These attributes help protect cookies, but applications still need proper session management and CSRF protection.`
             },
             {
-                heading: "Delete Operations",
-                code: `db.students.deleteOne({
-    name: "Ravi"
-})
+                heading: "Session-Based Authentication",
+                body: `In session-based authentication:
 
-db.students.deleteMany({
-    department: "CSE"
-})`,
-                body: `deleteOne() removes the first document matching the filter.
+1. A user logs in.
+2. The server verifies the credentials.
+3. The server creates a session.
+4. A session identifier is sent to the browser in a cookie.
+5. The browser sends the cookie with later requests.
+6. The server validates the session and checks the user's permissions.
 
-deleteMany() removes all documents matching the filter.
-
-A filter should be reviewed carefully before performing a delete operation.
-
-These commands are similar to SQL INSERT, SELECT, UPDATE and DELETE in purpose, but use MongoDB-specific syntax.`
+The server can invalidate a session when the user logs out.`
             }
         ],
         questions: [
-            {
-                level: "Easy",
-                question: "What does CRUD stand for?",
-                options: [
-                    "Create, Read, Update, Delete",
-                    "Create, Run, Upload, Download",
-                    "Copy, Read, Use, Design",
-                    "Connect, Replace, Update, Display"
-                ],
-                correct: 0,
-                explanation: "CRUD represents Create, Read, Update and Delete."
-            },
-            {
-                level: "Easy",
-                question: "Which MongoDB method inserts one document?",
-                options: ["insertOne()", "find()", "updateOne()", "deleteOne()"],
-                correct: 0,
-                explanation: "insertOne() creates one document in a collection."
-            },
-            {
-                level: "Medium",
-                question: "Which method retrieves documents?",
-                options: ["find()", "insertOne()", "deleteOne()", "drop()"],
-                correct: 0,
-                explanation: "find() retrieves documents matching a filter."
-            },
-            {
-                level: "Medium",
-                question: "What does the $set operator do?",
-                options: [
-                    "Changes specified field values",
-                    "Deletes a collection",
-                    "Creates a database",
-                    "Retrieves every document"
-                ],
-                correct: 0,
-                explanation: "$set updates the specified fields in a document."
-            },
-            {
-                level: "Hard",
-                question: "Which method removes all documents matching a filter?",
-                options: ["deleteMany()", "insertMany()", "find()", "updateOne()"],
-                correct: 0,
-                explanation: "deleteMany() removes every document matching the supplied filter."
-            }
+            { question: "Why are sessions used?", options: ["To remember user state across requests", "To design images", "To compile CSS", "To create HTML tags"], correct: 0 },
+            { question: "Where are browser cookies stored?", options: ["In the browser", "Only in a keyboard", "In a monitor", "In a compiler"], correct: 0 },
+            { question: "What does HttpOnly do?", options: ["Allows JavaScript to read the cookie", "Prevents JavaScript from reading the cookie", "Deletes the database", "Disables HTTPS"], correct: 1 },
+            { question: "What does Secure cookie attribute help enforce?", options: ["HTTPS transmission", "Image compression", "Database indexing", "HTML validation"], correct: 0 },
+            { question: "What is commonly sent by the browser to identify a session?", options: ["Session cookie", "CSS file", "Image tag", "SQL command"], correct: 0 }
         ]
     },
 
-    // TOPIC 9
     {
-        title: "Connecting Database with Backend",
+        title: "5. JSON Web Tokens (JWT)",
         sections: [
             {
-                heading: "Why Connect a Database to Backend?",
-                body: `A backend application uses a database to store and retrieve information.
+                heading: "What is JWT?",
+                body: `JWT stands for JSON Web Token.
 
-Without database integration, application data may exist only temporarily in application memory.
+It is a compact token format used to transfer claims between parties.
 
-Database integration allows an application to maintain information even after the server restarts.
+JWT is commonly used in authentication systems where a server issues a signed token after verifying a user's identity.
 
-For example, a course management system can save courses, retrieve them later and update their details.`
+The client sends the token with later requests, and the backend verifies it before granting access.
+
+A signed JWT is not automatically encrypted. Its payload should not contain confidential information.`
             },
             {
-                heading: "Connecting Node.js with MongoDB",
-                body: `A Node.js application can communicate with MongoDB using an official driver or an ODM library such as Mongoose.
+                heading: "Structure of JWT",
+                body: `A typical JWT contains three parts separated by dots:
 
-Mongoose provides schemas and models to define and work with MongoDB documents.
+1. Header: Contains information about the token type and signing algorithm.
+2. Payload: Contains claims such as user ID and expiration time.
+3. Signature: Allows the receiver to verify that the token has not been modified and was signed using the expected key.
 
-Install Mongoose using:
+The three parts are encoded using Base64URL encoding.`,
+                code: `header.payload.signature
 
-npm install mongoose
+Example claims:
 
-The application needs a MongoDB connection string to connect to a database.
-
-Connection strings should be stored securely rather than exposed in public source code.`
+{
+    "sub": "user123",
+    "role": "student",
+    "exp": 1893456000
+}`
             },
             {
-                heading: "Database Connection Example",
-                code: `const mongoose = require("mongoose");
+                heading: "JWT Authentication Workflow",
+                body: `1. User submits login credentials.
+2. Server verifies the credentials.
+3. Server creates and signs a token.
+4. Client stores the token using a suitable secure strategy.
+5. Client sends the token with protected requests.
+6. Server verifies the signature and checks expiration and required claims.
+7. Server checks authorization before returning protected information.
 
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => {
-        console.log("Database connected");
-    })
-    .catch((error) => {
-        console.error("Database connection failed");
-    });`,
-                body: `mongoose.connect() establishes a connection to MongoDB.
-
-The connection string is read from an environment variable named MONGODB_URI.
-
-The then() block runs after a successful connection.
-
-The catch() block handles a connection failure.
-
-The database URL should be configured in the server environment and must not be committed as a secret in a public repository.`
+Tokens should have suitable expiration periods and a revocation or rotation strategy where required.`
             },
             {
-                heading: "Creating a Mongoose Model",
-                code: `const mongoose = require("mongoose");
+                heading: "JWT Example in Node.js",
+                body: `The jsonwebtoken package can create and verify JWTs.
 
-const studentSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    department: {
-        type: String,
-        required: true
-    },
-    year: {
-        type: Number,
-        default: 1
-    }
-});
+Install it using npm install jsonwebtoken.
 
-const Student = mongoose.model(
-    "Student",
-    studentSchema
+The signing secret must be a strong secret stored securely in an environment variable. Never expose it in frontend code.`,
+                code: `const jwt = require("jsonwebtoken");
+
+const token = jwt.sign(
+    { userId: 101, role: "student" },
+    process.env.JWT_SECRET,
+    { expiresIn: "15m" }
 );
 
-module.exports = Student;`,
-                body: `A schema defines the expected structure and validation rules for documents.
+const decoded = jwt.verify(
+    token,
+    process.env.JWT_SECRET
+);
 
-mongoose.model() creates a model based on the schema.
-
-The model provides methods for creating, finding, updating and deleting documents.
-
-For example, Student.find() can retrieve student records from the database.`
+console.log(decoded.userId);`
             }
         ],
         questions: [
-            {
-                level: "Easy",
-                question: "Why does a backend connect to a database?",
-                options: [
-                    "To store and retrieve application data",
-                    "To change webpage colors",
-                    "To create animations",
-                    "To replace JavaScript"
-                ],
-                correct: 0,
-                explanation: "Database integration allows backend applications to store and retrieve persistent data."
-            },
-            {
-                level: "Easy",
-                question: "Which package is commonly used as an ODM for MongoDB in Node.js?",
-                options: ["Mongoose", "Bootstrap", "React", "Express CSS"],
-                correct: 0,
-                explanation: "Mongoose is an ODM library commonly used with MongoDB and Node.js."
-            },
-            {
-                level: "Medium",
-                question: "What is a Mongoose schema?",
-                options: [
-                    "A definition of document structure and validation",
-                    "A CSS layout",
-                    "A browser setting",
-                    "An HTML image"
-                ],
-                correct: 0,
-                explanation: "A schema describes the expected structure and rules for documents."
-            },
-            {
-                level: "Medium",
-                question: "Why should a database connection string be protected?",
-                options: [
-                    "It may contain credentials and access information",
-                    "It changes the font",
-                    "It creates CSS files",
-                    "It is an image format"
-                ],
-                correct: 0,
-                explanation: "Connection strings may contain credentials that should remain confidential."
-            },
-            {
-                level: "Hard",
-                question: "What is the purpose of mongoose.model()?",
-                options: [
-                    "To create a model based on a schema",
-                    "To create an HTML page",
-                    "To install Node.js",
-                    "To delete the server"
-                ],
-                correct: 0,
-                explanation: "mongoose.model() creates a model used to interact with a MongoDB collection."
-            }
+            { question: "What is the full form of JWT?", options: ["Java Web Technology", "JSON Web Token", "JavaScript Web Tool", "Joined Web Transfer"], correct: 1 },
+            { question: "How many main parts does a typical JWT contain?", options: ["One", "Two", "Three", "Five"], correct: 2 },
+            { question: "What is the purpose of the JWT signature?", options: ["To verify token integrity and authenticity", "To store images", "To create HTML", "To style a webpage"], correct: 0 },
+            { question: "Is a signed JWT payload automatically encrypted?", options: ["Yes", "No", "Only in HTML", "Only in CSS"], correct: 1 },
+            { question: "Where should a JWT signing secret be stored?", options: ["Public JavaScript file", "Environment variable", "HTML title", "Image folder"], correct: 1 }
         ]
     },
 
-    // TOPIC 10
     {
-        title: "Building a Database-Driven Application",
+        title: "6. Role-Based Access Control",
         sections: [
             {
-                heading: "Application Overview",
-                body: `In this topic, we combine database and backend concepts to build a simple Student Management API.
+                heading: "What is Access Control?",
+                body: `Access control determines which users can access specific resources or perform certain actions.
 
-The application will support:
+It is an important part of application security because different users often need different permissions.
 
-• Creating student records
-• Retrieving all students
-• Retrieving an individual student
-• Updating student information
-• Deleting student records
-
-We will use Node.js, Express.js, MongoDB and Mongoose.
-
-Unlike an in-memory array, MongoDB provides persistent storage.`
+For example, students, teachers, and administrators may have different levels of access.`
             },
             {
-                heading: "Installing Dependencies",
-                code: `npm init -y
-npm install express mongoose dotenv`,
-                body: `Express is used to build the backend API.
+                heading: "Role-Based Access Control (RBAC)",
+                body: `Role-Based Access Control assigns permissions to roles rather than assigning every permission separately to each user.
 
-Mongoose connects Node.js to MongoDB and provides schema-based models.
+Example roles:
 
-dotenv loads configuration values from a local environment file.
+Student:
+- View personal profile.
+- View marks.
+- View course information.
 
-Create these files:
+Teacher:
+- View assigned classes.
+- Update marks for permitted courses.
 
-server.js
-Student.js
-.env
+Administrator:
+- Manage users.
+- Manage courses.
+- Configure application settings.
 
-Keep the .env file private and out of public Git repositories.`
+A user's role should be checked on the backend for every protected operation.`
             },
             {
-                heading: "Environment Configuration",
-                code: `MONGODB_URI=your_mongodb_connection_string
-PORT=3000`,
-                body: `The .env file contains configuration values.
+                heading: "Example of Role Checking",
+                body: `The following Express middleware demonstrates a basic role check.
 
-Replace the database connection placeholder with your actual MongoDB connection string.
+The authentication middleware must run first and attach a verified user object to the request. Never trust a role sent directly by the client.`,
+                code: `function allowRoles(...allowedRoles) {
+    return (req, res, next) => {
+        if (!req.user) {
+            return res.status(401).json({
+                message: "Login required"
+            });
+        }
 
-Never share a real connection string or database password publicly.
+        if (!allowedRoles.includes(req.user.role)) {
+            return res.status(403).json({
+                message: "Access denied"
+            });
+        }
 
-Add .env to .gitignore before committing your project.`
+        next();
+    };
+}
+
+// Example:
+// app.get("/admin", authenticate, allowRoles("admin"), handler);`
             },
             {
-                heading: "Student Model",
-                code: `const mongoose = require("mongoose");
+                heading: "401 vs 403 Status Codes",
+                body: `401 Unauthorized means the request does not have valid authentication credentials.
 
-const studentSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
+403 Forbidden means the server understands the request but refuses access because the user does not have the required permission.
+
+Using these status codes correctly makes APIs easier to understand and troubleshoot.`
+            }
+        ],
+        questions: [
+            { question: "What does RBAC stand for?", options: ["Role-Based Access Control", "Random Browser Access Code", "Remote Backend Application Control", "Role-Based Application Compiler"], correct: 0 },
+            { question: "What is the purpose of RBAC?", options: ["Assign permissions based on roles", "Design website layouts", "Create database backups", "Compress files"], correct: 0 },
+            { question: "Which status code commonly indicates missing or invalid authentication?", options: ["200", "401", "404", "500"], correct: 1 },
+            { question: "Which status code indicates insufficient permission?", options: ["201", "301", "403", "204"], correct: 2 },
+            { question: "Where should authorization checks be enforced?", options: ["Only in frontend buttons", "On the backend", "Only in CSS", "In image files"], correct: 1 }
+        ]
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    department: {
-        type: String,
-        required: true
-    }
-});
 
-module.exports = mongoose.model(
-    "Student",
-    studentSchema
-);`,
-                body: `The Student model defines the structure of student records.
+    {
+        title: "7. Application Security and Common Threats",
+        sections: [
+            {
+                heading: "Why Application Security Matters",
+                body: `Application security protects user accounts, data, and system resources against unauthorized access and misuse.
 
-The name, email and department fields are required.
+A secure application validates input, protects credentials, applies access controls, and handles unexpected requests safely.
 
-The unique option creates a uniqueness constraint at the database index level when the index is available. Applications should still handle duplicate-key errors properly.`
+Security should be considered throughout development rather than added only after deployment.`
             },
             {
-                heading: "Complete Backend Application",
-                code: `require("dotenv").config();
+                heading: "SQL Injection",
+                body: `SQL Injection occurs when untrusted input is incorrectly included in an SQL query.
 
-const express = require("express");
-const mongoose = require("mongoose");
-const Student = require("./Student");
+An attacker may attempt to change the meaning of a database query.
 
+Parameterized queries help prevent this by keeping user-supplied values separate from SQL instructions.`,
+                code: `// Safer parameterized query
+connection.execute(
+    "SELECT * FROM users WHERE email = ?",
+    [email],
+    callback
+);`
+            },
+            {
+                heading: "Cross-Site Scripting (XSS)",
+                body: `Cross-Site Scripting is a vulnerability in which untrusted content is interpreted as executable script in a user's browser.
+
+Applications should safely handle untrusted content, use context-aware output encoding, and avoid unsafe DOM operations.
+
+A Content Security Policy (CSP) can provide an additional layer of protection.`
+            },
+            {
+                heading: "Cross-Site Request Forgery (CSRF)",
+                body: `CSRF is an attack in which a browser may be tricked into sending an unwanted authenticated request to a website.
+
+Applications using cookie-based authentication should apply suitable CSRF protections.
+
+Common defenses include anti-CSRF tokens, suitable SameSite cookie settings, and checking request origins where appropriate.`
+            },
+            {
+                heading: "Security Best Practices",
+                body: `1. Use HTTPS.
+2. Validate and safely process user input.
+3. Use parameterized database queries.
+4. Hash passwords securely.
+5. Apply authentication and authorization.
+6. Keep dependencies updated.
+7. Protect secrets with environment variables.
+8. Configure secure cookies.
+9. Apply rate limiting to sensitive endpoints.
+10. Avoid exposing internal errors and confidential data.`
+            }
+        ],
+        questions: [
+            { question: "What is SQL injection?", options: ["An attack that manipulates SQL queries", "A CSS feature", "A browser setting", "A database backup"], correct: 0 },
+            { question: "Which practice helps prevent SQL injection?", options: ["Parameterized queries", "Plain-text passwords", "Disabling validation", "Public database credentials"], correct: 0 },
+            { question: "What does XSS stand for?", options: ["Cross-Site Scripting", "Extra Server Storage", "External System Software", "Cross Server Security"], correct: 0 },
+            { question: "What does CSRF stand for?", options: ["Cross-Site Request Forgery", "Central Server Resource File", "Common Security Request Format", "Client-Side Runtime Function"], correct: 0 },
+            { question: "Which protocol protects data in transit?", options: ["HTTPS", "Unencrypted HTTP", "Plain text", "HTML"], correct: 0 }
+        ]
+    },
+
+    {
+        title: "8. API Testing and Validation",
+        sections: [
+            {
+                heading: "What is API Testing?",
+                body: `API testing verifies whether an application's API endpoints work correctly.
+
+It checks request methods, input validation, response data, status codes, authentication, authorization, and error handling.
+
+API testing is important because frontend applications and other services depend on reliable backend responses.`
+            },
+            {
+                heading: "Common HTTP Status Codes",
+                body: `200 OK: The request succeeded.
+
+201 Created: A resource was successfully created.
+
+204 No Content: The request succeeded without a response body.
+
+400 Bad Request: The request contains invalid information.
+
+401 Unauthorized: Valid authentication is missing or invalid.
+
+403 Forbidden: The user does not have permission.
+
+404 Not Found: The requested resource does not exist.
+
+500 Internal Server Error: An unexpected server-side problem occurred.`
+            },
+            {
+                heading: "Testing APIs with Postman",
+                body: `Postman is a tool used to send HTTP requests and inspect API responses.
+
+Developers can use it to:
+- Select HTTP methods such as GET, POST, PUT, and DELETE.
+- Enter request URLs.
+- Add headers and authentication information.
+- Send JSON request bodies.
+- Inspect response status codes and response data.
+- Save requests into collections for repeated testing.`
+            },
+            {
+                heading: "Request Validation",
+                body: `Input validation checks whether incoming data follows the application's requirements.
+
+For example, a registration API may check that:
+- Name is not empty.
+- Email has a valid format.
+- Password meets the application's security requirements.
+- Required fields are present.
+- Values have the expected types.
+
+Validation should happen on the backend even if the frontend already validates the form.`
+            }
+        ],
+        questions: [
+            { question: "What is API testing?", options: ["Checking API functionality", "Designing a logo", "Installing an operating system", "Writing CSS only"], correct: 0 },
+            { question: "Which status code means Created?", options: ["200", "201", "400", "500"], correct: 1 },
+            { question: "Which status code means Not Found?", options: ["201", "301", "404", "500"], correct: 2 },
+            { question: "Which tool is commonly used for API testing?", options: ["Postman", "Paint", "Calculator", "Notepad only"], correct: 0 },
+            { question: "Should backend APIs validate incoming data?", options: ["Yes", "No", "Only during deployment", "Only for images"], correct: 0 }
+        ]
+    },
+
+    {
+        title: "9. Environment Variables and Application Configuration",
+        sections: [
+            {
+                heading: "What are Environment Variables?",
+                body: `Environment variables are values provided to an application through its runtime environment.
+
+They are commonly used to configure database credentials, API keys, application ports, and other settings.
+
+They help keep configuration separate from application source code.
+
+Sensitive values should not be committed to public repositories.`
+            },
+            {
+                heading: "Using dotenv in Node.js",
+                body: `The dotenv package loads variables from a local .env file into process.env.
+
+Install it using npm install dotenv.
+
+The .env file should normally be added to .gitignore so that local secrets are not committed to Git.`,
+                code: `// .env file
+PORT=5000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_local_password
+JWT_SECRET=replace_with_a_long_random_secret
+
+// server.js
+require("dotenv").config();
+
+const port = process.env.PORT || 3000;
+
+console.log("Server port:", port);`
+            },
+            {
+                heading: "Using .gitignore",
+                body: `A .gitignore file tells Git which files and directories should not be tracked.
+
+It is commonly used to exclude:
+- .env files.
+- node_modules directories.
+- Local log files.
+- Temporary build files.
+
+Example .gitignore content:`,
+                code: `.env
+.env.*
+node_modules/
+*.log`
+            },
+            {
+                heading: "Configuration Across Environments",
+                body: `Applications may run in different environments.
+
+Development: Used while building and testing an application locally.
+
+Testing: Used to verify application behavior.
+
+Production: The live environment used by real users.
+
+Each environment may require different database connections, service URLs, and configuration values.
+
+Production secrets should be configured through the hosting platform's secure environment-variable settings.`
+            }
+        ],
+        questions: [
+            { question: "What are environment variables used for?", options: ["Application configuration", "Creating HTML tags", "Drawing images", "Formatting CSS"], correct: 0 },
+            { question: "Which Node.js package loads .env files?", options: ["dotenv", "react", "mysql2 only", "express-html"], correct: 0 },
+            { question: "Which file helps exclude .env from Git?", options: [".gitignore", "index.html", "style.css", "package.json only"], correct: 0 },
+            { question: "Where should production secrets be configured?", options: ["Public GitHub repository", "Secure hosting environment settings", "HTML source code", "Public frontend JavaScript"], correct: 1 },
+            { question: "What is a production environment?", options: ["The live application environment", "A code editor theme", "A database table", "A browser extension"], correct: 0 }
+        ]
+    },
+
+    {
+        title: "10. Application Deployment and Maintenance",
+        sections: [
+            {
+                heading: "What is Deployment?",
+                body: `Deployment is the process of making an application available in an environment where users can access it.
+
+During development, an application may run on localhost. Deployment makes it accessible through a hosting platform or server.
+
+A full-stack application may contain a frontend, backend, and database, each of which needs suitable hosting and configuration.`
+            },
+            {
+                heading: "Frontend Deployment",
+                body: `Frontend applications contain the user interface and browser-side code.
+
+Static websites built using HTML, CSS, and JavaScript can be deployed using platforms such as GitHub Pages.
+
+Modern frontend applications built with frameworks may need a build process before deployment.
+
+After deployment, the platform provides a URL through which users can access the website.`
+            },
+            {
+                heading: "Backend Deployment",
+                body: `Backend applications run on a server and handle API requests, authentication, business logic, and database operations.
+
+Backend hosting platforms provide features such as:
+- Application runtime.
+- Environment variables.
+- Logs.
+- Deployment from Git repositories.
+- HTTPS support.
+
+The backend should listen on the port provided by its hosting environment when required.`,
+                code: `const express = require("express");
 const app = express();
 
 app.use(express.json());
 
-// Get all students
-app.get("/students", async (req, res) => {
-    try {
-        const students = await Student.find();
-
-        res.json(students);
-    } catch (error) {
-        res.status(500).json({
-            message: "Unable to retrieve students"
-        });
-    }
+app.get("/", (req, res) => {
+    res.send("DEVORAA API is running");
 });
 
-// Add a student
-app.post("/students", async (req, res) => {
-    try {
-        const { name, email, department } = req.body;
+const PORT = process.env.PORT || 5000;
 
-        if (
-            typeof name !== "string" || !name.trim() ||
-            typeof email !== "string" || !email.trim() ||
-            typeof department !== "string" || !department.trim()
-        ) {
-            return res.status(400).json({
-                message: "Valid name, email and department are required"
-            });
-        }
-
-        const student = await Student.create({
-            name: name.trim(),
-            email: email.trim(),
-            department: department.trim()
-        });
-
-        res.status(201).json(student);
-    } catch (error) {
-        if (error.code === 11000) {
-            return res.status(409).json({
-                message: "Email already exists"
-            });
-        }
-
-        res.status(500).json({
-            message: "Unable to create student"
-        });
-    }
-});
-
-// Update a student
-app.put("/students/:id", async (req, res) => {
-    try {
-        const { name, email, department } = req.body;
-
-        if (
-            typeof name !== "string" || !name.trim() ||
-            typeof email !== "string" || !email.trim() ||
-            typeof department !== "string" || !department.trim()
-        ) {
-            return res.status(400).json({
-                message: "Valid name, email and department are required"
-            });
-        }
-
-        const student = await Student.findByIdAndUpdate(
-            req.params.id,
-            {
-                name: name.trim(),
-                email: email.trim(),
-                department: department.trim()
+app.listen(PORT, () => {
+    console.log("Server running on port", PORT);
+});`
             },
             {
-                new: true,
-                runValidators: true
-            }
-        );
+                heading: "Database Deployment",
+                body: `A production backend needs access to a properly configured database.
 
-        if (!student) {
-            return res.status(404).json({
-                message: "Student not found"
-            });
-        }
+A database hosting service or managed database platform can provide a production database.
 
-        res.json(student);
-    } catch (error) {
-        if (error.code === 11000) {
-            return res.status(409).json({
-                message: "Email already exists"
-            });
-        }
+Important considerations include:
+- Database credentials.
+- Network access rules.
+- Backups.
+- Database migrations.
+- Access permissions.
+- Secure connections.
 
-        res.status(400).json({
-            message: "Invalid request"
-        });
-    }
-});
-
-// Delete a student
-app.delete("/students/:id", async (req, res) => {
-    try {
-        const student = await Student.findByIdAndDelete(
-            req.params.id
-        );
-
-        if (!student) {
-            return res.status(404).json({
-                message: "Student not found"
-            });
-        }
-
-        res.json({
-            message: "Student deleted successfully"
-        });
-    } catch (error) {
-        res.status(400).json({
-            message: "Invalid student ID"
-        });
-    }
-});
-
-// Connect to database and start server
-async function startServer() {
-    try {
-        await mongoose.connect(process.env.MONGODB_URI);
-
-        console.log("Database connected");
-
-        const PORT = process.env.PORT || 3000;
-
-        app.listen(PORT, () => {
-            console.log("Server running on port " + PORT);
-        });
-    } catch (error) {
-        console.error("Unable to start application");
-        process.exit(1);
-    }
-}
-
-startServer();`,
-                body: `This example combines Express routes with Mongoose database operations.
-
-GET /students retrieves all student records.
-
-POST /students creates a new student.
-
-PUT /students/:id updates a student.
-
-DELETE /students/:id removes a student.
-
-The async and await keywords allow the application to wait for database operations without blocking the entire Node.js process.
-
-The server starts only after a successful database connection.
-
-For a production application, additional email validation, authentication, authorization, rate limiting and structured logging should be implemented.`
+A local development database and a production database should be configured separately.`
             },
             {
-                heading: "Conclusion",
-                body: `Databases are an essential part of modern web applications.
+                heading: "Deployment Workflow",
+                body: `A common deployment workflow is:
 
-In this course, we learned database fundamentals, relational database concepts, SQL, CRUD operations, constraints, joins, MongoDB, Mongoose and backend database integration.
+1. Develop the application locally.
+2. Test its frontend and backend.
+3. Store the project in a Git repository.
+4. Configure production environment variables.
+5. Set up the production database.
+6. Deploy the frontend and backend.
+7. Configure API URLs and database connections.
+8. Enable HTTPS.
+9. Test the deployed application.
+10. Monitor logs and maintain the application.
 
-These concepts help developers build applications that can store and manage information reliably.
-
-A database-driven application combines the frontend, backend and database into one complete system.`
+Deployment is not the end of development. Applications need regular updates, security fixes, and monitoring.`
             }
         ],
         questions: [
-            {
-                level: "Easy",
-                question: "Which database is used in the Student Management API?",
-                options: ["MongoDB", "HTML", "CSS", "React"],
-                correct: 0,
-                explanation: "MongoDB stores student records in the application."
-            },
-            {
-                level: "Easy",
-                question: "Which package connects the Node.js application to MongoDB in this example?",
-                options: ["Mongoose", "Bootstrap", "Vite", "jQuery"],
-                correct: 0,
-                explanation: "Mongoose provides the database connection and model operations."
-            },
-            {
-                level: "Medium",
-                question: "What does Student.find() do?",
-                options: [
-                    "Retrieves student documents",
-                    "Deletes the database",
-                    "Creates an HTML page",
-                    "Installs Express"
-                ],
-                correct: 0,
-                explanation: "Student.find() retrieves documents matching the specified query."
-            },
-            {
-                level: "Medium",
-                question: "Why is dotenv used?",
-                options: [
-                    "To load environment configuration values",
-                    "To create CSS animations",
-                    "To replace MongoDB",
-                    "To design HTML pages"
-                ],
-                correct: 0,
-                explanation: "dotenv loads configuration values from an environment file."
-            },
-            {
-                level: "Hard",
-                question: "Why does the server connect to MongoDB before listening for requests?",
-                options: [
-                    "To ensure the database is available before serving database-dependent requests",
-                    "To create a CSS file",
-                    "To delete all student records",
-                    "To change the browser"
-                ],
-                correct: 0,
-                explanation: "Starting after a successful database connection avoids accepting requests before the required database is ready."
-            }
+            { question: "What is deployment?", options: ["Making an application available to users", "Deleting source code", "Creating a database table", "Writing a password"], correct: 0 },
+            { question: "Which platform can host static websites?", options: ["GitHub Pages", "MySQL only", "Postman", "bcrypt"], correct: 0 },
+            { question: "What does process.env.PORT provide?", options: ["A runtime environment port value", "A database password", "An HTML tag", "A CSS selector"], correct: 0 },
+            { question: "Why is HTTPS important?", options: ["It helps protect data in transit", "It creates database tables", "It replaces JavaScript", "It removes the need for testing"], correct: 0 },
+            { question: "What should happen after deployment?", options: ["Testing and monitoring", "Delete all backups", "Expose all credentials", "Stop maintaining the application"], correct: 0 }
         ]
     }
 
