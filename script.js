@@ -1,92 +1,58 @@
+
+// ==========================================
 // DEVORAA - COURSE DATA
+// ==========================================
 
 import { co1Topics } from "./co1.js";
 import { co2Topics } from "./co2.js";
+import { co3Topics } from "./co3.js";
+import { co4Topics } from "./co4.js";
+import { co5Topics } from "./co5.js";
+import { co6Topics } from "./co6.js";
+
 
 // ==========================================
-// DEVORAA - COURSE DATA
+// COURSE INFORMATION
 // ==========================================
+
+const courseTopics = {
+    CO1: co1Topics,
+    CO2: co2Topics,
+    CO3: co3Topics,
+    CO4: co4Topics,
+    CO5: co5Topics,
+    CO6: co6Topics
+};
 
 const courses = {
     CO1: {
         title: "Web Foundations",
-        description: "Learn how websites are structured and displayed.",
-        topics: [
-            "Introduction to Full Stack Development",
-            "Client, Server and Database",
-            "HTML Fundamentals",
-            "Semantic HTML",
-            "CSS Fundamentals",
-            "Flexbox and Grid",
-            "Responsive Web Design",
-            "CSS Variables",
-            "Building a Three-Page Website"
-        ]
+        description: "Learn how websites are structured and displayed."
     },
 
     CO2: {
         title: "JavaScript",
-        description: "Learn how to make websites interactive.",
-        topics: [
-            "JavaScript Fundamentals",
-            "Variables and Data Types",
-            "Functions and Callbacks",
-            "Higher Order Functions",
-            "Promises",
-            "Async and Await",
-            "Fetch API",
-            "DOM Manipulation",
-            "Events and Local Storage",
-            "Building a To-Do Application"
-        ]
+        description: "Learn how to make websites interactive."
     },
 
     CO3: {
         title: "React Development",
-        description: "Build user interfaces using React.",
-        topics: [
-            "Introduction to React", "JSX", "Components", "Props",
-            "useState", "useEffect", "Conditional Rendering",
-            "Lists and Keys", "Controlled Forms",
-            "React To-Do Application"
-        ]
+        description: "Build user interfaces using React."
     },
 
     CO4: {
         title: "Backend Development",
-        description: "Understand servers, APIs and backend logic.",
-        topics: [
-            "Introduction to Node.js", "Node.js Fundamentals",
-            "Express.js", "Middleware", "REST APIs",
-            "Input Validation", "Error Handling",
-            "Environment Variables", "Introduction to tRPC",
-            "Building a Notes API"
-        ]
+        description: "Understand servers, APIs and backend logic."
     },
 
     CO5: {
         title: "Database Development",
-        description: "Learn how applications store and manage data.",
-        topics: [
-            "Introduction to Databases", "Database Persistence",
-            "MongoDB Fundamentals", "BSON and MongoDB Operators",
-            "Mongoose", "PostgreSQL", "Prisma ORM",
-            "Database Schema Design", "CRUD Operations",
-            "Connecting Database with Backend"
-        ]
+        description: "Learn how applications store and manage data."
     },
 
     CO6: {
         title: "Authentication and Deployment",
-        description: "Secure, connect and publish a full-stack application.",
-        topics: [
-            "Authentication Fundamentals", "Sessions and JWT",
-            "Password Hashing", "OAuth", "CORS",
-            "Deployment Fundamentals", "Vercel and Render",
-            "MongoDB Atlas and Supabase",
-            "AI Coding Assistant Security Review",
-            "Deploying a Full-Stack Application"
-        ]
+        description: "Secure, connect and publish a full-stack application."
     }
 };
 
@@ -131,6 +97,7 @@ function scrollPageToTop() {
                 top: 0,
                 behavior: "instant"
             });
+
             break;
         }
 
@@ -167,6 +134,7 @@ if (nameForm) {
         setTimeout(function() {
 
             nameScreen.style.display = "none";
+
             appLayout.classList.add("visible");
 
             showDashboard();
@@ -232,8 +200,9 @@ function showDashboard() {
 function showCourse(code) {
 
     const course = courses[code];
+    const topics = courseTopics[code];
 
-    if (!course) return;
+    if (!course || !Array.isArray(topics)) return;
 
     setActiveNavigation(code);
 
@@ -257,7 +226,7 @@ function showCourse(code) {
 
         <div class="topic-list">
 
-            ${course.topics.map((topic, index) => `
+            ${topics.map((topic, index) => `
 
                 <button class="topic-item"
                     data-topic="${index}"
@@ -265,7 +234,7 @@ function showCourse(code) {
 
                     <span>
                         ${String(index + 1).padStart(2, "0")}
-                        &nbsp; ${escapeHTML(topic)}
+                        &nbsp; ${escapeHTML(topic.title)}
                     </span>
 
                     <span>→</span>
@@ -283,12 +252,14 @@ function showCourse(code) {
 
 
 // ==========================================
-// CO1 AND CO2 LESSON DISPLAY
+// LESSON DISPLAY - CO1 TO CO6
 // ==========================================
 
 function showTopicLesson(code, index) {
 
-    const topics = code === "CO1" ? co1Topics : co2Topics;
+    const topics = courseTopics[code];
+
+    if (!Array.isArray(topics)) return;
 
     const lesson = topics[index];
 
@@ -296,7 +267,7 @@ function showTopicLesson(code, index) {
 
     setActiveNavigation(code);
 
-    const sectionsHTML = lesson.sections.map((section, i) => `
+    const sectionsHTML = (lesson.sections || []).map((section, i) => `
 
         <section class="lesson-section">
 
@@ -331,7 +302,7 @@ function showTopicLesson(code, index) {
             </h1>
 
             <p class="page-description">
-                ${code === "CO1" ? "Web Foundations" : "JavaScript"}
+                ${escapeHTML(courses[code].title)}
             </p>
 
         </div>
@@ -423,9 +394,11 @@ function renderQuiz(lesson) {
                         ${index + 1}. ${escapeHTML(question.question)}
                     </h3>
 
-                    <p class="quiz-level">
-                        ${escapeHTML(question.level)}
-                    </p>
+                    ${question.level ? `
+                        <p class="quiz-level">
+                            ${escapeHTML(question.level)}
+                        </p>
+                    ` : ""}
 
                     <div class="lesson-quiz">
 
@@ -478,6 +451,7 @@ function renderQuiz(lesson) {
 
 // ==========================================
 // CHECK QUIZ ANSWERS
+// Supports both "correct" and "answer"
 // ==========================================
 
 function checkQuiz(questions) {
@@ -500,7 +474,11 @@ function checkQuiz(questions) {
 
         const selectedAnswer = Number(selected.value);
 
-        if (selectedAnswer === question.correct) {
+        const correctAnswer = Number(
+            question.correct ?? question.answer
+        );
+
+        if (selectedAnswer === correctAnswer) {
 
             score++;
 
@@ -513,7 +491,7 @@ function checkQuiz(questions) {
 
             feedback.textContent =
                 "Incorrect. Correct answer: " +
-                question.options[question.correct] +
+                question.options[correctAnswer] +
                 ". " + (question.explanation || "");
 
             feedback.style.color = "#b04444";
@@ -552,6 +530,7 @@ function setActiveNavigation(page) {
     document.querySelectorAll(".nav-item").forEach(button => {
 
         const isDashboard = button.dataset.page === page;
+
         const isCourse = button.dataset.course === page;
 
         button.classList.toggle(
@@ -630,17 +609,11 @@ document.addEventListener("click", function(event) {
 
         const index = Number(topicButton.dataset.topic);
 
-        if (!courses[code] || !courses[code].topics[index]) return;
+        const topics = courseTopics[code];
 
-        if (code === "CO1" || code === "CO2") {
+        if (!topics || !topics[index]) return;
 
-            showTopicLesson(code, index);
-
-        } else {
-
-            showPlaceholderLesson(code, index);
-
-        }
+        showTopicLesson(code, index);
 
         return;
     }
@@ -652,9 +625,9 @@ document.addEventListener("click", function(event) {
 
         const index = Number(lessonButton.dataset.topicLesson);
 
-        const topics = code === "CO1" ? co1Topics : co2Topics;
+        const topics = courseTopics[code];
 
-        if (index >= 0 && index < topics.length) {
+        if (topics && index >= 0 && index < topics.length) {
 
             showTopicLesson(code, index);
 
@@ -664,34 +637,6 @@ document.addEventListener("click", function(event) {
     }
 
 });
-
-
-// ==========================================
-// OTHER COURSE PLACEHOLDER
-// ==========================================
-
-function showPlaceholderLesson(code, index) {
-
-    const topic = courses[code].topics[index];
-
-    pageContent.innerHTML = `
-
-        <button class="back-button" data-course="${code}">
-            ← Back to ${code}
-        </button>
-
-        <p class="eyebrow">${code} / TOPIC ${index + 1}</p>
-
-        <h1 class="course-title">${escapeHTML(topic)}</h1>
-
-        <p class="page-description">
-            Lesson content will be added here.
-        </p>
-
-    `;
-
-    scrollPageToTop();
-}
 
 
 // ==========================================
