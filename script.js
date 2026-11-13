@@ -259,19 +259,28 @@ function showDashboard() {
         continueHTML = `
             <h2 class="section-heading">Continue learning</h2>
 
-            <button class="course-card"
-                data-topic="${lastLesson.index}"
-                data-course-code="${lastLesson.code}">
+            <div class="continue-learning-container">
 
-                <p class="course-number">${lastLesson.code}</p>
+                <button class="course-card"
+                    data-topic="${lastLesson.index}"
+                    data-course-code="${lastLesson.code}">
 
-                <h3>${escapeHTML(lesson.title)}</h3>
+                    <p class="course-number">${lastLesson.code}</p>
 
-                <p>${escapeHTML(course.title)}</p>
+                    <h3>${escapeHTML(lesson.title)}</h3>
 
-                <p>Continue where you left off →</p>
+                    <p>${escapeHTML(course.title)}</p>
 
-            </button>
+                    <p>Continue where you left off →</p>
+
+                </button>
+
+                <button class="remove-continue-btn"
+                    data-remove-continue>
+                    Remove
+                </button>
+
+            </div>
         `;
     }
 
@@ -401,7 +410,6 @@ function showTopicLesson(code, index) {
         return;
     }
 
-    // Save the current course and topic
     saveLastVisited(code, index);
 
     setActiveNavigation(code);
@@ -626,7 +634,6 @@ function checkQuiz(questions, code, topicIndex) {
         return;
     }
 
-    // Disable submitted answers
     document.querySelectorAll("#lessonQuiz input").forEach(input => {
         input.disabled = true;
     });
@@ -638,14 +645,12 @@ function checkQuiz(questions, code, topicIndex) {
 
     document.getElementById("retakeQuiz").hidden = false;
 
-    // Save completed topic
     const topicKey = getTopicKey(code, topicIndex);
 
     if (!savedProgress.completedTopics.includes(topicKey)) {
         savedProgress.completedTopics.push(topicKey);
     }
 
-    // Save latest quiz score
     savedProgress.quizScores[topicKey] = score;
 
     saveProgress();
@@ -686,6 +691,20 @@ function escapeHTML(value) {
 // ==========================================
 
 document.addEventListener("click", function(event) {
+
+    // REMOVE CONTINUE LEARNING
+    const removeContinueButton =
+        event.target.closest("[data-remove-continue]");
+
+    if (removeContinueButton) {
+        savedProgress.lastVisited = null;
+
+        saveProgress();
+
+        showDashboard();
+
+        return;
+    }
 
     const courseButton = event.target.closest("[data-course]");
     const openCourseButton = event.target.closest("[data-open-course]");
