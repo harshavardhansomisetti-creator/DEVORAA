@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DEVORAA</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAME ENTRY SCREEN -->
+
+    <section class="name-screen" id="nameScreen">
+
+        <div class="name-content">
+
+            <p class="eyebrow">A SPACE TO LEARN</p>
+
+            <h1>First, what should we call you?</h1>
+
+            <p class="description">
+                Enter your name to begin.
+            </p>
+
+            <form id="nameForm">
+
+                <input
+                    type="text"
+                    id="userName"
+                    placeholder="Your name"
+                    autocomplete="given-name"
+                    required
+                >
+
+                <button type="submit">
+                    Continue
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN WEBSITE -->
+
+    <div class="app-layout" id="appLayout">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+                DEVORAA
+            </div>
+
+            <nav class="navigation">
+
+                <button
+                    class="nav-item active"
+                    data-course="dashboard"
+                    type="button"
+                >
+                    Dashboard
+                </button>
+
+                <p class="nav-label">
+                    YOUR CURRICULUM
+                </p>
+
+                <button
+                    class="nav-item"
+                    data-course="CO1"
+                    type="button"
+                >
+                    CO1
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-course="CO2"
+                    type="button"
+                >
+                    CO2
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-course="CO3"
+                    type="button"
+                >
+                    CO3
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-course="CO4"
+                    type="button"
+                >
+                    CO4
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-course="CO5"
+                    type="button"
+                >
+                    CO5
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-course="CO6"
+                    type="button"
+                >
+                    CO6
+                </button>
+
+            </nav>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <button
+                    class="sidebar-toggle"
+                    id="sidebarToggle"
+                    type="button"
+                    aria-label="Toggle sidebar"
+                >
+                    ☰
+                </button>
+
+                <span>
+                    DEVORAA / LEARNING
+                </span>
+
+            </header>
+
+
+            <!-- DYNAMIC PAGE CONTENT -->
+
+            <section
+                id="pageContent"
+                class="page-content"
+            ></section>
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script type="module" src="js/script.js"></script>
+
+</body>
+
+</html>
