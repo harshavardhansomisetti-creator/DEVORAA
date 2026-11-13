@@ -187,6 +187,7 @@ button {
     letter-spacing: 1.5px;
 }
 
+
 /* ==========================================
    SIDEBAR COLLAPSED
 ========================================== */
@@ -209,13 +210,10 @@ button {
 }
 
 .app-layout.sidebar-collapsed .nav-item {
-    font-size: 0;
+    font-size: 13px;
     text-align: center;
     padding: 12px 3px;
-}
-
-.app-layout.sidebar-collapsed .nav-item::first-letter {
-    font-size: 14px;
+    white-space: nowrap;
 }
 
 .app-layout.sidebar-collapsed .nav-label {
