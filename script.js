@@ -1,8 +1,3 @@
-
-// ==========================================
-// DEVORAA - COURSE DATA
-// ==========================================
-
 import { co1Topics } from "./co1.js";
 import { co2Topics } from "./co2.js";
 import { co3Topics } from "./co3.js";
@@ -10,9 +5,8 @@ import { co4Topics } from "./co4.js";
 import { co5Topics } from "./co5.js";
 import { co6Topics } from "./co6.js";
 
-
 // ==========================================
-// COURSE INFORMATION
+// DEVORAA - COURSE INFORMATION
 // ==========================================
 
 const courseTopics = {
@@ -29,33 +23,27 @@ const courses = {
         title: "Web Foundations",
         description: "Learn how websites are structured and displayed."
     },
-
     CO2: {
         title: "JavaScript",
         description: "Learn how to make websites interactive."
     },
-
     CO3: {
         title: "React Development",
         description: "Build user interfaces using React."
     },
-
     CO4: {
         title: "Backend Development",
         description: "Understand servers, APIs and backend logic."
     },
-
     CO5: {
         title: "Database Development",
         description: "Learn how applications store and manage data."
     },
-
     CO6: {
         title: "Authentication and Deployment",
         description: "Secure, connect and publish a full-stack application."
     }
 };
-
 
 // ==========================================
 // DOM ELEMENTS
@@ -70,38 +58,16 @@ const sidebarToggle = document.getElementById("sidebarToggle");
 
 let studentName = "";
 
-
 // ==========================================
 // SCROLL TO TOP
 // ==========================================
 
 function scrollPageToTop() {
-
-    pageContent.scrollTo({
-        top: 0,
-        behavior: "instant"
-    });
-
-    let parent = pageContent.parentElement;
-
-    while (parent && parent !== document.body) {
-
-        const style = window.getComputedStyle(parent);
-
-        const canScroll =
-            parent.scrollHeight > parent.clientHeight &&
-            ["auto", "scroll"].includes(style.overflowY);
-
-        if (canScroll) {
-            parent.scrollTo({
-                top: 0,
-                behavior: "instant"
-            });
-
-            break;
-        }
-
-        parent = parent.parentElement;
+    if (pageContent) {
+        pageContent.scrollTo({
+            top: 0,
+            behavior: "instant"
+        });
     }
 
     window.scrollTo({
@@ -110,15 +76,12 @@ function scrollPageToTop() {
     });
 }
 
-
 // ==========================================
 // NAME ENTRY
 // ==========================================
 
 if (nameForm) {
-
     nameForm.addEventListener("submit", function(event) {
-
         event.preventDefault();
 
         studentName = userName.value.trim();
@@ -132,30 +95,21 @@ if (nameForm) {
         nameScreen.style.transform = "translateY(-15px)";
 
         setTimeout(function() {
-
             nameScreen.style.display = "none";
-
             appLayout.classList.add("visible");
-
             showDashboard();
-
         }, 500);
-
     });
-
 }
-
 
 // ==========================================
 // DASHBOARD
 // ==========================================
 
 function showDashboard() {
-
     setActiveNavigation("dashboard");
 
     pageContent.innerHTML = `
-
         <p class="eyebrow">YOUR LEARNING SPACE</p>
 
         <h1 class="welcome-heading">
@@ -169,9 +123,7 @@ function showDashboard() {
         <h2 class="section-heading">Your curriculum</h2>
 
         <div class="course-grid">
-
             ${Object.entries(courses).map(([code, course]) => `
-
                 <button class="course-card"
                     data-open-course="${code}">
 
@@ -182,32 +134,29 @@ function showDashboard() {
                     <p>${escapeHTML(course.description)}</p>
 
                 </button>
-
             `).join("")}
-
         </div>
-
     `;
 
     scrollPageToTop();
 }
-
 
 // ==========================================
 // COURSE PAGE
 // ==========================================
 
 function showCourse(code) {
-
     const course = courses[code];
     const topics = courseTopics[code];
 
-    if (!course || !Array.isArray(topics)) return;
+    if (!course || !Array.isArray(topics)) {
+        console.error("Course data not found:", code);
+        return;
+    }
 
     setActiveNavigation(code);
 
     pageContent.innerHTML = `
-
         <button class="back-button" data-page="dashboard">
             ← Back to dashboard
         </button>
@@ -225,53 +174,54 @@ function showCourse(code) {
         <h2 class="section-heading">Topics</h2>
 
         <div class="topic-list">
+            ${topics.map((topic, index) => {
+                const topicTitle =
+                    typeof topic === "string"
+                        ? topic
+                        : topic.title;
 
-            ${topics.map((topic, index) => `
+                return `
+                    <button class="topic-item"
+                        data-topic="${index}"
+                        data-course-code="${code}">
 
-                <button class="topic-item"
-                    data-topic="${index}"
-                    data-course-code="${code}">
+                        <span>
+                            ${String(index + 1).padStart(2, "0")}
+                            &nbsp; ${escapeHTML(topicTitle || "Untitled Topic")}
+                        </span>
 
-                    <span>
-                        ${String(index + 1).padStart(2, "0")}
-                        &nbsp; ${escapeHTML(topic.title)}
-                    </span>
-
-                    <span>→</span>
-
-                </button>
-
-            `).join("")}
-
+                        <span>→</span>
+                    </button>
+                `;
+            }).join("")}
         </div>
-
     `;
 
     scrollPageToTop();
 }
-
 
 // ==========================================
 // LESSON DISPLAY - CO1 TO CO6
 // ==========================================
 
 function showTopicLesson(code, index) {
-
     const topics = courseTopics[code];
 
     if (!Array.isArray(topics)) return;
 
     const lesson = topics[index];
 
-    if (!lesson) return;
+    if (!lesson || typeof lesson !== "object") {
+        console.error("Lesson not found:", code, index);
+        return;
+    }
 
     setActiveNavigation(code);
 
     const sectionsHTML = (lesson.sections || []).map((section, i) => `
-
         <section class="lesson-section">
 
-            <h2>${i + 1}. ${escapeHTML(section.heading)}</h2>
+            <h2>${i + 1}. ${escapeHTML(section.heading || "")}</h2>
 
             ${section.body ? `
                 <p>${escapeHTML(section.body)}</p>
@@ -282,11 +232,9 @@ function showTopicLesson(code, index) {
             ` : ""}
 
         </section>
-
     `).join("");
 
     pageContent.innerHTML = `
-
         <div class="lesson-header">
 
             <button class="back-button" data-course="${code}">
@@ -298,7 +246,7 @@ function showTopicLesson(code, index) {
             </p>
 
             <h1 class="course-title">
-                ${escapeHTML(lesson.title)}
+                ${escapeHTML(lesson.title || "Untitled Topic")}
             </h1>
 
             <p class="page-description">
@@ -309,7 +257,11 @@ function showTopicLesson(code, index) {
 
         <article class="lesson-content">
 
-            ${sectionsHTML}
+            ${sectionsHTML || `
+                <section class="lesson-section">
+                    <p>Lesson content is being prepared.</p>
+                </section>
+            `}
 
             <section class="lesson-section">
 
@@ -329,18 +281,14 @@ function showTopicLesson(code, index) {
                 data-topic-lesson="${index - 1}"
                 data-topic-course="${code}"
                 ${index === 0 ? "disabled" : ""}>
-
                 ← Previous Topic
-
             </button>
 
             <button class="back-button"
                 data-topic-lesson="${index + 1}"
                 data-topic-course="${code}"
                 ${index === topics.length - 1 ? "disabled" : ""}>
-
                 Next Topic →
-
             </button>
 
             <button class="back-button" data-course="${code}">
@@ -348,21 +296,17 @@ function showTopicLesson(code, index) {
             </button>
 
         </div>
-
     `;
 
     renderQuiz(lesson);
-
     scrollPageToTop();
 }
-
 
 // ==========================================
 // FIVE QUESTION QUIZ
 // ==========================================
 
 function renderQuiz(lesson) {
-
     const quizContainer = document.getElementById("lessonQuiz");
 
     if (!quizContainer) return;
@@ -370,28 +314,22 @@ function renderQuiz(lesson) {
     const questions = lesson.questions;
 
     if (!Array.isArray(questions) || questions.length !== 5) {
-
         quizContainer.innerHTML = `
-
             <p class="quiz-result">
                 Assessment questions are being prepared for this topic.
             </p>
-
         `;
-
         return;
     }
 
     quizContainer.innerHTML = `
-
         <div class="quiz-questions">
 
             ${questions.map((question, index) => `
-
                 <div class="quiz-question">
 
                     <h3>
-                        ${index + 1}. ${escapeHTML(question.question)}
+                        ${index + 1}. ${escapeHTML(question.question || "")}
                     </h3>
 
                     ${question.level ? `
@@ -401,9 +339,7 @@ function renderQuiz(lesson) {
                     ` : ""}
 
                     <div class="lesson-quiz">
-
-                        ${question.options.map((option, optionIndex) => `
-
+                        ${(question.options || []).map((option, optionIndex) => `
                             <label class="quiz-option">
 
                                 <input
@@ -415,15 +351,12 @@ function renderQuiz(lesson) {
                                 ${escapeHTML(option)}
 
                             </label>
-
                         `).join("")}
-
                     </div>
 
                     <p class="quiz-feedback" id="feedback-${index}"></p>
 
                 </div>
-
             `).join("")}
 
         </div>
@@ -437,7 +370,6 @@ function renderQuiz(lesson) {
         <button class="back-button" id="retakeQuiz" hidden>
             Retake Assessment
         </button>
-
     `;
 
     document.getElementById("submitQuiz")
@@ -445,22 +377,17 @@ function renderQuiz(lesson) {
 
     document.getElementById("retakeQuiz")
         .addEventListener("click", () => renderQuiz(lesson));
-
 }
-
 
 // ==========================================
 // CHECK QUIZ ANSWERS
-// Supports both "correct" and "answer"
 // ==========================================
 
 function checkQuiz(questions) {
-
     let score = 0;
     let unanswered = false;
 
     questions.forEach((question, index) => {
-
         const selected = document.querySelector(
             `input[name="question-${index}"]:checked`
         );
@@ -472,23 +399,20 @@ function checkQuiz(questions) {
             return;
         }
 
-        const selectedAnswer = Number(selected.value);
-
         const correctAnswer = Number(
             question.correct ?? question.answer
         );
 
-        if (selectedAnswer === correctAnswer) {
+        const selectedAnswer = Number(selected.value);
 
+        if (selectedAnswer === correctAnswer) {
             score++;
 
             feedback.textContent =
                 "Correct! " + (question.explanation || "");
 
             feedback.style.color = "#247a46";
-
         } else {
-
             feedback.textContent =
                 "Incorrect. Correct answer: " +
                 question.options[correctAnswer] +
@@ -496,14 +420,11 @@ function checkQuiz(questions) {
 
             feedback.style.color = "#b04444";
         }
-
     });
 
     if (unanswered) {
-
         document.getElementById("quizResult").textContent =
             "Please answer all five questions before submitting.";
-
         return;
     }
 
@@ -517,50 +438,37 @@ function checkQuiz(questions) {
         `Your Score: ${score}/5`;
 
     document.getElementById("retakeQuiz").hidden = false;
-
 }
-
 
 // ==========================================
 // ACTIVE NAVIGATION
 // ==========================================
 
 function setActiveNavigation(page) {
-
     document.querySelectorAll(".nav-item").forEach(button => {
-
         const isDashboard = button.dataset.page === page;
-
         const isCourse = button.dataset.course === page;
 
         button.classList.toggle(
             "active",
             isDashboard || isCourse
         );
-
     });
-
 }
-
 
 // ==========================================
 // HTML ESCAPE
 // ==========================================
 
 function escapeHTML(value) {
-
     return String(value).replace(/[&<>"']/g, character => ({
-
         "&": "&amp;",
         "<": "&lt;",
         ">": "&gt;",
         '"': "&quot;",
         "'": "&#39;"
-
     })[character]);
-
 }
-
 
 // ==========================================
 // ALL CLICK EVENTS
@@ -569,86 +477,54 @@ function escapeHTML(value) {
 document.addEventListener("click", function(event) {
 
     const courseButton = event.target.closest("[data-course]");
-
     const openCourseButton = event.target.closest("[data-open-course]");
-
     const dashboardButton = event.target.closest('[data-page="dashboard"]');
-
     const topicButton = event.target.closest("[data-topic]");
-
     const lessonButton = event.target.closest("[data-topic-lesson]");
 
-
     if (courseButton) {
-
         showCourse(courseButton.dataset.course);
-
         return;
     }
-
 
     if (openCourseButton) {
-
         showCourse(openCourseButton.dataset.openCourse);
-
         return;
     }
-
 
     if (dashboardButton) {
-
         showDashboard();
-
         return;
     }
-
 
     if (topicButton) {
-
         const code = topicButton.dataset.courseCode;
-
         const index = Number(topicButton.dataset.topic);
 
-        const topics = courseTopics[code];
-
-        if (!topics || !topics[index]) return;
-
         showTopicLesson(code, index);
-
         return;
     }
 
-
     if (lessonButton) {
-
         const code = lessonButton.dataset.topicCourse;
-
         const index = Number(lessonButton.dataset.topicLesson);
 
         const topics = courseTopics[code];
 
         if (topics && index >= 0 && index < topics.length) {
-
             showTopicLesson(code, index);
-
         }
 
         return;
     }
-
 });
-
 
 // ==========================================
 // SIDEBAR TOGGLE
 // ==========================================
 
 if (sidebarToggle) {
-
     sidebarToggle.addEventListener("click", function() {
-
         appLayout.classList.toggle("sidebar-collapsed");
-
     });
-
 }
